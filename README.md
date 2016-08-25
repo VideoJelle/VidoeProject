@@ -1,2 +1,2 @@
 # VidoeProject
-Het project dat gemaakt wordt door Jelle van Den Broek
+Het project dat gemaakt wordt door Dylan Griffioen, Mariëlle van Dijk en Jelle van Den Broek
