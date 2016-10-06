@@ -33,6 +33,9 @@ if (isset($_POST['removeItemCart'])) {
                 font-size: 24px;
                 padding: 20px;
             }
+            th{
+                min-width: 300px;
+            }
         </style>
     </head>
     <body>

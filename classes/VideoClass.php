@@ -120,16 +120,6 @@
 			return $videoclassObject;
 		}
 
-		public static function insert_tickets_database($id, $aantaltickets)
-		{
-			global $database;
-			$query = "UPDATE `optreden`
-					  SET `aantaltickets` =    '" . $aantaltickets . "'
-					  WHERE `id` =             '" . $id . "'";
-
-			$database->fire_query($query);
-		}
-
 		public static function insert_film_database($post)
 		{
 			global $database;
@@ -151,7 +141,7 @@
 
 			$last_id = mysqli_insert_id($database->getDb_connection());
 
-			echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt.</h3><br>";
+			echo "<h3 style='text-align: center;' >Film is toegevoegd aan database.</h3><br>";
 		}
 	}
 ?>

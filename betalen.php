@@ -4,19 +4,13 @@ require_once("./security.php");
 ?>
 
 <?php
-if (isset($_POST['removeItemCart'])) {
+if (isset($_POST['clearCart'])) {
     require_once("./classes/HireClass.php");
-    if (HireClass::remove_item_winkelmand($_POST)){
+    if (HireClass::clear_winkelmand($_POST)){
+
+    } else {
 
     }
-    else{
-
-    }
-//    if (HireClass::clear_winkelmand($_POST)){
-//
-//    } else {
-//
-//    }
 } else {
     ?>
 
@@ -33,16 +27,20 @@ if (isset($_POST['removeItemCart'])) {
                 font-size: 24px;
                 padding: 20px;
             }
+
+            th{
+                min-width: 300px;
+            }
         </style>
     </head>
     <body>
     <div class="section">
         <div class="container">
-            <h2>Klant Homepage</h2>
+            <h2>Betalen</h2>
             <br><br>
             <div class="row">
                 <div class="col-md-6">
-                    <h3>Winkelmand</h3>
+                    <h3>Uw bestelling</h3>
                     <?php
                     require_once("classes/LoginClass.php");
                     require_once("classes/HireClass.php");
@@ -84,12 +82,7 @@ if (isset($_POST['removeItemCart'])) {
                                 <td>
                                         " . $row["prijs"] . "
                                 </td>
-                                <td>
-                                        <form role=\"form\" action='' method='post'>
-                                            <input type='submit' class=\"btn btn-info\" name='removeItemCart' value='Verwijder Item'>
-                                            <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
-                                        </form>
-                                </td>
+                                
                             </tr>
                             </tbody>
                         </table>";
@@ -99,13 +92,17 @@ if (isset($_POST['removeItemCart'])) {
                     }
 
                     $conn->close();
+
+                    HireClass::calculate_Price();
+
                     ?>
-                    <form role=\"form\" action='index.php?content=videoPagina' method='post'>
+
+                    <form role=\"form\" action='' method='post'>
                         <input type='hidden' name='id' value='" . $row['id'] . "'/>
                         <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
                         <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
                         <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
-                        <input type='submit' class="btn btn-info" name='betalen' value='Betalen'>
+                        <input type='submit' class="btn btn-info" name='clearCart' value='Betalen'>
                     </form>
                     <br><br><br><br><br><br>
                 </div>
