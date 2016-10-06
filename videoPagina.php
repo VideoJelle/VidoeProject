@@ -17,17 +17,66 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12"><h1>Titel (jaar)<br></h1></div>
+            <div class="col-md-12"><h2>Filmpagina</h2><br><br></div>
         </div>
         <div class="row">
-            <div class="col-md-6"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive"></div>
-            <div class="col-md-6"><h4>Genres</h4><h4>Acteurs</h4>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient
-                    montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-                    fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-                    Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p></div>
+            <?php
+            require_once("classes/LoginClass.php");
+            require_once("classes/VideoClass.php");
+            require_once("classes/SessionClass.php");
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "videotheek";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $id = $_GET['id'];
+            $sql = "SELECT * FROM `videos` WHERE `id` = '" . $id . "'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+
+                    echo "
+<div class=\"container\">
+    <div class=\"row\">
+        <div class=\"col-md-4\">
+            <img style='height: 400px' src=\"images/" . $row["fotopad"] . "\" class=\"img-responsive\">
+        </div>
+        <div class=\"col-md-6\">
+            <h3>" . $row["titel"] . "</h3>
+            <p> " . $row["genres"] . "<br>
+                " . $row["acteurs"] . " <br><br>
+                " . $row["beschrijving"] .
+                        "</p>
+               <br>                 
+            <p><a href='bestellen.php?id=" . $row["id"] . "' class='btn btn-info' role='button'>Bestellen</a> &nbsp; Prijs: " . $row["prijs"] . "</p>
+        </div>
+    </div>
+</div>";
+                }
+            } else {
+                echo "0 results<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+            }
+
+            $conn->close();
+            ?>
+            <br><br>
         </div>
     </div>
 </div>
 </body>
 </html>
+
+
+
+
+
+
