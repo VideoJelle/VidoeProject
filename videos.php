@@ -8,7 +8,7 @@
     <link href="Videos.css" rel="stylesheet" type="text/css">
     <style>
         .header {
-            font-size: 24;
+            font-size: 24px;
             padding: 20px;
         }
     </style>
@@ -17,7 +17,7 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12"><h2>Video's</h2></div>
+            <div class="col-md-12"><h2>Video's</h2><br></div>
             <div class="section ">
             <div class="container">
                 <div class="row">

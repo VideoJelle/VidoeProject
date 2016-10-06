@@ -57,7 +57,7 @@
                 " . $row["beschrijving"] .
                         "</p>
                <br>                 
-            <p><a href='bestellen.php?id=" . $row["id"] . "' class='btn btn-info' role='button'>Bestellen</a> &nbsp; Prijs: " . $row["prijs"] . "</p>
+            <p><a href='bestellen.php?id=" . $row["id"] . "' class='btn btn-info' role='button'>Toevoegen aan winkelmand</a> &nbsp; Prijs: " . $row["prijs"] . "</p>
         </div>
     </div>
 </div>";

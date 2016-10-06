@@ -24,7 +24,7 @@ if (isset($_SESSION['userrole'])) {
         <div class=\"navbar-header\">
             <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"><span class=\"sr-only\">Toggle navigation</span><span>
                     class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>
-            <a class=\"navbar-brand headertext\" href=\"index.php?content=klantHomepage\"><span class=\"header\">Videotheek Harmelen</span><br></a></div>
+            <a class=\"navbar-brand headertext\" href=\"index.php?content=algemeneHomepage\"><span class=\"header\" style='font-size: 24px;'>Videotheek Harmelen</span><br></a></div>
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
             <ul class=\"nav navbar-nav navbar-right\">
                 <li><a href=\"index.php?content=klantHomepage\">Home</a></li>
@@ -63,7 +63,7 @@ if (isset($_SESSION['userrole'])) {
         <div class=\"navbar-header\">
             <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"><span class=\"sr-only\">Toggle navigation</span><span>
                     class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>
-            <a class=\"navbar-brand headertext\" href=\"index.php?content=adminHomepage\"><span class=\"header\">Videotheek Harmelen</span><br></a></div>
+            <a class=\"navbar-brand headertext\" href=\"index.php?content=algemeneHomepage\"><span class=\"header\" style='font-size: 24px;'>Videotheek Harmelen</span><br></a></div>
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
             <ul class=\"nav navbar-nav navbar-right\">
                 <li><a href=\"index.php?content=adminHomepage\">Home</a></li>
@@ -102,7 +102,7 @@ if (isset($_SESSION['userrole'])) {
         <div class=\"navbar-header\">
             <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"><span class=\"sr-only\">Toggle navigation</span><span>
                     class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>
-            <a class=\"navbar-brand headertext\" href=\"index.php?content=baliemedewerkerHomepage\"><span class=\"header\">Videotheek Harmelen</span><br></a></div>
+            <a class=\"navbar-brand headertext\" href=\"index.php?content=algemeneHomepage\"><span class=\"header\" style='font-size: 24px;'>Videotheek Harmelen</span><br></a></div>
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
             <ul class=\"nav navbar-nav navbar-right\">
                 <li><a href=\"index.php?content=baliemedewerkerHomepage\">Home</a></li>
@@ -141,7 +141,7 @@ if (isset($_SESSION['userrole'])) {
         <div class=\"navbar-header\">
             <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"><span class=\"sr-only\">Toggle navigation</span><span>
                     class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>
-            <a class=\"navbar-brand headertext\" href=\"index.php?content=bezorgerHomepage\"><span class=\"header\">Videotheek Harmelen</span><br></a></div>
+            <a class=\"navbar-brand headertext\" href=\"index.php?content=algemeneHomepage\"><span class=\"header\" style='font-size: 24px;'>Videotheek Harmelen</span><br></a></div>
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
             <ul class=\"nav navbar-nav navbar-right\">
                 <li><a href=\"index.php?content=bezorgerHomepage\">Home</a></li>
@@ -180,7 +180,7 @@ if (isset($_SESSION['userrole'])) {
         <div class=\"navbar-header\">
             <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"><span class=\"sr-only\">Toggle navigation</span><span>
                     class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>
-            <a class=\"navbar-brand headertext\" href=\"index.php?content=adminHomepage\"><span class=\"header\">Videotheek Harmelen</span><br></a></div>
+            <a class=\"navbar-brand headertext\" href=\"index.php?content=algemeneHomepage\"><span class=\"header\" style='font-size: 24px;'>Videotheek Harmelen</span><br></a></div>
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
             <ul class=\"nav navbar-nav navbar-right\">
                 <li><a href=\"index.php?content=adminHomepage\">Home</a></li>
@@ -219,9 +219,9 @@ if (isset($_SESSION['userrole'])) {
         <div class=\"navbar-header\">
             <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\".navbar-collapse\"><span class=\"sr-only\">Toggle navigation</span><span>
                     class=\"icon-bar\"></span><span class=\"icon-bar\"></span><span class=\"icon-bar\"></span></button>
-            <a class=\"navbar-brand headertext\" href=\"index.php?content=geblokkeerdHomepage\"><span class=\"header\">Videotheek Harmelen</span><br></a></div>
+            <a class=\"navbar-brand headertext\" href=\"index.php?content=algemeneHomepage\"><span class=\"header\" style='font-size: 24px;'>Videotheek Harmelen</span><br></a></div>
         <div class=\"collapse navbar-collapse navbar-ex1-collapse\">
-            <ul class=\"nav navbar-nav navbar-right\">
+            <ul class=\"nav navbar-nav navbar-right\" style='font-size: 24px;'>
                 <li><a href=\"index.php?content=geblokkeerdHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
