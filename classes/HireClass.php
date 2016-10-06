@@ -52,8 +52,23 @@
         {
             global $database;
 
-            $query =    "DELETE * FROM `winkelmand` WHERE `id` = '" . $_SESSION['id'] . "'";
+            $query =    "DELETE * FROM `winkelmand` WHERE `id` = " . $_SESSION['id'] . " ";
+            echo $query;
+
+//            $database->fire_query($query);
+        }
+
+        public static function remove_item_winkelmand($post)
+        {
+            global $database;
+
+            $query =    "DELETE FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . "
+                                                    AND `id` = " . $post["id"]. " ";
+//            echo $query;
             $database->fire_query($query);
+
+            echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+            header("refresh:4;url=index.php?content=klantHomepage");
         }
     }
 ?>

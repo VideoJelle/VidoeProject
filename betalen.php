@@ -100,7 +100,7 @@ if (isset($_POST['removeItemCart'])) {
 
                     $conn->close();
                     ?>
-                    <form role=\"form\" action='index.php?content=betalen' method='post'>
+                    <form role=\"form\" action='index.php?content=videoPagina' method='post'>
                         <input type='hidden' name='id' value='" . $row['id'] . "'/>
                         <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
                         <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
