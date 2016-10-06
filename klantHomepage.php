@@ -6,10 +6,9 @@ require_once("./security.php");
 <?php
 if (isset($_POST['removeItemCart'])) {
     require_once("./classes/HireClass.php");
-    if (HireClass::remove_item_winkelmand($_POST)){
+    if (HireClass::remove_item_winkelmand($_POST)) {
 
-    }
-    else{
+    } else {
 
     }
 //    if (HireClass::clear_winkelmand($_POST)){
@@ -33,41 +32,42 @@ if (isset($_POST['removeItemCart'])) {
                 font-size: 24px;
                 padding: 20px;
             }
-            th{
+
+            th {
                 min-width: 300px;
             }
         </style>
     </head>
-    <body>
-    <div class="section">
-        <div class="container">
-            <h2>Klant Homepage</h2>
-            <br><br>
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>Winkelmand</h3>
-                    <?php
-                    require_once("classes/LoginClass.php");
-                    require_once("classes/HireClass.php");
-                    require_once("classes/SessionClass.php");
+<body>
+<div class="section">
+    <div class="container">
+    <h2>Klant Homepage</h2>
+    <br><br>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Winkelmand</h3>
+            <?php
+            require_once("classes/LoginClass.php");
+            require_once("classes/HireClass.php");
+            require_once("classes/SessionClass.php");
 
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "videotheek";
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "videotheek";
 
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-                    $sql = "SELECT * FROM winkelmand WHERE `klantid` = " . $_SESSION['id'] . " ";
-                    $result = $conn->query($sql);
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "SELECT * FROM winkelmand WHERE `klantid` = " . $_SESSION['id'] . " ";
+            $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "
                         <table class=\"table table - responsive\">
                             <thead>
                             <tr>
@@ -95,29 +95,70 @@ if (isset($_POST['removeItemCart'])) {
                                 </td>
                             </tr>
                             </tbody>
-                        </table>";
+                        </table>
+                            ";
                         }
-                    } else {
-                        echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-                    }
+                    echo"
+                            <form role='form' action='index.php?content=betalen' method='post'>
+                                <input type='hidden' name='id' value='" . $row['id'] . "'/>
+                                <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
+                                <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
+                                <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
+                                <input type='submit' class='btn btn - info' name='betalen' value='Betalen'>
+                            </form>";
 
-                    $conn->close();
-                    ?>
-                    <form role=\"form\" action='index.php?content=betalen' method='post'>
-                        <input type='hidden' name='id' value='" . $row['id'] . "'/>
-                        <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
-                        <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
-                        <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
-                        <input type='submit' class="btn btn-info" name='betalen' value='Betalen'>
-                    </form>
-                    <br><br><br><br><br><br>
-                </div>
-            </div>
+                }  else {
+                echo "Geen resultaten<br><br><br><br><br><br><br>";
+            }
+            $conn->close();
+            ?>
+
+            <br><br>
         </div>
     </div>
 
-    </body>
-    </html>
+
     <?php
+    if (isset($_POST['submit'])) {
+        $naamKlacht = $_GET['naam'];
+        $emailKlacht = $_GET['email'];
+        $onderwerp = $_POST['onderwerp'];
+        $comment = $_POST['comment'];
+        $from = 'From: Website_Videotheek_Harmelen';
+        $to = 'jellevandenbroek@gmail.com';
+        $to = $emailKlacht;
+        $subject = 'Ingediende Klacht';
+
+        $body = "Klant naam: $naamKlacht\nE-mail: $emailKlacht\n\nOnderwerp: $onderwerp\nBericht:\n$comment";
+
+        if (mail($to, $subject, $body, $from)) {
+            echo '<h3 style=\'text-align: center;\' >Uw bericht is verzonden. Wij bekijken uw bericht zo snel mogelijk.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+            echo '<meta http-equiv="refresh" content="5" />';
+        } else {
+            echo '<p>Er is iets fout gegaan. Probeer het opnieuw.</p>';
+        }
+    } else {
+        ?>
+
+
+        <div class="row">
+            <h3>Klacht indienen</h3>
+            <div class="col-md-12 text-left">
+                <form role="form" action="index.php?content=klantHomepage" method="post">
+                    <div class="form-group"><label class="control-label" for="onderwerp">Onderwerp<br></label>
+                        <input class="form-control" id="onderwerp" placeholder="Onderwerp" type="text" name="onderwerp" required></div>
+                    <div class="form-group"><label class="control-label" for="comment">Klacht/Opmerking</label><span class="requiredStar">*</span>
+                        <input class="form-control" id="comment" placeholder="Klacht/Opmerking" type="text" name="comment" required></div>
+                    <button type="submit" class="btn btn-default" name="submit">Verzend</button>
+                </form>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        </body>
+        </html>
+        <?php
+    }
 }
-    ?>
+?>
