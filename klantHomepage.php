@@ -25,18 +25,59 @@ require_once("./security.php");
         <br><br>
         <div class="row">
             <div class="col-md-6">
-                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-            </div>
-            <div class="col-md-6">
-                <h1 class="text-primary">Titel</h1>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                    ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-                    dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies
-                    nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In
-                    enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum
-                    felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
-                    elementum semper nisi.</p>
+                <h3>Winkelmand</h3>
+                <?php
+                require_once("classes/LoginClass.php");
+                require_once("classes/HireClass.php");
+                require_once("classes/SessionClass.php");
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "videotheek";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $sql = "SELECT * FROM winkelmand WHERE `klantid` = ". $_SESSION['id'] ." ";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "
+                        <table class=\"table table - responsive\">
+                            <thead>
+                            <tr>
+                                <th>
+                                        Titel:
+                                </th>
+                                <th>
+                                        Prijs:
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                        " . $row["titel"] . "
+                                </td>
+                                <td>
+                                        " . $row["prijs"] . "
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>";
+                    }
+                } else {
+                    echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+                }
+
+                $conn->close();
+                ?>
+                <br><br><br><br><br><br>
             </div>
         </div>
     </div>

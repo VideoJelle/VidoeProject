@@ -1,6 +1,6 @@
 <?php
 	require_once('MySqlDatabaseClass.php');
-	
+
 	class VideoClass
 	{
 		//Fields
@@ -54,22 +54,22 @@
 			$this->titel = $value;
 		}
 
-		public function setBeschrijving()
+		public function setBeschrijving($value)
 		{
 			$this->beschrijving = $value;
 		}
 
-		public function setGenres()
+		public function setGenres($value)
 		{
 			$this->genres = $value;
 		}
 
-		public function setActeurs()
+		public function setActeurs($value)
 		{
 			$this->acteurs = $value;
 		}
 
-		public function setFotopad()
+		public function setFotopad($value)
 		{
 			$this->fotopad = $value;
 		}
