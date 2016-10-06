@@ -1,6 +1,5 @@
 <?php
 if (isset($_SESSION['userrole'])) {
-
     switch ($_SESSION['userrole']) {
         case "klant":
             echo "		
@@ -30,6 +29,7 @@ if (isset($_SESSION['userrole'])) {
                 <li><a href=\"index.php?content=klantHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
+                <li><a href=\"index.php?content=mijnAccountGegevens\">Mijn Account</a></li>
                 <li><a href=\"index.php?content=contact\">Contact<br></a></li>
             </ul>
         </div>
@@ -39,8 +39,6 @@ if (isset($_SESSION['userrole'])) {
 </html>
 ";
             break;
-
-
         case "admin":
             echo "		
         <html>
@@ -78,8 +76,6 @@ if (isset($_SESSION['userrole'])) {
 </html>
 ";
             break;
-
-
         case "baliemedewerker":
             echo "		
         <html>
@@ -117,8 +113,6 @@ if (isset($_SESSION['userrole'])) {
 </html>
 ";
             break;
-
-
         case "bezorger":
             echo "		
         <html>
@@ -156,8 +150,6 @@ if (isset($_SESSION['userrole'])) {
 </html>
 ";
             break;
-
-
         case "eigenaar":
             echo "		
         <html>
@@ -195,8 +187,6 @@ if (isset($_SESSION['userrole'])) {
 </html>
 ";
             break;
-
-
         case "geblokkeerd":
             echo "		
         <html>

@@ -21,26 +21,36 @@ class LoginClass
 {
 	//Fields
 	private $id;
+	private $naam;
 	private $email;
 	private $password;
 	private $userrole;
 	private $activated;
 	private $activationdate;
+	private $adres;
+	private $woonplaats;
+
 
 	//Properties
 	public function getId() { return $this->id; }
+	public function getNaam() { return $this->naam; }
 	public function getEmail() { return $this->email;}
 	public function getPassword() { return $this->password; }
 	public function getUserrole() { return $this->userrole; }
 	public function getActivated() { return $this->activated;}
 	public function getActivationdate() { return $this->activationdate; }
+	public function getAdres() { return $this->adres; }
+	public function getWoonplaats() { return $this->woonplaats; }
 
 	public function setId($value) { $this->id = $value; }
+	public function setNaam($value) { $this->naam = $value; }
 	public function setEmail($value) { $this->email = $value;}
 	public function setPassword($value) { $this->password = value; }
 	public function setUserrole($value) { $this->userrole = $value; }
 	public function setActivated($value) { $this->activated = $value;}
 	public function setActivationdate($value) { $this->activationdate = value; }
+	public function setAdres($value) { $this->adres = value; }
+	public function setWoonplaats($value) { $this->woonplaats = value; }
 
 
 	//Constructor
@@ -68,11 +78,14 @@ class LoginClass
 
 			// Stop de gevonden recordwaarden uit de database in de fields van een LoginClass-object
 			$object->id				= $row['id'];
+			$object->naam		    = $row['naam'];
 			$object->email			= $row['email'];
 			$object->password		= $row['password'];
 			$object->userrole		= $row['userrole'];
 			$object->activated		= $row['activated'];
 			$object->activationdate = $row['activationdate'];
+			$object->adres          = $row['adres'];
+			$object->woonplaats     = $row['woonplaats'];
 
 			$object_array[] = $object;
 		}
@@ -103,17 +116,23 @@ class LoginClass
 		$password = MD5($post['email'].date('Y-m-d H:i:s'));
 
 		$query = "INSERT INTO `login` (`id`,
-										   `email`,
-										   `password`,
-										   `userrole`,
-										   `activated`,
-										   `activationdate`)
-					  VALUES			  (NULL,
-										   '".$post['email']."',
-										   '".$password."',
-										   'klant',
-										   'no',
-										   '".$date."')";
+									   `naam`,
+									   `email`,
+									   `password`,
+									   `userrole`,
+									   `activated`,
+									   `activationdate`,
+									   `adres`,
+									   `woonplaats`)
+				  VALUES			 (NULL,
+				  					   '".$post['naam']."',
+									   '".$post['email']."',
+									   '".$password."',
+									   'klant',
+									   'no',
+									   '".$date."',
+									   '".$post['adres']."',
+									   '".$post['woonplaats']."')";
 		//echo $query;
 		$database->fire_query($query);
 
@@ -177,9 +196,7 @@ class LoginClass
 	{
 		$to = $post['email'];
 		$subject = "Activatiemail Videotheek Harmelen";
-		$message = "Geachte heer/mevrouw <b>".$post['firstname']." ".
-			$post['infix']." ".
-			$post['lastname']."</b><br>";
+		$message = "Geachte heer/mevrouw <b>".$post['naam']." ";
 
 		$message .= '<style>a { color:red;}</style>';
 		$message .= "Hartelijk dank voor het registreren bij Videotheek Harmelen"."<br>";
@@ -249,16 +266,24 @@ class LoginClass
 		}
 	}
 
-	public static function subtract_tickets($idticket, $aantaltickets)
+	public static function update_database($post)
 	{
 		global $database;
-
-		$query =    "UPDATE `optreden`
-                        SET `aantaltickets` = (aantaltickets - '" . $aantaltickets . "')
-                        WHERE `idticket` = '" . $idticket . "'";
-
-
+		$query = "UPDATE `users` SET `firstname`='".$post['voornaam']."', `infix`='".$post['tussenvoegsel']."',`lastname`='".$post['achternaam']."' where `id`='".$_SESSION['id']."'";
+		//echo"users update";
 		$database->fire_query($query);
 	}
+
+		public static function find_info_by_id($id)
+	{
+		$query = "SELECT 	*
+					  FROM 		`login`
+					  WHERE		`id`	=	".$id;
+		$object_array = self::find_by_sql($query);
+		$usersclassObject = array_shift($object_array);
+		//var_dump($usersclassObject); exit();
+		return $usersclassObject;
+	}
+
 }
 ?>

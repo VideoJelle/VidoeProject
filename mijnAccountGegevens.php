@@ -1,4 +1,8 @@
-<html>
+<?php
+$userrole = array("klant");
+require_once("./security.php");
+?>
+    <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,63 +16,70 @@
             padding: 20px;
         }
     </style>
-</head>
-<body>
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12"><h1>Mijn account</h1></div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="breadcrumb">
-                    <li><a href="#">Gegevens Aanpassen</a></li>
-                    <li><a href="#">Wachtwoord Veranderen</a></li>
-                </ul>
+
+<?php
+
+require_once("classes/LoginClass.php");
+if (isset($_POST['submit']))
+{
+    include('connect_db.php');
+
+    $sql= "UPDATE	`login` 
+			                 SET 		`naam`		=	'".$_POST['naam']."',
+						                `adres`	= 	'".$_POST['adres']."',
+						                `woonplaats`	= 	'".$_POST['woonplaats']."'
+			                 WHERE	`id`			=	'".$_SESSION['id']."';";
+
+    $result = mysqli_query($connection, $sql);
+
+    echo "Uw wijziging is verwerkt. 
+				U wordt doorgestuurd naar de vorige pagina";
+
+    header("refresh:4;url=index.php?content=mijnAccountGegevens");
+
+}
+else
+{
+    ?>
+    </head>
+    <body>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><h1>Mijn account</h1></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="index.php?content=mijnAccountGegevens">Gegevens Aanpassen</a></li>
+                        <li><a href="index.php?content=wijzig_wachtwoord">Wachtwoord Veranderen</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <div class="col-sm-2"><label for="inputEmail3" class="control-label">Naam</label></div>
-                        <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail3" disabled="disabled"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2"><label for="inputPassword3" class="control-label">E-mail<br></label></div>
-                        <div class="col-sm-10"><input type="email" class="form-control" id="inputPassword3" disabled="disabled"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2"><label for="inputPassword3" class="control-label">Adres<br></label></div>
-                        <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword3" disabled="disabled"></div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <div class="col-sm-2"><label for="inputEmail3" class="control-label">Woonplaats<br></label><label for="inputEmail3" class="control-label"><br></label><label
-                                for="inputEmail3" class="control-label"><br></label><label for="inputEmail3" class="control-label"><br></label></div>
-                        <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword3" disabled="disabled"></div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <div class="col-sm-2"><label for="inputEmail3" class="control-label">Wachtwoord<br></label><label for="inputEmail3" class="control-label"><br></label><label
-                                for="inputEmail3" class="control-label"><br></label><label for="inputEmail3" class="control-label"><br></label></div>
-                        <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword3" disabled="disabled"></div>
-                    </div>
-                </form>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form role="form" action="index.php?content=mijnAccountGegevens" method="post">
+                        <div class="form-group"><label class="control-label" for="naam">Naam<br></label>
+                            <input class="form-control" id="naam" placeholder="Naam" type="text" name="naam" required></div>
+                        <div class="form-group"><label class="control-label" for="adres">Adres<br></label>
+                            <input class="form-control" id="adres" placeholder="Adres" type="text" name="adres" required></div>
+                        <div class="form-group"><label class="control-label" for="woonplaats">Woonplaats</label>
+                            <input class="form-control" id="woonplaats" placeholder="Woonplaats" type="text" name="woonplaats" required></div>
+                        <button type="submit" class="btn btn-default" name="submit">Verzend</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="section">
-    <div class="container"></div>
-</div>
-<div class="section">
-    <div class="container"></div>
-</div>
-<div class="section">
-    <div class="container"></div>
-</div>
-</body>
-</html>
+    <div class="section">
+        <div class="container"></div>
+    </div>
+    </body>
+    </html>
+    <?php
+}
+?>

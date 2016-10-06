@@ -37,8 +37,10 @@ if (isset($_POST['submitRegister'])) {
             <div class="row">
                 <div class="col-md-6">
                     <form role="form" action='index.php?content=inloggen_Registreren' method='post'>
-                        <div class="form-group"><label class="control-label" for="InputVoornaam">Voornaam<br></label><input class="form-control" id="InputVoornaam"
-                                                                                                                            name="firstname" placeholder="Voornaam"
+                        <div class="form-group"><label class="control-label" for="InputVoornaam">Voornaam<br></label><input class="form-control"
+                                                                                                                            id="InputVoornaam"
+                                                                                                                            name="firstname"
+                                                                                                                            placeholder="Voornaam"
                                                                                                                             type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputTussenvoegsel">Tussenvoegsel<br></label><input class="form-control"
                                                                                                                                       id="InputTussenvoegsel"
@@ -46,17 +48,25 @@ if (isset($_POST['submitRegister'])) {
                                                                                                                                       placeholder="Tussenvoegsel"
                                                                                                                                       type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputAchternaam">Achternaam<br></label><input class="form-control"
-                                                                                                                                id="InputAchternaam" name="lastname"
-                                                                                                                                placeholder="Achternaam" type="text"></div>
-                        <div class="form-group"><label class="control-label" for="InputEmail1">E-mail<br></label><input class="form-control" id="InputEmail1"
-                                                                                                                        name="email" placeholder="E-mail" type="email"></div>
-                        <!--                        <div class="form-group"><label class="control-label" for="InputPassword1">Wachtwoord</label><input class="form-control" id="InputPassword1"-->
-                        <!--                                                                                                                                  name="email" placeholder="Wachtwoord"-->
-                        <!--                                                                                                                                  type="password"></div>-->
-                        <!--                        <div class="form-group"><label class="control-label" for="InputPassword2">Herhaal wachtwoord</label><input class="form-control"-->
-                        <!--                                                                                                                                          id="InputPassword2"-->
-                        <!--                                                                                                                                          placeholder="Herhaal wachtwoord"-->
-                        <!--                                                                                                                                          type="password"></div>-->
+                                                                                                                                id="InputAchternaam"
+                                                                                                                                name="lastname"
+                                                                                                                                placeholder="Achternaam"
+                                                                                                                                type="text"></div>
+                        <div class="form-group"><label class="control-label" for="InputAdres">Adres<br></label><input class="form-control"
+                                                                                                                      id="InputAdres"
+                                                                                                                      name="adres"
+                                                                                                                      placeholder="Adres"
+                                                                                                                      type="text"></div>
+                        <div class="form-group"><label class="control-label" for="InputWoonplaats">Woonplaats<br></label><input class="form-control"
+                                                                                                                                id="InputWoonplaats"
+                                                                                                                                name="woonplaats"
+                                                                                                                                placeholder="Woonplaats"
+                                                                                                                                type="text"></div>
+                        <div class="form-group"><label class="control-label" for="InputEmail1">E-mail<br></label><input class="form-control"
+                                                                                                                        id="InputEmail1"
+                                                                                                                        name="email"
+                                                                                                                        placeholder="E-mail"
+                                                                                                                        type="email"></div>
                         <button type="submit" name="submitRegister" class="btn btn-default">Verstuur<br></button>
                     </form>
                 </div>

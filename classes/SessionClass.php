@@ -27,7 +27,7 @@ class SessionClass
         $this->email = $_SESSION['email'] = $loginObject->getEmail();
         $this->userrole = $_SESSION['userrole'] = $loginObject->getUserrole();
 
-        $usersObject = UsersClass::find_info_by_id($_SESSION['id']);
+        $usersObject = LoginClass::find_info_by_id($_SESSION['id']);
         //$_SESSION['username'] = $usersObject->getFirstName()." ".
         //$usersObject->getInfix()." ".
         //$usersObject->getLastname();

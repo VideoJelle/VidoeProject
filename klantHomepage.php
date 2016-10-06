@@ -120,8 +120,8 @@ if (isset($_POST['removeItemCart'])) {
 
     <?php
     if (isset($_POST['submit'])) {
-        $naamKlacht = $_GET['naam'];
-        $emailKlacht = $_GET['email'];
+        $klantKlacht = $_SESSION['id'];
+        $emailKlacht = $_POST['email'];
         $onderwerp = $_POST['onderwerp'];
         $comment = $_POST['comment'];
         $from = 'From: Website_Videotheek_Harmelen';
@@ -129,7 +129,7 @@ if (isset($_POST['removeItemCart'])) {
         $to = $emailKlacht;
         $subject = 'Ingediende Klacht';
 
-        $body = "Klant naam: $naamKlacht\nE-mail: $emailKlacht\n\nOnderwerp: $onderwerp\nBericht:\n$comment";
+        $body = "Klant naam: $klantKlacht\nE-mail: $emailKlacht\n\nOnderwerp: $onderwerp\nBericht:\n$comment";
 
         if (mail($to, $subject, $body, $from)) {
             echo '<h3 style=\'text-align: center;\' >Uw bericht is verzonden. Wij bekijken uw bericht zo snel mogelijk.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
@@ -145,9 +145,11 @@ if (isset($_POST['removeItemCart'])) {
             <h3>Klacht indienen</h3>
             <div class="col-md-12 text-left">
                 <form role="form" action="index.php?content=klantHomepage" method="post">
+                    <div class="form-group"><label class="control-label" for="email">E-mail adres<br></label>
+                        <input class="form-control" id="email" placeholder="E-mail adres" type="email" name="email" required></div>
                     <div class="form-group"><label class="control-label" for="onderwerp">Onderwerp<br></label>
                         <input class="form-control" id="onderwerp" placeholder="Onderwerp" type="text" name="onderwerp" required></div>
-                    <div class="form-group"><label class="control-label" for="comment">Klacht/Opmerking</label><span class="requiredStar">*</span>
+                    <div class="form-group"><label class="control-label" for="comment">Klacht/Opmerking</label>
                         <input class="form-control" id="comment" placeholder="Klacht/Opmerking" type="text" name="comment" required></div>
                     <button type="submit" class="btn btn-default" name="submit">Verzend</button>
                 </form>
