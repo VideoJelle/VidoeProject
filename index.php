@@ -27,5 +27,5 @@
 </html>
 
 <!--git add .-->
-<!--git commit "..."-->
+<!--git commit -m "..."-->
 <!--git push-->
