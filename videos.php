@@ -18,42 +18,47 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12"><h2>Video's</h2></div>
-        </div>
-    </div>
-</div>
-<div class="section ">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                <h3>A title</h3>
-                <p class="videos">Lorem ipsum</p></div>
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                <h2>A title</h2>
-                <p>Lorem ipsum<br></p></div>
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-rounded">
-                <h2>A title</h2>
-                <p>Lorem ipsum</p></div>
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                <h2>A title</h2>
-                <p>Lorem ipsum</p></div>
-        </div>
-    </div>
-</div>
-<div class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                <h3>A title</h3>
-                <p class="videos">Lorem ipsum</p></div>
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                <h2>A title</h2>
-                <p>Lorem ipsum<br></p></div>
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-rounded">
-                <h2>A title</h2>
-                <p>Lorem ipsum</p></div>
-            <div class="col-md-3"><img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-                <h2>A title</h2>
-                <p>Lorem ipsum</p></div>
+            <div class="section ">
+            <div class="container">
+                <div class="row">
+<?php
+require_once("classes/LoginClass.php");
+require_once("classes/SessionClass.php");
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "videotheek";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM videos";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo " <div class=\"col-md-3\"><img style='height: 400px' src=\"images/".$row["fotopad"]."\" class=\"img-responsive\">
+               <h3>".$row["titel"]."</h3>
+               <p class=\"videos\">".$row["beschrijving"]."</p>
+               <button type=\"button\" class=\"btn btn-default\">Meer Informatie</button>
+               <br><br><br></div>
+             ";
+    }
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

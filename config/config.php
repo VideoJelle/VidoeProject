@@ -9,7 +9,7 @@ switch ($witch_server)
         define('USERNAME', 'root');   
         define('PASSWORD', '');
         define('DATABASENAME', 'videotheek');
-        define('MAIL_PATH', 'http://localhost/Projects/videotheek/');
+        define('MAIL_PATH', 'http://localhost/VidoeProject/');
         break;
 }
 ?>

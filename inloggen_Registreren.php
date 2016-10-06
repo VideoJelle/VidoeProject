@@ -5,9 +5,7 @@ if (isset($_POST['submitRegister'])) {
     if (LoginClass::check_if_email_exists($_POST['email'])) {
         //Zo ja, geef een melding dat het emailadres bestaat en stuur
         //door naar register_form.php
-        echo "Het door u gebruikte emailadres is al in gebruik.<br>
-				  Gebruik een ander emailadres. U wordt doorgestuurd naar<br>
-				  het registratieformulier";
+        echo "<h3 style='text-align: center;' >Het door u gebruikte emailadres is al in gebruik. Gebruik een ander emailadres. <br>U wordt doorgestuurd naar het registratieformulier</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
         header("refresh:5;url=index.php?content=inloggen_Registreren");
     } else {
         LoginClass::insert_into_database($_POST);
@@ -40,35 +38,35 @@ if (isset($_POST['submitRegister'])) {
                 <div class="col-md-6">
                     <form role="form" action='index.php?content=inloggen_Registreren' method='post'>
                         <div class="form-group"><label class="control-label" for="InputVoornaam">Voornaam<br></label><input class="form-control" id="InputVoornaam"
-                                                                                                                                   name="firstname" placeholder="Voornaam"
-                                                                                                                                   type="text"></div>
+                                                                                                                            name="firstname" placeholder="Voornaam"
+                                                                                                                            type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputTussenvoegsel">Tussenvoegsel<br></label><input class="form-control"
-                                                                                                                                             id="InputTussenvoegsel"
-                                                                                                                                             name="infix"
-                                                                                                                                             placeholder="Tussenvoegsel"
-                                                                                                                                             type="text"></div>
+                                                                                                                                      id="InputTussenvoegsel"
+                                                                                                                                      name="infix"
+                                                                                                                                      placeholder="Tussenvoegsel"
+                                                                                                                                      type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputAchternaam">Achternaam<br></label><input class="form-control"
-                                                                                                                                       id="InputAchternaam" name="lastname"
-                                                                                                                                       placeholder="Achternaam" type="text"></div>
+                                                                                                                                id="InputAchternaam" name="lastname"
+                                                                                                                                placeholder="Achternaam" type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputEmail1">E-mail<br></label><input class="form-control" id="InputEmail1"
-                                                                                                                               name="email" placeholder="E-mail" type="email"></div>
-<!--                        <div class="form-group"><label class="control-label" for="InputPassword1">Wachtwoord</label><input class="form-control" id="InputPassword1"-->
-<!--                                                                                                                                  name="email" placeholder="Wachtwoord"-->
-<!--                                                                                                                                  type="password"></div>-->
-<!--                        <div class="form-group"><label class="control-label" for="InputPassword2">Herhaal wachtwoord</label><input class="form-control"-->
-<!--                                                                                                                                          id="InputPassword2"-->
-<!--                                                                                                                                          placeholder="Herhaal wachtwoord"-->
-<!--                                                                                                                                          type="password"></div>-->
+                                                                                                                        name="email" placeholder="E-mail" type="email"></div>
+                        <!--                        <div class="form-group"><label class="control-label" for="InputPassword1">Wachtwoord</label><input class="form-control" id="InputPassword1"-->
+                        <!--                                                                                                                                  name="email" placeholder="Wachtwoord"-->
+                        <!--                                                                                                                                  type="password"></div>-->
+                        <!--                        <div class="form-group"><label class="control-label" for="InputPassword2">Herhaal wachtwoord</label><input class="form-control"-->
+                        <!--                                                                                                                                          id="InputPassword2"-->
+                        <!--                                                                                                                                          placeholder="Herhaal wachtwoord"-->
+                        <!--                                                                                                                                          type="password"></div>-->
                         <button type="submit" name="submitRegister" class="btn btn-default">Verstuur<br></button>
                     </form>
                 </div>
                 <div class="col-md-6">
                     <form role="form" action='index.php?content=checklogin' method='post'>
                         <div class="form-group"><label class="control-label" for="InputEmail1">E-mail<br></label><input class="form-control" id="InputEmail1"
-                                                                                                                               name="email" placeholder="E-mail" type="email"></div>
+                                                                                                                        name="email" placeholder="E-mail" type="email"></div>
                         <div class="form-group"><label class="control-label" for="InputPassword1">Wachtwoord</label><input class="form-control" id="InputPassword1"
-                                                                                                                                  name="password" placeholder="Wachtwoord"
-                                                                                                                                  type="password"></div>
+                                                                                                                           name="password" placeholder="Wachtwoord"
+                                                                                                                           type="password"></div>
                         <button type="submit" name="submitLogin" class="btn btn-default">Verstuur</button>
                     </form>
                 </div>

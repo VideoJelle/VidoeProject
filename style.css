@@ -40,8 +40,8 @@ audio,
 canvas,
 progress,
 video {
-    display: inline-block;
-    vertical-align: baseline;
+    /*display: inline-block;*/
+    /*vertical-align: baseline;*/
 }
 audio:not([controls]) {
     display: none;

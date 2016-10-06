@@ -5,6 +5,6 @@
 	}
 	else
 	{
-		include("home.php");
+		include("AlgemeneHomepage.php");
 	}
 ?>
