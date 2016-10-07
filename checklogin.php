@@ -19,7 +19,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
                 header("location:index.php?content=adminHomepage");
                 break;
             case 'geblokkeerd':
-                header("location:index.php?content=geblokkeerdHomepage");
+                header("location:index.php?content=algemeneHomepage");
                 break;
             case 'baliemedewerker':
                 header("location:index.php?content=baliemedewerkerHomepage");

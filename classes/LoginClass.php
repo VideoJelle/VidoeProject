@@ -241,8 +241,8 @@ class LoginClass
 					  SET	 `password` =	'".MD5($password)."'
 					  WHERE	 `id`		=	'".$id."'";
 		$database->fire_query($query);
-		echo "Uw wachtwoord is succesvol gewijzigd.";
-
+		
+		echo "<h3 style='text-align: center;' >Uw wachtwoord is succesvol gewijzigd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
 		header("refresh:4;url=index.php?content=inloggen_Registreren");
 	}
 

@@ -116,8 +116,79 @@ if (isset($_POST['removeItemCart'])) {
             <br><br>
         </div>
     </div>
+    <?php
+}
+?>
+<?php
+if (isset($_POST['removeItemReserve'])) {
+    require_once("./classes/ReserveClass.php");
+    ReserveClass::remove_item_reservering($_POST);
 
+    } else{
+?>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Reserveringen</h3>
+            <?php
+            require_once("classes/LoginClass.php");
+            require_once("classes/HireClass.php");
+            require_once("classes/SessionClass.php");
 
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "videotheek";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "SELECT * FROM `reservering` WHERE `klantid` = " . $_SESSION['id'] . " ";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+                        <table class=\"table table - responsive\">
+                            <thead>
+                            <tr>
+                                <th>
+                                        Titel:
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                        " . $row["titel"] . "
+                                </td>
+                                <td>
+                                        <form role=\"form\" action='' method='post'>
+                                            <input type='submit' class=\"btn btn-info\" name='removeItemReserve' value='Verwijder Item'>
+                                            <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
+                                        </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                            ";
+                }
+
+            }  else {
+                echo "Geen resultaten<br><br><br><br><br><br><br>";
+            }
+            $conn->close();
+            ?>
+
+            <br><br>
+        </div>
+    </div>
+
+    <?php
+}
+?>
     <?php
     if (isset($_POST['submit'])) {
         $klantKlacht = $_SESSION['id'];
@@ -161,6 +232,5 @@ if (isset($_POST['removeItemCart'])) {
         </body>
         </html>
         <?php
-    }
 }
 ?>
