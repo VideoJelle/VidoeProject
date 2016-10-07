@@ -2,13 +2,6 @@
 $userrole = array("admin", "eigenaar");
 require_once("./security.php");
 ?>
-
-<?php
-if (isset($_POST['create'])) {
-    require_once("./classes/VideoClass.php");
-    VideoClass::insert_film_database($_POST);
-}
-?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -62,6 +55,7 @@ if (isset($_POST['removeUser'])) {
                             <li><a href="index.php?content=adminHomepage">Video's beheren</a></li>
                             <li><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen/blokkeren</a></li>
                             <li><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
+                            <li><a href="index.php?content=verwijderFilm">Film verwijderen</a></li>
                         </ul>
                     </div>
                 </div>

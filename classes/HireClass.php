@@ -45,9 +45,6 @@
             $database->fire_query($query);
 
             $last_id = mysqli_insert_id($database->getDb_connection());
-
-			echo "<h3 style='text-align: center;' >Item toegevoegd aan winkelmand.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-            header("refresh:4;url=index.php?content=klantHomepage");
         }
 
         public static function clear_winkelmand()
@@ -58,9 +55,6 @@
 //            echo $query;
 
             $database->fire_query($query);
-
-            echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-            header("refresh:4;url=index.php?content=klantHomepage");
         }
 
         public static function remove_item_winkelmand($post)
@@ -71,43 +65,40 @@
                                                     AND `id` = " . $post["id"]. " ";
 //            echo $query;
             $database->fire_query($query);
-
-            echo "<h3 style='text-align: center;' >Item is uit de winkelmand verwijderd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-            header("refresh:4;url=index.php?content=klantHomepage");
         }
-
-        public static function calculate_Price()
-        {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "videotheek";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<table class=\"table table - responsive\">
-                            <thead>
-                            <tr>
-                                <th>
-                                        Totaal:
-                                </th>
-                                <th>
-                                         " . $row["value"] . " Euro
-                                </th>
-                            </tr>
-                            </thead>
-                        </table>";
-                }
-            }
-        }
+//
+//        public static function calculate_Price()
+//        {
+//            $servername = "localhost";
+//            $username = "root";
+//            $password = "";
+//            $dbname = "videotheek";
+//
+//            $conn = new mysqli($servername, $username, $password, $dbname);
+//
+//            if ($conn->connect_error) {
+//                die("Connection failed: " . $conn->connect_error);
+//            }
+//
+//            $sql = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+//            $result = $conn->query($sql);
+//
+//            if ($result->num_rows > 0) {
+//                while ($row = $result->fetch_assoc()) {
+//                    echo "<table class=\"table table - responsive\">
+//                            <thead>
+//                            <tr>
+//                                <th>
+//                                        Totaal:
+//                                </th>
+//                                <th>
+//                                         " . $row["value"] . " Euro
+//                                </th>
+//                            </tr>
+//                            </thead>
+//                        </table>";
+//                }
+//            }
+//        }
     }
 ?>

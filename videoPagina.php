@@ -6,16 +6,17 @@ require_once("./security.php");
 
 <?php
 if (isset($_POST['reserveer'])) {
+    echo "<h3 style='text-align: center;' >Item toegevoegd aan reserveringen.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=reserveringen");
     require_once("./classes/ReserveClass.php");
     ReserveClass::insert_reserveringitem_database($_POST);
 } else {
     if (isset($_POST['submit'])) {
+
+        echo "<h3 style='text-align: center;' >Item toegevoegd aan winkelmand.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+        header("refresh:4;url=index.php?content=klantHomepage");
         require_once("./classes/HireClass.php");
-        if (HireClass::insert_winkelmanditem_database($_POST)) {
-
-        } else {
-
-        }
+        HireClass::insert_winkelmanditem_database($_POST);
     } else {
         ?>
         <html>

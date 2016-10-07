@@ -140,8 +140,6 @@
 			$database->fire_query($query);
 
 			$last_id = mysqli_insert_id($database->getDb_connection());
-
-			echo "<h3 style='text-align: center;' >Film is toegevoegd aan database.</h3><br>";
 		}
 	}
 ?>

@@ -22,6 +22,7 @@ if (isset($_POST['submit'])) {
     echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=mijnAccountGegevens");
 
+
 } else {
     ?>
 
@@ -58,15 +59,48 @@ if (isset($_POST['submit'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form role="form" action="index.php?content=mijnAccountGegevens" method="post">
-                        <div class="form-group"><label class="control-label" for="naam">Naam<br></label>
-                            <input class="form-control" id="naam" placeholder="Naam" type="text" name="naam" required></div>
-                        <div class="form-group"><label class="control-label" for="adres">Adres<br></label>
-                            <input class="form-control" id="adres" placeholder="Adres" type="text" name="adres"></div>
-                        <div class="form-group"><label class="control-label" for="woonplaats">Woonplaats</label>
-                            <input class="form-control" id="woonplaats" placeholder="Woonplaats" type="text" name="woonplaats"></div>
-                        <button type="submit" class="btn btn-default" name="submit">Verzend</button>
-                    </form>
+                    <?php
+                    require_once("classes/LoginClass.php");
+                    require_once("classes/HireClass.php");
+                    require_once("classes/SessionClass.php");
+
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "videotheek";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql2 = "SELECT `naam`, `adres`, `woonplaats` FROM `login` WHERE `id` = " . $_SESSION['id'] ." ";
+                    $result = $conn->query($sql2);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<form role=\"form\" action=\"index.php?content=mijnAccountGegevens\" method=\"post\">
+                        <div class=\"form-group\"><label class=\"control-label\" for=\"naam\">Naam<br></label>
+                            <input class=\"form-control\" id=\"naam\" placeholder=\"Naam\" type=\"text\" name=\"naam\" value='" . $row['naam'] . "' required></div>
+                        <div class=\"form-group\"><label class=\"control-label\" for=\"adres\">Adres<br></label>
+                            <input class=\"form-control\" id=\"adres\" placeholder=\"Adres\" type=\"text\" name=\"adres\" value='" . $row['adres'] . "' required></div>
+                        <div class=\"form-group\"><label class=\"control-label\" for=\"woonplaats\">Woonplaats</label>
+                            <input class=\"form-control\" id=\"woonplaats\" placeholder=\"Woonplaats\" type=\"text\" name=\"woonplaats\" value='" . $row['woonplaats'] . "' required></div>
+                        <button type=\"submit\" class=\"btn btn-default\" name=\"submit\">Verzend</button>
+                    </form>";
+                        }
+                        echo "
+                           <br><br><br><br><br><br><br><br>
+                            
+                            ";
+
+
+                    }  else {
+                        echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br>";
+                    }
+                    $conn->close();
+                    ?>
                 </div>
             </div>
         </div>

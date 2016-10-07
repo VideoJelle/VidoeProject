@@ -5,6 +5,8 @@ require_once("./security.php");
 
 <?php
 if (isset($_POST['clearCart'])) {
+    echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=klantHomepage");
     require_once("./classes/HireClass.php");
     if (HireClass::clear_winkelmand($_POST)){
 
@@ -90,10 +92,30 @@ if (isset($_POST['clearCart'])) {
                         echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
                     }
 
+
+
+//                    HireClass::calculate_Price();
+
+                    $sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                    $result2 = $conn->query($sql2);
+
+                    if ($result2->num_rows > 0) {
+                        while ($row2 = $result2->fetch_assoc()) {
+                            echo "<table class=\"table table - responsive\">
+                            <thead>
+                            <tr>
+                                <th>
+                                        Totaal:
+                                </th>
+                                <th>
+                                         " . $row2["value"] . " Euro
+                                </th>
+                            </tr>
+                            </thead>
+                        </table>";
+                        }
+                    }
                     $conn->close();
-
-                    HireClass::calculate_Price();
-
                     ?>
 
                     <form role=\"form\" action='' method='post'>

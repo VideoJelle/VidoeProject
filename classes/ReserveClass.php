@@ -42,8 +42,6 @@
 
             $last_id = mysqli_insert_id($database->getDb_connection());
 
-			echo "<h3 style='text-align: center;' >Item toegevoegd aan reservering(en).</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-            header("refresh:4;url=index.php?content=klantHomepage");
         }
         public static function remove_item_reservering($post)
         {
@@ -53,9 +51,6 @@
                                                     AND `id` = " . $post["id"]. " ";
 //            echo $query;
             $database->fire_query($query);
-
-            echo "<h3 style='text-align: center;' >Item is uit de reserveringen verwijderd.</h3><br><br>";
-            //header("refresh:4;url=index.php?content=klantHomepage");
         }
 
     }

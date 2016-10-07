@@ -31,6 +31,9 @@ if (isset($_GET['id']) && isset($_GET['email']) && isset($_GET['password']))
                 {
                     // 2. Activeer het account en update het oude password naar het nieuwe password.
                     LoginClass::activate_account_by_id($_GET['id']);
+
+                    echo "<h3 style='text-align: center;' >Uw wachtwoord is succesvol gewijzigd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+                    header("refresh:4;url=index.php?content=inloggen_Registreren");
                     LoginClass::update_password($_GET['id'],$_POST['password_1']);
                 }
                 else

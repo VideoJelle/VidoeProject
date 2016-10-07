@@ -139,9 +139,6 @@ class LoginClass
 		$last_id = mysqli_insert_id($database->getDb_connection());
 
 		self::send_email($last_id, $post, $password);
-
-		echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-		header("refresh:3;url=index.php?content=inloggen_Registreren");
 	}
 
 	public static function check_if_email_exists($email)
@@ -240,8 +237,6 @@ class LoginClass
 					  WHERE	 `id`		=	'".$id."'";
 		$database->fire_query($query);
 
-		echo "<h3 style='text-align: center;' >Uw wachtwoord is succesvol gewijzigd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-		header("refresh:4;url=index.php?content=inloggen_Registreren");
 	}
 
 	public static function check_old_password($old_password)

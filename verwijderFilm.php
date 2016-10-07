@@ -31,44 +31,36 @@ if (isset($_POST['create'])) {
 <body>
 <div class="section">
     <div class="container">
+            <div class="row">
+                <div class="col-md-12"><h2>Administrator Pagina</h2></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="index.php?content=adminHomepage">Video's beheren</a></li>
+                        <li><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen/blokkeren</a></li>
+                        <li><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
+                        <li><a href="index.php?content=verwijderFilm">Film verwijderen</a></li>
+                    </ul>
+                </div>
+            </div>
 <?php
-
-
 require_once("classes/LoginClass.php");
-if (isset($_POST['updateUserrole'])) {
+if (isset($_POST['removeVideo'])) {
     include('connect_db.php');
 
-    $sql = "UPDATE	`login` 
-                     SET 		`userrole`		=	'" . $_POST['userroleSelect'] . "'
-                     WHERE	    `id`			=	 " . $_POST['id']. " ";
+    $sql = "DELETE FROM	`videos` WHERE `id` = " . $_POST['id']. " ";
 
     //echo $sql;
     $database->fire_query($sql);
     //$result = mysqli_query($connection, $sql);
 
-    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=adminHomepage");
 
 } else {
     ?>
-    <div class="row">
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12"><h2>Gebruiker verwijderen</h2></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li><a href="index.php?content=adminHomepage">Video's beheren</a></li>
-                            <li><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen/blokkeren</a></li>
-                            <li><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
-                            <li><a href="index.php?content=verwijderFilm">Film verwijderen</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+    <row class="row">
         <div class="col-md-6">
             <?php
             require_once("classes/LoginClass.php");
@@ -88,7 +80,7 @@ if (isset($_POST['updateUserrole'])) {
             }
 
 
-            $sql = "SELECT * FROM `login`";
+            $sql = "SELECT * FROM `videos`";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -99,39 +91,19 @@ if (isset($_POST['updateUserrole'])) {
                             <thead>
                             <tr>
                                 <th>
-                                        Naam:
-                                </th>
-                                <th>
-                                        E-mail:
-                                </th>
-                                <th>
-                                        Rol:
+                                        Titel:
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["naam"] . "
-                                </td>
-                                <td>
-                                        " . $row['email'] . "
-                                </td>
-                                <td>
-                                        " . $row['userrole'] . "
+                                        " . $row["titel"] . "
                                 </td>
                                 <td>
                                         <form role=\"form\" action='' method='post'>
-                                            <select name='userroleSelect'>
-                                                <option value='klant'>Klant</option>
-                                                <option value='eigenaar'>Eigenaar</option>
-                                                <option value='geblokkeerd'>Geblokkeerd</option>
-                                                <option value='baliemedewerker'>Baliemedewerker</option>
-                                                <option value='admin'>Admin</option>
-                                                <option value='bezorger'>Bezorger</option>
+                                            <input type='submit' class=\"btn btn-info\" name='removeVideo' value='Verwijder Film'>
                                             <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
-                                            <input type='submit' class=\"btn btn-info\" name='updateUserrole' value='Update Rol'>
-                                            
                                         </form>
                                 </td>
                             </tr>
@@ -147,14 +119,12 @@ if (isset($_POST['updateUserrole'])) {
 
             <br><br>
         </div>
+    </row>
     </div>
+    </div>
+
+    </body>
+    </html>
     <?php
-
 }
-        ?>
-        </row>
-    </div>
-</div>
-
-</body>
-</html>
+    ?>
