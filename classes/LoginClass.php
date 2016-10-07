@@ -138,8 +138,6 @@ class LoginClass
 
 		$last_id = mysqli_insert_id($database->getDb_connection());
 
-		UsersClass::insert_into_database($last_id, $post);
-
 		self::send_email($last_id, $post, $password);
 
 		echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
@@ -196,7 +194,7 @@ class LoginClass
 	{
 		$to = $post['email'];
 		$subject = "Activatiemail Videotheek Harmelen";
-		$message = "Geachte heer/mevrouw <b>".$post['naam']." ";
+		$message = "Geachte heer/mevrouw ".$post['naam']." <br> ";
 
 		$message .= '<style>a { color:red;}</style>';
 		$message .= "Hartelijk dank voor het registreren bij Videotheek Harmelen"."<br>";
@@ -241,7 +239,7 @@ class LoginClass
 					  SET	 `password` =	'".MD5($password)."'
 					  WHERE	 `id`		=	'".$id."'";
 		$database->fire_query($query);
-		
+
 		echo "<h3 style='text-align: center;' >Uw wachtwoord is succesvol gewijzigd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
 		header("refresh:4;url=index.php?content=inloggen_Registreren");
 	}
@@ -284,6 +282,5 @@ class LoginClass
 		//var_dump($usersclassObject); exit();
 		return $usersclassObject;
 	}
-
 }
 ?>

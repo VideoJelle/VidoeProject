@@ -56,7 +56,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+                <img src="./pictures" class="img-responsive">
             </div>
             <div class="col-md-6">
                 <h1 class="text-primary">Titel</h1>
@@ -92,6 +92,7 @@
                 <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
             </div>
         </div>
+
     </div>
 </div>
 </body>

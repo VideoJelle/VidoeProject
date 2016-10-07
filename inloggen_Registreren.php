@@ -37,21 +37,11 @@ if (isset($_POST['submitRegister'])) {
             <div class="row">
                 <div class="col-md-6">
                     <form role="form" action='index.php?content=inloggen_Registreren' method='post'>
-                        <div class="form-group"><label class="control-label" for="InputVoornaam">Voornaam<br></label><input class="form-control"
-                                                                                                                            id="InputVoornaam"
-                                                                                                                            name="firstname"
-                                                                                                                            placeholder="Voornaam"
+                        <div class="form-group"><label class="control-label" for="InputNnaam">Voornaam<br></label><input class="form-control"
+                                                                                                                            id="InputNaam"
+                                                                                                                            name="naam"
+                                                                                                                            placeholder="Naam"
                                                                                                                             type="text"></div>
-                        <div class="form-group"><label class="control-label" for="InputTussenvoegsel">Tussenvoegsel<br></label><input class="form-control"
-                                                                                                                                      id="InputTussenvoegsel"
-                                                                                                                                      name="infix"
-                                                                                                                                      placeholder="Tussenvoegsel"
-                                                                                                                                      type="text"></div>
-                        <div class="form-group"><label class="control-label" for="InputAchternaam">Achternaam<br></label><input class="form-control"
-                                                                                                                                id="InputAchternaam"
-                                                                                                                                name="lastname"
-                                                                                                                                placeholder="Achternaam"
-                                                                                                                                type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputAdres">Adres<br></label><input class="form-control"
                                                                                                                       id="InputAdres"
                                                                                                                       name="adres"
