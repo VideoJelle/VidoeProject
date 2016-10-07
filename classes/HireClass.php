@@ -89,7 +89,7 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+            $sql = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

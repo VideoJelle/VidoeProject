@@ -81,8 +81,7 @@ if (isset($_POST['clearCart'])) {
                                 </td>
                                 <td>
                                         " . $row["prijs"] . "
-                                </td>
-                                
+                                </td>                                
                             </tr>
                             </tbody>
                         </table>";
@@ -115,3 +114,9 @@ if (isset($_POST['clearCart'])) {
     <?php
 }
     ?>
+
+<!--" . $row;-->
+<!--if (($row['prijs'] < 50) && ($methode = 'leveren'))-->
+<!--{-->
+<!--($row['prijs'] + 2);-->
+<!--} . "-->

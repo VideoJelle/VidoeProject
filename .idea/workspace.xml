@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4f9281dd-40ae-4ac3-a9d0-cb00b239f79d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/betalen.php" afterPath="$PROJECT_DIR$/betalen.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/HireClass.php" afterPath="$PROJECT_DIR$/classes/HireClass.php" />
     </list>
     <ignored path="videotheek.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,39 +29,11 @@
       <file leaf-file-name="mijnAccountGegevens.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mijnAccountGegevens.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="39" />
+            <state relative-caret-position="85">
+              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
               <folding>
                 <marker date="1475795911369" expanded="true" signature="192:459" placeholder="UPDATE `logi... " />
                 <marker date="1475795911369" expanded="true" signature="585:604" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rolWijzigen.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rolWijzigen.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="99" column="36" selection-start-line="99" selection-start-column="36" selection-end-line="99" selection-end-column="36" />
-              <folding>
-                <marker date="1475798315934" expanded="true" signature="1117:1250" placeholder="UPDATE `logi... " />
-                <marker date="1475798315934" expanded="true" signature="1395:1414" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3020:3041" placeholder="SELECT * FRO... login" />
-                <marker date="1475798315934" expanded="true" signature="3277:5506" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3313:3781" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3346:3744" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3383:3467" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3504:3590" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3627:3710" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3817:5473" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3850:5436" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="3887:3986" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="4023:4123" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="4160:4263" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="4300:5402" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="4385:5364" placeholder="..." />
-                <marker date="1475798315934" expanded="true" signature="4460:5357" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -95,7 +69,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="checklogin.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="checklogin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/checklogin.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
@@ -103,6 +77,57 @@
               <folding>
                 <marker date="1475799351384" expanded="true" signature="1381:1400" placeholder="..." />
                 <marker date="1475799351384" expanded="true" signature="1682:1701" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="betalen.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/betalen.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="927">
+              <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+              <folding>
+                <marker date="1475800379791" expanded="true" signature="2020:2063" placeholder="SELECT * FRO... winkelmand" />
+                <marker date="1475800379791" expanded="true" signature="2354:3217" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2390:2738" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2423:2701" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2460:2545" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2582:2667" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2774:3184" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2807:3114" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2807:3147" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2844:2944" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2981:3022" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2981:3023" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="2981:3081" placeholder="..." />
+                <marker date="1475800379791" expanded="true" signature="3582:3992" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HireClass.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classes/HireClass.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+              <folding>
+                <marker date="1475800576847" expanded="true" signature="923:1088" placeholder="INSERT INTO `winkelmand`... " />
+                <marker date="1475800576847" expanded="true" signature="1363:1382" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="1712:1755" placeholder="DELETE FROM " />
+                <marker date="1475800576847" expanded="true" signature="1883:1902" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="2265:2395" placeholder="DELETE FROM " />
+                <marker date="1475800576847" expanded="true" signature="2517:2536" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="3170:3224" placeholder="SELECT sum(p... " />
+                <marker date="1475800576847" expanded="true" signature="3170:3243" placeholder="SELECT sum(p... " />
+                <marker date="1475800576847" expanded="true" signature="3170:3268" placeholder="SELECT sum(p... " />
+                <marker date="1475800576847" expanded="true" signature="3477:3916" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="3513:3883" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="3546:3846" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="3583:3669" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="3706:3749" placeholder="..." />
+                <marker date="1475800576847" expanded="true" signature="3706:3812" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -132,19 +157,6 @@
                 <marker date="1475798664208" expanded="false" signature="2679:2692" placeholder="..." />
                 <marker date="1475798664208" expanded="true" signature="2976:3206" placeholder="..." />
                 <marker date="1475798664208" expanded="true" signature="3359:4139" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wijzig_wachtwoord.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wijzig_wachtwoord.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-              <folding>
-                <marker date="1475797613056" expanded="true" signature="531:550" placeholder="..." />
-                <marker date="1475797613056" expanded="true" signature="862:881" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -259,10 +271,8 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/videos.php" />
         <option value="$PROJECT_DIR$/classes/VideoClass.php" />
-        <option value="$PROJECT_DIR$/betalen.php" />
         <option value="$PROJECT_DIR$/header.php" />
         <option value="$PROJECT_DIR$/inloggen_Registreren.php" />
-        <option value="$PROJECT_DIR$/classes/HireClass.php" />
         <option value="$PROJECT_DIR$/classes/UsersClass.php" />
         <option value="$PROJECT_DIR$/classes/SessionClass.php" />
         <option value="$PROJECT_DIR$/classes/LoginClass.php" />
@@ -276,6 +286,8 @@
         <option value="$PROJECT_DIR$/klantHomepage.php" />
         <option value="$PROJECT_DIR$/classes/ReserveClass.php" />
         <option value="$PROJECT_DIR$/checklogin.php" />
+        <option value="$PROJECT_DIR$/betalen.php" />
+        <option value="$PROJECT_DIR$/classes/HireClass.php" />
       </list>
     </option>
   </component>
@@ -382,12 +394,12 @@
       <updated>1474453197821</updated>
       <workItem from="1474453199902" duration="6718000" />
       <workItem from="1475348993887" duration="12660000" />
-      <workItem from="1475572816154" duration="60647000" />
+      <workItem from="1475572816154" duration="61942000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80025000" />
+    <option name="totallyTimeSpent" value="81320000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -614,26 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/betalen.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-          <folding>
-            <marker date="1475784403901" expanded="true" signature="2020:2063" placeholder="SELECT * FRO... winkelmand" />
-            <marker date="1475784403901" expanded="true" signature="2354:3218" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2390:2738" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2423:2701" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2460:2545" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2582:2667" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2774:3185" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2807:3115" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2807:3148" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2844:2944" placeholder="..." />
-            <marker date="1475784403901" expanded="true" signature="2981:3081" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/videos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -807,29 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/HireClass.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
-          <folding>
-            <marker date="1475784391858" expanded="true" signature="923:1088" placeholder="INSERT INTO `winkelmand`... " />
-            <marker date="1475784391858" expanded="true" signature="1363:1382" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="1712:1755" placeholder="DELETE FROM " />
-            <marker date="1475784391858" expanded="true" signature="1883:1902" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="2265:2395" placeholder="DELETE FROM " />
-            <marker date="1475784391858" expanded="true" signature="2517:2536" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="3170:3214" placeholder="SELECT sum(p... " />
-            <marker date="1475784391858" expanded="true" signature="3170:3233" placeholder="SELECT sum(p... " />
-            <marker date="1475784391858" expanded="true" signature="3170:3258" placeholder="SELECT sum(p... " />
-            <marker date="1475784391858" expanded="true" signature="3467:3906" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="3503:3873" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="3536:3836" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="3573:3659" placeholder="..." />
-            <marker date="1475784391858" expanded="true" signature="3696:3802" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/LoginClass.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-248">
@@ -894,17 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mijnAccountGegevens.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="7" selection-end-column="39" />
-          <folding>
-            <marker date="1475795911369" expanded="true" signature="192:459" placeholder="UPDATE `logi... " />
-            <marker date="1475795911369" expanded="true" signature="585:604" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rolWijzigen.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -927,31 +885,6 @@
             <marker date="1475798315934" expanded="true" signature="4300:5402" placeholder="..." />
             <marker date="1475798315934" expanded="true" signature="4385:5364" placeholder="..." />
             <marker date="1475798315934" expanded="true" signature="4460:5357" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logout.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/videoPagina.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding>
-            <marker date="1475798664208" expanded="true" signature="2173:2256" placeholder="SELECT * FRO... videos" />
-            <marker date="1475798664208" expanded="true" signature="2173:2258" placeholder="SELECT * FRO... videos" />
-            <marker date="1475798664208" expanded="true" signature="2512:4369" placeholder="..." />
-            <marker date="1475798664208" expanded="true" signature="2564:4334" placeholder="..." />
-            <marker date="1475798664208" expanded="true" signature="2626:2862" placeholder="..." />
-            <marker date="1475798664208" expanded="false" signature="2679:2692" placeholder="..." />
-            <marker date="1475798664208" expanded="true" signature="2976:3206" placeholder="..." />
-            <marker date="1475798664208" expanded="true" signature="3359:4139" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1044,6 +977,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mijnAccountGegevens.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <folding>
+            <marker date="1475795911369" expanded="true" signature="192:459" placeholder="UPDATE `logi... " />
+            <marker date="1475795911369" expanded="true" signature="585:604" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videoPagina.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding>
+            <marker date="1475798664208" expanded="true" signature="2173:2256" placeholder="SELECT * FRO... videos" />
+            <marker date="1475798664208" expanded="true" signature="2173:2258" placeholder="SELECT * FRO... videos" />
+            <marker date="1475798664208" expanded="true" signature="2512:4369" placeholder="..." />
+            <marker date="1475798664208" expanded="true" signature="2564:4334" placeholder="..." />
+            <marker date="1475798664208" expanded="true" signature="2626:2862" placeholder="..." />
+            <marker date="1475798664208" expanded="false" signature="2679:2692" placeholder="..." />
+            <marker date="1475798664208" expanded="true" signature="2976:3206" placeholder="..." />
+            <marker date="1475798664208" expanded="true" signature="3359:4139" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logout.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/checklogin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1051,6 +1020,53 @@
           <folding>
             <marker date="1475799351384" expanded="true" signature="1381:1400" placeholder="..." />
             <marker date="1475799351384" expanded="true" signature="1682:1701" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/betalen.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="927">
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding>
+            <marker date="1475800379791" expanded="true" signature="2020:2063" placeholder="SELECT * FRO... winkelmand" />
+            <marker date="1475800379791" expanded="true" signature="2354:3217" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2390:2738" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2423:2701" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2460:2545" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2582:2667" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2774:3184" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2807:3114" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2807:3147" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2844:2944" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2981:3022" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2981:3023" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="2981:3081" placeholder="..." />
+            <marker date="1475800379791" expanded="true" signature="3582:3992" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/HireClass.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="92" column="41" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+          <folding>
+            <marker date="1475800576847" expanded="true" signature="923:1088" placeholder="INSERT INTO `winkelmand`... " />
+            <marker date="1475800576847" expanded="true" signature="1363:1382" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="1712:1755" placeholder="DELETE FROM " />
+            <marker date="1475800576847" expanded="true" signature="1883:1902" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="2265:2395" placeholder="DELETE FROM " />
+            <marker date="1475800576847" expanded="true" signature="2517:2536" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="3170:3224" placeholder="SELECT sum(p... " />
+            <marker date="1475800576847" expanded="true" signature="3170:3243" placeholder="SELECT sum(p... " />
+            <marker date="1475800576847" expanded="true" signature="3170:3268" placeholder="SELECT sum(p... " />
+            <marker date="1475800576847" expanded="true" signature="3477:3916" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="3513:3883" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="3546:3846" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="3583:3669" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="3706:3749" placeholder="..." />
+            <marker date="1475800576847" expanded="true" signature="3706:3812" placeholder="..." />
           </folding>
         </state>
       </provider>
