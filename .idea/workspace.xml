@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f9281dd-40ae-4ac3-a9d0-cb00b239f79d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/adminHomepage.php" afterPath="$PROJECT_DIR$/adminHomepage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/checklogin.php" afterPath="$PROJECT_DIR$/checklogin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/LoginClass.php" afterPath="$PROJECT_DIR$/classes/LoginClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/PDOMySqlDatabaseClass.php" afterPath="$PROJECT_DIR$/classes/PDOMySqlDatabaseClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/klantHomepage.php" afterPath="$PROJECT_DIR$/klantHomepage.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mijnAccountGegevens.php" afterPath="$PROJECT_DIR$/mijnAccountGegevens.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/videoPagina.php" afterPath="$PROJECT_DIR$/videoPagina.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wijzig_wachtwoord.php" afterPath="$PROJECT_DIR$/wijzig_wachtwoord.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="videotheek.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -389,12 +382,12 @@
       <updated>1474453197821</updated>
       <workItem from="1474453199902" duration="6718000" />
       <workItem from="1475348993887" duration="12660000" />
-      <workItem from="1475572816154" duration="60619000" />
+      <workItem from="1475572816154" duration="60647000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79997000" />
+    <option name="totallyTimeSpent" value="80025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
