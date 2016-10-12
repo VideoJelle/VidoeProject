@@ -8,7 +8,7 @@ if (isset($_POST['clearCart'])) {
     echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=klantHomepage");
     require_once("./classes/HireClass.php");
-    if (HireClass::clear_winkelmand($_POST)){
+    if (HireClass::clear_winkelmand($_POST)) {
 
     } else {
 
@@ -30,7 +30,7 @@ if (isset($_POST['clearCart'])) {
                 padding: 20px;
             }
 
-            th{
+            th {
                 min-width: 300px;
             }
         </style>
@@ -93,18 +93,36 @@ if (isset($_POST['clearCart'])) {
                     }
 
 
-
-//                    HireClass::calculate_Price();
+                    //                    HireClass::calculate_Price();
 
                     //$sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
                     //$sql2 = "SELECT cast(prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                      $sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                    $result2 = $conn->query($sql2);
+                    //$sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+//                    $sql2 = "SELECT sum(convert(float,prijs)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+//                    $result2 = $conn->query($sql2);
+
+                    $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                    $result = $conn->query($sql);
 
                     //echo $result2;
 
-                    if ($result2->num_rows > 0) {
-                        while ($row2 = $result2->fetch_assoc()) {
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            if($row["value"] < 50) {
+                            echo "    <table class=\"table table - responsive\">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                        Verzendkosten:
+                                                </th>
+                                                <th>
+                                                         2 euro
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                        </table>";
+                                $row["value"] = ($row["value"] + 2);
+                            }
                             echo "<table class=\"table table - responsive\">
                             <thead>
                             <tr>
@@ -112,7 +130,7 @@ if (isset($_POST['clearCart'])) {
                                         Totaal:
                                 </th>
                                 <th>
-                                         " . $row2["value"] . " Euro
+                                         " . $row["value"] . " euro
                                 </th>
                             </tr>
                             </thead>
@@ -123,10 +141,10 @@ if (isset($_POST['clearCart'])) {
                     ?>
 
                     <form role=\"form\" action='' method='post'>
-                        <input type='hidden' name='id' value='" . $row['id'] . "'/>
-                        <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
-                        <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
-                        <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
+                        <input type='hidden' name='id' value='" . $row[' id'] . "'/>
+                        <input type='hidden' name='klantid' value='" . $_SESSION[' id'] . "'/>
+                        <input type='hidden' name='titel' value='" . $row[' titel'] . "'/>
+                        <input type='hidden' name='prijs' value='" . $row[' prijs'] . "'/>
                         <input type='submit' class="btn btn-info" name='clearCart' value='Betalen'>
                     </form>
                     <br><br><br><br><br><br>
@@ -139,7 +157,7 @@ if (isset($_POST['clearCart'])) {
     </html>
     <?php
 }
-    ?>
+?>
 
 <!--" . $row;-->
 <!--if (($row['prijs'] < 50) && ($methode = 'leveren'))-->
