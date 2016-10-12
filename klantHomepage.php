@@ -67,7 +67,8 @@ if (isset($_POST['removeItemCart'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT * FROM winkelmand WHERE `klantid` = " . $_SESSION['id'] . " ";
+                    $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -87,7 +88,7 @@ if (isset($_POST['removeItemCart'])) {
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["titel"] . "
+                                        " . $row["titel"]  . "
                                 </td>
                                 <td>
                                         " . $row["prijs"] . "
@@ -95,7 +96,7 @@ if (isset($_POST['removeItemCart'])) {
                                 <td>
                                         <form role=\"form\" action='' method='post'>
                                             <input type='submit' class=\"btn btn-info\" name='removeItemCart' value='Verwijder Item'>
-                                            <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
+                                            <input type='hidden' class=\"btn btn-info\" name='idWinkelmand' value='" . $row['idWinkelmand'] . "'/>
                                         </form>
                                 </td>
                             </tr>
@@ -106,7 +107,8 @@ if (isset($_POST['removeItemCart'])) {
                         echo "
                             <form role='form' action='index.php?content=betalen' method='post'>
                                 <input type='hidden' name='id' value='" . $row['id'] . "'/>
-                                <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
+                                <input type='hidden' name='klantid' value='" . $_SESSION['idKlant'] . "'/>
+                                <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
                                 <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
                                 <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
                                 <input type='submit' class='btn btn - info' name='betalen' value='Betalen'>

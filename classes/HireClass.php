@@ -6,7 +6,7 @@
 	class HireClass
 	{
 		//Fields
-		private $id;
+		private $idWinkelmand;
 		private $klantid;
 		private $titel;
 		private $prijs;
@@ -34,14 +34,14 @@
         {
             global $database;
 
-            $query = "INSERT INTO `winkelmand` (`id`, `klantid`, `titel`, `prijs`) 
-                      VALUES (NULL, ". $_SESSION['id'] ." ,'". $post['titel']."','". $post['prijs']."')";
+            $query = "INSERT INTO `winkelmand` (`idWinkelmand`, `idVideo`, `titel`, `idKlant`, `prijs`) 
+                      VALUES (NULL, '". $post['idVideo']."', '". $post['titel']."', ". $_SESSION['idKlant'] .", ". $post['prijs'].")";
 
 //            echo $_SESSION['id'];
 //            echo $post['titel'];
 //            echo $post['prijs'];
 
-            //echo $query;
+//            echo $query;
             $database->fire_query($query);
 
             $last_id = mysqli_insert_id($database->getDb_connection());
@@ -51,54 +51,37 @@
         {
             global $database;
 
-            $query =    "DELETE FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+            $query =    "DELETE FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
 //            echo $query;
 
-            $database->fire_query($query);
+            //$database->fire_query($query);
         }
 
         public static function remove_item_winkelmand($post)
         {
             global $database;
 
-            $query =    "DELETE FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . "
-                                                    AND `id` = " . $post["id"]. " ";
-//            echo $query;
+            $query =    "DELETE FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . "
+                                                    AND `idWinkelmand` = " . $post["idWinkelmand"]. " ";
+            echo $query;
             $database->fire_query($query);
         }
-//
-//        public static function calculate_Price()
-//        {
-//            $servername = "localhost";
-//            $username = "root";
-//            $password = "";
-//            $dbname = "videotheek";
-//
-//            $conn = new mysqli($servername, $username, $password, $dbname);
-//
-//            if ($conn->connect_error) {
-//                die("Connection failed: " . $conn->connect_error);
-//            }
-//
-//            $sql = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-//            $result = $conn->query($sql);
-//
-//            if ($result->num_rows > 0) {
-//                while ($row = $result->fetch_assoc()) {
-//                    echo "<table class=\"table table - responsive\">
-//                            <thead>
-//                            <tr>
-//                                <th>
-//                                        Totaal:
-//                                </th>
-//                                <th>
-//                                         " . $row["value"] . " Euro
-//                                </th>
-//                            </tr>
-//                            </thead>
-//                        </table>";
-//                }
-//            }
-//        }
+
+        public static function insert_bestelling_database($post)
+        {
+            global $database;
+
+            $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `idKlant`, `afleverdatum`, `prijs`) 
+                      VALUES (NULL, ". $post['idVideo'].", ". $_SESSION['idKlant'] .", '". STR_TO_DATE('$post[\'afleverdatum\']', '%m/%d/%Y')."', ". $post['prijs']." )";
+
+//            echo $_SESSION['id'];
+//            echo $post['titel'];
+//            echo $post['prijs'];
+
+            echo $query;
+            //$database->fire_query($query);
+
+            $last_id = mysqli_insert_id($database->getDb_connection());
+        }
     }
 ?>

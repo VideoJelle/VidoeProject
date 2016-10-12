@@ -6,19 +6,19 @@
 	class ReserveClass
 	{
 		//Fields
-		private $id;
+		private $idReservering;
 		private $klantid;
 		private $titel;
 
 
 		//Properties
 		//getters
-		public function getId() { return $this->id; }
+		public function getIdReservering() { return $this->idReservering; }
 		public function getKlantId() { return $this->klantid; }
 		public function getTitel() { return $this->titel; }
 
 		//setters
-		public function setId($value) { $this->id = $value; }
+		public function setIdReservering($value) { $this->idReservering = $value; }
 		public function setKlantId($value) { $this->klantid = $value; }
 		public function setTitel($value) { $this->titel = $value; }
 
@@ -30,8 +30,8 @@
         {
             global $database;
 
-            $query = "INSERT INTO `reservering` (`id`, `klantid`, `titel`) 
-                      VALUES (NULL, ". $_SESSION['id'] ." ,'". $post['titel']."')";
+            $query = "INSERT INTO `reservering` (`idReservering`, `klantid`, `titel`) 
+                      VALUES (NULL, ". $_SESSION['idKlant'] ." ,'". $post['titel']."')";
 
 //            echo $_SESSION['id'];
 //            echo $post['titel'];
@@ -47,8 +47,8 @@
         {
             global $database;
 
-            $query =    "DELETE FROM `reservering` WHERE `klantid` = " . $_SESSION['id'] . "
-                                                    AND `id` = " . $post["id"]. " ";
+            $query =    "DELETE FROM `reservering` WHERE `klantid` = " . $_SESSION['idKlant'] . "
+                                                    AND `idReservering` = " . $post["idReservering"]. " ";
 //            echo $query;
             $database->fire_query($query);
         }

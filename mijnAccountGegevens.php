@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 			                 SET 		`naam`		=	'" . $_POST['naam'] . "',
 						                `adres`	= 	'" . $_POST['adres'] . "',
 						                `woonplaats`	= 	'" . $_POST['woonplaats'] . "'
-			                 WHERE	`id`			=	'" . $_SESSION['id'] . "';";
+			                 WHERE	`idKlant`			=	'" . $_SESSION['idKlant'] . "';";
 
     //echo $sql;
     $database->fire_query($sql);
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql2 = "SELECT `naam`, `adres`, `woonplaats` FROM `login` WHERE `id` = " . $_SESSION['id'] ." ";
+                    $sql2 = "SELECT `naam`, `adres`, `woonplaats` FROM `login` WHERE `idKlant` = " . $_SESSION['idKlant'] ." ";
                     $result = $conn->query($sql2);
 
                     if ($result->num_rows > 0) {

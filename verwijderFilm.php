@@ -49,7 +49,7 @@ require_once("classes/LoginClass.php");
 if (isset($_POST['removeVideo'])) {
     include('connect_db.php');
 
-    $sql = "DELETE FROM	`videos` WHERE `id` = " . $_POST['id']. " ";
+    $sql = "DELETE FROM	`videos` WHERE `idVideo` = " . $_POST['idVideo']. " ";
 
     //echo $sql;
     $database->fire_query($sql);
@@ -103,7 +103,7 @@ if (isset($_POST['removeVideo'])) {
                                 <td>
                                         <form role=\"form\" action='' method='post'>
                                             <input type='submit' class=\"btn btn-info\" name='removeVideo' value='Verwijder Film'>
-                                            <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
+                                            <input type='hidden' class=\"btn btn-info\" name='idVideo' value='" . $row['idVideo'] . "'/>
                                         </form>
                                 </td>
                             </tr>

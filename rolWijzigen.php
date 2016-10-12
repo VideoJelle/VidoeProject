@@ -40,7 +40,7 @@ if (isset($_POST['updateUserrole'])) {
 
     $sql = "UPDATE	`login` 
                      SET 		`userrole`		=	'" . $_POST['userroleSelect'] . "'
-                     WHERE	    `id`			=	 " . $_POST['id']. " ";
+                     WHERE	    `idKlant`			=	 " . $_POST['idKlant']. " ";
 
     //echo $sql;
     $database->fire_query($sql);
@@ -129,7 +129,7 @@ if (isset($_POST['updateUserrole'])) {
                                                 <option value='baliemedewerker'>Baliemedewerker</option>
                                                 <option value='admin'>Admin</option>
                                                 <option value='bezorger'>Bezorger</option>
-                                            <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
+                                            <input type='hidden' class=\"btn btn-info\" name='idKlant' value='" . $row['idKlant'] . "'/>
                                             <input type='submit' class=\"btn btn-info\" name='updateUserrole' value='Update Rol'>
                                             
                                         </form>

@@ -20,7 +20,7 @@ require_once("VideoClass.php");
 class LoginClass
 {
 	//Fields
-	private $id;
+	private $idKlant;
 	private $naam;
 	private $email;
 	private $password;
@@ -32,7 +32,7 @@ class LoginClass
 
 
 	//Properties
-	public function getId() { return $this->id; }
+	public function getIdKlant() { return $this->idKlant; }
 	public function getNaam() { return $this->naam; }
 	public function getEmail() { return $this->email;}
 	public function getPassword() { return $this->password; }
@@ -42,7 +42,7 @@ class LoginClass
 	public function getAdres() { return $this->adres; }
 	public function getWoonplaats() { return $this->woonplaats; }
 
-	public function setId($value) { $this->id = $value; }
+	public function setIdKlant($value) { $this->idKlant = $value; }
 	public function setNaam($value) { $this->naam = $value; }
 	public function setEmail($value) { $this->email = $value;}
 	public function setPassword($value) { $this->password = value; }
@@ -77,13 +77,13 @@ class LoginClass
 			$object = new LoginClass();
 
 			// Stop de gevonden recordwaarden uit de database in de fields van een LoginClass-object
-			$object->id				= $row['id'];
+			$object->idKlant		= $row['idKlant'];
 			$object->naam		    = $row['naam'];
 			$object->email			= $row['email'];
 			$object->password		= $row['password'];
 			$object->userrole		= $row['userrole'];
 			$object->activated		= $row['activated'];
-			$object->activationdate = $row['activationdate'];
+			$object->activatiedatum = $row['activatiedatum'];
 			$object->adres          = $row['adres'];
 			$object->woonplaats     = $row['woonplaats'];
 
@@ -115,25 +115,25 @@ class LoginClass
 
 		$password = MD5($post['email'].date('Y-m-d H:i:s'));
 
-		$query = "INSERT INTO `login` (`id`,
+		$query = "INSERT INTO `login` (`idKlant`,
 									   `naam`,
 									   `email`,
 									   `password`,
 									   `userrole`,
 									   `activated`,
-									   `activationdate`,
+									   `activatiedatum`,
 									   `adres`,
 									   `woonplaats`)
 				  VALUES			 (NULL,
 				  					   '".$post['naam']."',
 									   '".$post['email']."',
 									   '".$password."',
-									   'klant',
-									   'no',
+									   'Klant',
+									   '0',
 									   '".$date."',
 									   '".$post['adres']."',
 									   '".$post['woonplaats']."')";
-		//echo $query;
+		// echo $query;
 		$database->fire_query($query);
 
 		$last_id = mysqli_insert_id($database->getDb_connection());
@@ -184,10 +184,10 @@ class LoginClass
 		$result = $database->fire_query($query);
 		$record = mysqli_fetch_array($result);
 
-		return ( $record['activated'] == 'no') ? true : false;
+		return ( $record['activated'] == '0') ? true : false;
 	}
 
-	private static function send_email($id, $post, $password)
+	private static function send_email($idKlant, $post, $password)
 	{
 		$to = $post['email'];
 		$subject = "Activatiemail Videotheek Harmelen";
@@ -195,11 +195,11 @@ class LoginClass
 
 		$message .= '<style>a { color:red;}</style>';
 		$message .= "Hartelijk dank voor het registreren bij Videotheek Harmelen"."<br>";
-		$message .= "Uw registratienummer is: ".$id."<br>";
+		$message .= "Uw registratienummer is: ".$idKlant."<br>";
 		$message .= "U kunt de registratie voltooien door op de onderstaande"."<br>";
 		$message .= "activatielink te klikken:"."<br>";
 
-		$message .= "klik <a href='".MAIL_PATH."index.php?content=activate&id=".$id."&email=".$post['email']."&password=".$password."'>hier</a> om uw account te activeren"."<br>";
+		$message .= "klik <a href='".MAIL_PATH."index.php?content=activate&idKlant=".$idKlant."&email=".$post['email']."&password=".$password."'>hier</a> om uw account te activeren"."<br>";
 
 		$message .= "U kunt dan vervolgens een nieuw wachtwoord instellen."."<br>";
 		$message .= "Met vriendelijke groet,"."<br>";
@@ -218,23 +218,23 @@ class LoginClass
 		mail( $to, $subject, $message, $headers);
 	}
 
-	public static function activate_account_by_id($id)
+	public static function activate_account_by_id($idKlant)
 	{
 		global $database;
 		$query = "UPDATE `login`
-					  SET `activated` = 'yes'
-					  WHERE `id` = '".$id."'";
+					  SET `activated` = '1'
+					  WHERE `idKlant` = '".$idKlant."'";
 
 		$database->fire_query($query);
 
 	}
 
-	public static function update_password($id, $password)
+	public static function update_password($idKlant, $password)
 	{
 		global $database;
 		$query = "UPDATE `login` 
 					  SET	 `password` =	'".MD5($password)."'
-					  WHERE	 `id`		=	'".$id."'";
+					  WHERE	 `idKlant`		=	'".$idKlant."'";
 		$database->fire_query($query);
 
 	}
@@ -243,7 +243,7 @@ class LoginClass
 	{
 		$query = "SELECT *
 					  FROM	 `login`
-					  WHERE	 `id`	=	'".$_SESSION['id']."'";
+					  WHERE	 `idKlant`	=	'".$_SESSION['idKlant']."'";
 		$arrayLoginClassObjecten = self::find_by_sql($query);
 		$loginClassObject = array_shift($arrayLoginClassObjecten);
 		//var_dump($loginClassObject);
@@ -262,16 +262,16 @@ class LoginClass
 	public static function update_database($post)
 	{
 		global $database;
-		$query = "UPDATE `users` SET `firstname`='".$post['voornaam']."', `infix`='".$post['tussenvoegsel']."',`lastname`='".$post['achternaam']."' where `id`='".$_SESSION['id']."'";
+		$query = "UPDATE `users` SET `firstname`='".$post['voornaam']."', `infix`='".$post['tussenvoegsel']."',`lastname`='".$post['achternaam']."' where `idKlant`='".$_SESSION['idKlant']."'";
 		//echo"users update";
 		$database->fire_query($query);
 	}
 
-		public static function find_info_by_id($id)
+		public static function find_info_by_id($idKlant)
 	{
 		$query = "SELECT 	*
 					  FROM 		`login`
-					  WHERE		`id`	=	".$id;
+					  WHERE		`idKlant`	=	".$idKlant;
 		$object_array = self::find_by_sql($query);
 		$usersclassObject = array_shift($object_array);
 		//var_dump($usersclassObject); exit();

@@ -4,7 +4,7 @@
 	class VideoClass
 	{
 		//Fields
-		private $id;
+		private $idVideo;
 		private $titel;
 		private $beschrijving;
 		private $genres;
@@ -13,9 +13,9 @@
 
 		//Properties
 		//getters
-		public function getId()
+		public function getIdVideo()
 		{
-			return $this->id;
+			return $this->idVideo;
 		}
 
 		public function getTitel()
@@ -98,7 +98,7 @@
 				$object = new OptredenClass();
 
 				// Stop de gevonden recordwaarden uit de database in de fields van een OptredenClass-object
-				$object->id = $row['id'];
+				$object->id = $row['idVideo'];
 				$object->titel = $row['titel'];
 				$object->beschrijving = $row['beschrijving'];
 				$object->genres = $row['genres'];
@@ -110,11 +110,11 @@
 			return $object_array;
 		}
 
-		public static function find_info_by_id($id)
+		public static function find_info_by_id($idVideo)
 		{
 			$query = "SELECT 	*
-					  FROM 		`videos`
-					  WHERE		`id`	=	" . $id;
+					  FROM 		`video`
+					  WHERE		`idVideo`	=	" . $idVideo;
 			$object_array = self::find_by_sql($query);
 			$videoclassObject = array_shift($object_array);
 			return $videoclassObject;
@@ -124,7 +124,7 @@
 		{
 			global $database;
 
-			$query = "INSERT INTO `videos` (`id`,
+			$query = "INSERT INTO `videos` (`idVideo`,
 										   `titel`,
 										   `beschrijving`,
 										   `genres`,

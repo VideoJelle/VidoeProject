@@ -31,7 +31,7 @@ require_once("classes/LoginClass.php");
 if (isset($_POST['removeUser'])) {
     include('connect_db.php');
 
-    $sql = "DELETE FROM	`login` WHERE `id` = " . $_POST['id']. " ";
+    $sql = "DELETE FROM	`login` WHERE `idKlant` = " . $_POST['idKlant']. " ";
 
 
     //echo $sql;
@@ -115,7 +115,7 @@ if (isset($_POST['removeUser'])) {
                                 <td>
                                         <form role=\"form\" action='' method='post'>
                                             <input type='submit' class=\"btn btn-info\" name='removeUser' value='Verwijder Gebruiker'>
-                                            <input type='hidden' class=\"btn btn-info\" name='id' value='" . $row['id'] . "'/>
+                                            <input type='hidden' class=\"btn btn-info\" name='idKlant' value='" . $row['idKlant'] . "'/>
                                         </form>
                                 </td>
                             </tr>

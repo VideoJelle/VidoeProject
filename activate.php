@@ -16,13 +16,14 @@
 <?php
 require_once("./classes/LoginClass.php");
 
-if (isset($_GET['id']) && isset($_GET['email']) && isset($_GET['password']))
+if (isset($_GET['idKlant']) && isset($_GET['email']) && isset($_GET['password']))
 {
     if (LoginClass::check_if_activated($_GET['email'],$_GET['password']))
     {
-        $action = "index.php?content=activate&id=".$_GET['id']."&email=".$_GET['email']."&password=".$_GET['password'];
+        $action = "index.php?content=activate&idKlant=".$_GET['idKlant']."&email=".$_GET['email']."&password=".$_GET['password'];
+        
 
-        if (LoginClass::check_if_email_password_exists($_GET['email'], $_GET['password'], 'no'))
+        if (LoginClass::check_if_email_password_exists($_GET['email'], $_GET['password'], '0'))
         {
             if (isset($_POST['submit']))
             {
@@ -30,11 +31,11 @@ if (isset($_GET['id']) && isset($_GET['email']) && isset($_GET['password']))
                 if ( !strcmp($_POST['password_1'], $_POST['password_2']))
                 {
                     // 2. Activeer het account en update het oude password naar het nieuwe password.
-                    LoginClass::activate_account_by_id($_GET['id']);
+                    LoginClass::activate_account_by_id($_GET['idKlant']);
 
                     echo "<h3 style='text-align: center;' >Uw wachtwoord is succesvol gewijzigd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
                     header("refresh:4;url=index.php?content=inloggen_Registreren");
-                    LoginClass::update_password($_GET['id'],$_POST['password_1']);
+                    LoginClass::update_password($_GET['idKlant'],$_POST['password_1']);
                 }
                 else
                 {
@@ -55,7 +56,7 @@ if (isset($_GET['id']) && isset($_GET['email']) && isset($_GET['password']))
 
                     <div class="form-group"><label class="control-label" for="password_2">Typ nogmaals uw wachtwoord (controle)</label>
                         <input class="form-control" id="password_2" placeholder="Wachtwoord" type="password" name="password_2" required></div>
-                    <input type='hidden' name='id' value='<?php echo $_GET['id']; ?>'/>
+                    <input type='hidden' name='idKlant' value='<?php echo $_GET['idKlant']; ?>'/>
                     <button type="submit" name="submit" class="btn btn-default">Verstuur</button>
 
                 </form>

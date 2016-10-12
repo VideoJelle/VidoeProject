@@ -1,6 +1,6 @@
 <?php
 	//session_start();	
-	if ( !isset( $_SESSION['id']))
+	if ( !isset( $_SESSION['idKlant']))
 	{
 		//var_dump($_SESSION);
 		echo "<h3 style='text-align: center;' >U bent niet ingelogd en daarom niet bevoegd om deze pagina te bekijken. U wordt teruggestuurd naar de loginpagina.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
