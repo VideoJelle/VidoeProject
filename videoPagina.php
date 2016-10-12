@@ -87,8 +87,6 @@ if (isset($_POST['reserveer'])) {
                                                 <button type=\"submit\" name=\"submit\" class=\"btn btn-info\">Toevoegen aan winkelmand<br></button>
                                                 <button type=\"submit\" name=\"reserveer\" class=\"btn btn-info\">Plaats Reservatie<br></button>
                                                 
-                                                Videoclass::IsVideoBeschikbaar($row['$id'])
-                                                
                                                 &nbsp; Prijs: " . $row["prijs"] . "</p>
                                         </form>
                                         
@@ -111,3 +109,7 @@ if (isset($_POST['reserveer'])) {
     }
 }
 ?>
+
+
+<!--Videoclass::IsVideoBeschikbaar($row['$id'])-->
+                                                

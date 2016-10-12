@@ -142,10 +142,10 @@
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}
 
-		public static function isVideoBeschikbaar($id){
-			global $database;
-
-			$query = "SELECT `aantalBeschikbaar` FROM `videos` WHERE `aantalBeschikbaar` > 0 AND `id` = ". $id .";
-		}
+//		public static function isVideoBeschikbaar($id){
+//			global $database;
+//
+//			$query = "SELECT `aantalBeschikbaar` FROM `videos` WHERE `aantalBeschikbaar` > 0 AND `id` = ". $id .";
+//		}
 	}
 ?>
