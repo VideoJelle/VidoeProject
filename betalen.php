@@ -96,8 +96,12 @@ if (isset($_POST['clearCart'])) {
 
 //                    HireClass::calculate_Price();
 
-                    $sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                    //$sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                    //$sql2 = "SELECT cast(prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                      $sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
                     $result2 = $conn->query($sql2);
+
+                    //echo $result2;
 
                     if ($result2->num_rows > 0) {
                         while ($row2 = $result2->fetch_assoc()) {

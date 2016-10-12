@@ -83,8 +83,12 @@ if (isset($_POST['reserveer'])) {
                                         <input type='hidden' name='klantid' value='" . $_SESSION['id'] . "'/>
                                         <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
                                         <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
+                                        
                                                 <button type=\"submit\" name=\"submit\" class=\"btn btn-info\">Toevoegen aan winkelmand<br></button>
                                                 <button type=\"submit\" name=\"reserveer\" class=\"btn btn-info\">Plaats Reservatie<br></button>
+                                                
+                                                Videoclass::IsVideoBeschikbaar($row['$id'])
+                                                
                                                 &nbsp; Prijs: " . $row["prijs"] . "</p>
                                         </form>
                                         
