@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             }
 
             th {
-                min-width: 300px;
+                min-width: 500px;
             }
         </style>
     </head>

@@ -28,7 +28,7 @@ if (isset($_POST['removeItemCart'])) {
             }
 
             th {
-                min-width: 300px;
+                min-width: 500px;
             }
         </style>
     </head>

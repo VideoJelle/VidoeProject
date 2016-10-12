@@ -31,7 +31,7 @@ if (isset($_POST['clearCart'])) {
             }
 
             th {
-                min-width: 300px;
+                min-width: 500px;
             }
         </style>
     </head>
@@ -92,14 +92,31 @@ if (isset($_POST['clearCart'])) {
                         echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
                     }
 
+                    echo "<br>
+                    <table class=\"table table - responsive\">
+                            <thead>
+                            <tr>
+                                <th>
+                                        Kies de gewenste datum waarop u uw bestelling wilt ontvangen:
+                                </th>
+                                <th>
+                                        <input type='date' class='form-control' name='". $row['afleverdatum'] ."'>
+                                </th>
+                            </tr>
+                            Uw gehuurde video wordt één week na uw bestelling opgehaald.
+                            </thead>
+                        </table>
+                                                   <br>";
+
+
 
                     //                    HireClass::calculate_Price();
 
                     //$sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
                     //$sql2 = "SELECT cast(prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
                     //$sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-//                    $sql2 = "SELECT sum(convert(float,prijs)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-//                    $result2 = $conn->query($sql2);
+                    //                    $sql2 = "SELECT sum(convert(float,prijs)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                    //                    $result2 = $conn->query($sql2);
 
                     $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
                     $result = $conn->query($sql);
@@ -108,8 +125,8 @@ if (isset($_POST['clearCart'])) {
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            if($row["value"] < 50) {
-                            echo "    <table class=\"table table - responsive\">
+                            if ($row["value"] < 50) {
+                                echo "    <table class=\"table table - responsive\">
                                             <thead>
                                             <tr>
                                                 <th>
