@@ -80,8 +80,8 @@ if (isset($_POST['submit'])) {
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql3 = "SELECT `titel`, `beschrijving`, `fotopad`, `prijs`, `aantalBeschikbaar` FROM `video`";
-            $result = $conn->query($sql3);
+            $sql = "SELECT `titel`, `beschrijving`, `fotopad`, `prijs`, `aantalBeschikbaar` FROM `video`";
+            $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -96,6 +96,17 @@ if (isset($_POST['submit'])) {
                             <input class=\"form-control\" id=\"prijs\" placeholder=\"Prijs\" type=\"text\" name=\"prijs\" value='" . $row['prijs'] . "' required></div>
                         <div class=\"form-group\"><label class=\"control-label\" for=\"aantalBeschikbaar\">Aantal Beschikbaar</label>
                             <input class=\"form-control\" id=\"aantalBeschikbaar\" placeholder=\"Aantal Beschikbaar\" type=\"text\" name=\"aantalBeschikbaar\" value='" . $row['aantalBeschikbaar'] . "' required></div>
+                        <select name='genre'>";
+//                                $sql4 = 'SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC';
+//                                $result4 = $conn->query($sql4);
+//
+//                            if ($result4->num_rows > 0) {
+//                                while ($row4 = mysqli_fetch_array($result4)) {
+//                                    echo "<option value='" . $row4['Genre'] . "'>" . $row4['Genre'] . "</option>";
+//                                }
+//                            }
+                                echo "
+                            </select> 
                         <button type=\"submit\" class=\"btn btn-default\" name=\"submit\">Verzend</button>
                     </form><br>
                     <hr>";
