@@ -35,19 +35,19 @@ if (isset($_POST['create'])) {
 
 
 require_once("classes/LoginClass.php");
-if (isset($_POST['updateUserrole'])) {
+if (isset($_POST['updateBlock'])) {
     include('connect_db.php');
 
     $sql = "UPDATE	`login` 
-                     SET 		`userrole`		=	'" . $_POST['userroleSelect'] . "'
+                     SET 		`geblokkeerd`		=	'" . $_POST['blockSelect'] . "'
                      WHERE	    `idKlant`			=	 " . $_POST['idKlant']. " ";
 
-    //echo $sql;
+    // echo $sql;
     $database->fire_query($sql);
-    //$result = mysqli_query($connection, $sql);
+    $result = mysqli_query($connection, $sql);
 
-    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:4;url=index.php?content=adminHomepage");
+    echo "Uw wijzigingen zijn verwerkt.";
+    header("refresh:4;url=index.php?content=blokkeren");
 
 } else {
     ?>
@@ -55,7 +55,7 @@ if (isset($_POST['updateUserrole'])) {
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12"><h2>Gebruiker verwijderen</h2></div>
+                    <div class="col-md-12"><h2>Gebruiker Blokkeren</h2></div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -106,7 +106,7 @@ if (isset($_POST['updateUserrole'])) {
                                         E-mail:
                                 </th>
                                 <th>
-                                        Rol:
+                                        Rol: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Geblokkeerd:
                                 </th>
                             </tr>
                             </thead>
@@ -119,18 +119,16 @@ if (isset($_POST['updateUserrole'])) {
                                         " . $row['email'] . "
                                 </td>
                                 <td>
-                                        " . $row['userrole'] . "
+                                        " . $row['userrole'] . "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    " . $row['geblokkeerd'] . "
                                 </td>
                                 <td>
                                         <form role=\"form\" action='' method='post'>
-                                            <select name='userroleSelect'>
-                                                <option value='klant'>Klant</option>
-                                                <option value='eigenaar'>Eigenaar</option>
-                                                <option value='baliemedewerker'>Baliemedewerker</option>
-                                                <option value='admin'>Admin</option>
-                                                <option value='bezorger'>Bezorger</option>
+                                            <select name='blockSelect'>
+                                                <option value='1'>Blokkeren ( 1 )</option>
+                                                <option value='0'>Deblokkeren ( 0 )</option>
+                                                </select>
                                             <input type='hidden' class=\"btn btn-info\" name='idKlant' value='" . $row['idKlant'] . "'/>
-                                            <input type='submit' class=\"btn btn-info\" name='updateUserrole' value='Update Rol'>
+                                            <input type='submit' class=\"btn btn-info\" name='updateBlock' value='Update Blokkade'>
                                             
                                         </form>
                                 </td>

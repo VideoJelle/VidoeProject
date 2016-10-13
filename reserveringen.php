@@ -66,7 +66,7 @@ if (isset($_POST['removeItemReserve'])) {
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT * FROM `reservering` WHERE `klantid` = " . $_SESSION['idKlant'] . " ";
+            $sql = "SELECT * FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

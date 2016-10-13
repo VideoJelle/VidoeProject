@@ -28,9 +28,8 @@ if (isset($_SESSION['userrole'])) {
             <ul class=\"nav navbar-nav navbar-right\">
                 <li><a href=\"index.php?content=klantHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
-                <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
                 <li><a href=\"index.php?content=mijnAccountGegevens\">Mijn Account</a></li>
-                <li><a href=\"index.php?content=contact\">Contact<br></a></li>
+                <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
             </ul>
         </div>
     </div>
@@ -67,7 +66,6 @@ if (isset($_SESSION['userrole'])) {
                 <li><a href=\"index.php?content=adminHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
-                <li><a href=\"index.php?content=contact\">Contact<br></a></li>
             </ul>
         </div>
     </div>
@@ -104,7 +102,6 @@ if (isset($_SESSION['userrole'])) {
                 <li><a href=\"index.php?content=baliemedewerkerHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
-                <li><a href=\"index.php?content=contact\">Contact<br></a></li>
             </ul>
         </div>
     </div>
@@ -141,7 +138,6 @@ if (isset($_SESSION['userrole'])) {
                 <li><a href=\"index.php?content=bezorgerHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
-                <li><a href=\"index.php?content=contact\">Contact<br></a></li>
             </ul>
         </div>
     </div>
@@ -178,7 +174,6 @@ if (isset($_SESSION['userrole'])) {
                 <li><a href=\"index.php?content=adminHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
-                <li><a href=\"index.php?content=contact\">Contact<br></a></li>
             </ul>
         </div>
     </div>
@@ -215,7 +210,6 @@ if (isset($_SESSION['userrole'])) {
                 <li><a href=\"index.php?content=geblokkeerdHomepage\">Home</a></li>
                 <li><a href=\"index.php?content=videos\">Video's</a></li>
                 <li><a href=\"index.php?content=logout\">Uitloggen</a></li>
-                <li><a href=\"index.php?content=contact\">Contact<br></a></li>
             </ul>
         </div>
     </div>

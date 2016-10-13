@@ -25,6 +25,7 @@ class LoginClass
 	private $email;
 	private $password;
 	private $userrole;
+	private $geblokkeerd;
 	private $activated;
 	private $activationdate;
 	private $adres;
@@ -37,6 +38,7 @@ class LoginClass
 	public function getEmail() { return $this->email;}
 	public function getPassword() { return $this->password; }
 	public function getUserrole() { return $this->userrole; }
+	public function getGeblokkeerd() { return $this->geblokkeerd; }
 	public function getActivated() { return $this->activated;}
 	public function getActivationdate() { return $this->activationdate; }
 	public function getAdres() { return $this->adres; }
@@ -47,6 +49,7 @@ class LoginClass
 	public function setEmail($value) { $this->email = $value;}
 	public function setPassword($value) { $this->password = value; }
 	public function setUserrole($value) { $this->userrole = $value; }
+	public function setGeblokkeerd($value) { $this->geblokkeerd = $value; }
 	public function setActivated($value) { $this->activated = $value;}
 	public function setActivationdate($value) { $this->activationdate = value; }
 	public function setAdres($value) { $this->adres = value; }
@@ -82,6 +85,7 @@ class LoginClass
 			$object->email			= $row['email'];
 			$object->password		= $row['password'];
 			$object->userrole		= $row['userrole'];
+			$object->geblokkeerd	= $row['geblokkeerd'];
 			$object->activated		= $row['activated'];
 			$object->activatiedatum = $row['activatiedatum'];
 			$object->adres          = $row['adres'];
@@ -185,6 +189,20 @@ class LoginClass
 		$record = mysqli_fetch_array($result);
 
 		return ( $record['activated'] == '0') ? true : false;
+	}
+    
+    public static function check_if_geblokkeerd($idKlant)
+	{
+		global $database;
+
+		$query = "SELECT `geblokkeerd`
+					  FROM	 `login`
+					  WHERE	 `idKlant` = '".$idKlant."'";
+
+		$result = $database->fire_query($query);
+		$record = mysqli_fetch_array($result);
+		return $geblokt = ( $record['geblokkeerd'] == '0') ? true : false;
+        
 	}
 
 	private static function send_email($idKlant, $post, $password)

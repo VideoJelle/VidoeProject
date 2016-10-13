@@ -5,11 +5,17 @@ require_once("./security.php");
 
 <?php
 if (isset($_POST['clearCart'])) {
-    echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+
     header("refresh:4;url=index.php?content=klantHomepage");
     require_once("./classes/HireClass.php");
-    HireClass::clear_winkelmand($_POST);
-    HireClass::insert_bestelling_database($_POST);
+    if (!HireClass::check_if_date_exists($_POST['afleverdatum'])) {
+        echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+        HireClass::clear_winkelmand($_POST);
+        HireClass::insert_bestelling_database($_POST);
+    } else {
+        echo "<h3 style='text-align: center;' >Deze dag is niet beschikbaar, kies een andere dag.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    }
+
 } else {
     ?>
 
@@ -27,7 +33,7 @@ if (isset($_POST['clearCart'])) {
                 padding: 20px;
             }
 
-            th{
+            th {
                 min-width: 500px;
             }
         </style>
@@ -41,29 +47,29 @@ if (isset($_POST['clearCart'])) {
                 <div class="col-md-6">
                     <h3>Uw bestelling</h3>
                     <form role=\"form\" action='' method='post'>
-                    <?php
-                    require_once("classes/LoginClass.php");
-                    require_once("classes/HireClass.php");
-                    require_once("classes/SessionClass.php");
+                        <?php
+                        require_once("classes/LoginClass.php");
+                        require_once("classes/HireClass.php");
+                        require_once("classes/SessionClass.php");
 
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "videotheek";
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "videotheek";
 
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-                    $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
 
-                    $result = $conn->query($sql);
+                        $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "
                         <table class=\"table table - responsive\">
                             <thead>
                             <tr>
@@ -86,12 +92,12 @@ if (isset($_POST['clearCart'])) {
                             </tr>
                             </tbody>
                         </table>";
+                            }
+                        } else {
+                            echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
                         }
-                    } else {
-                        echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-                    }
-
-                    echo "<br>
+                        $date = date('Y-m-d');
+                        echo "<br>
                      <table class=\"table table - responsive\">
                              <thead>
                              <tr>
@@ -99,7 +105,7 @@ if (isset($_POST['clearCart'])) {
                                          Kies de gewenste datum waarop u uw bestelling wilt ontvangen:
                                  </th>
                                  <th>
-                                         <input type='date' class='form-control' name='afleverdatum' required>
+                                         <input type='date' class='form-control' name='afleverdatum' min='" . date('Y-m-d') . "' max='" . date('Y-m-d', strtotime($date . ' + 21 days')) . "' required>
                                  </th>
                              </tr>
                              Uw gehuurde video wordt één week na uw bestelling opgehaald.
@@ -107,20 +113,20 @@ if (isset($_POST['clearCart'])) {
                          </table>
                                                     <br>";
 
-//                    HireClass::calculate_Price();
+                        //                    HireClass::calculate_Price();
 
-                    //$sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                    //$sql2 = "SELECT cast(prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                    //$sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                    //                    $sql2 = "SELECT sum(convert(float,prijs)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                    //                    $result2 = $conn->query($sql2);
-                    $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
-                    $result = $conn->query($sql);
-                    //echo $result2;
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            if($row["value"] < 50) {
-                                echo "    <table class=\"table table - responsive\">
+                        //$sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                        //$sql2 = "SELECT cast(prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                        //$sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                        //                    $sql2 = "SELECT sum(convert(float,prijs)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
+                        //                    $result2 = $conn->query($sql2);
+                        $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                        $result = $conn->query($sql);
+                        //echo $result2;
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                if ($row["value"] < 50) {
+                                    echo "    <table class=\"table table - responsive\">
                                             <thead>
                                             <tr>
                                                 <th>
@@ -132,9 +138,9 @@ if (isset($_POST['clearCart'])) {
                                             </tr>
                                             </thead>
                                         </table>";
-                                $row["value"] = ($row["value"] + 2);
-                            }
-                            echo "<table class=\"table table - responsive\">
+                                    $row["value"] = ($row["value"] + 2);
+                                }
+                                echo "<table class=\"table table - responsive\">
                             <thead>
                             <tr>
                                 <th>
@@ -150,31 +156,29 @@ if (isset($_POST['clearCart'])) {
                         <input type='hidden' name='prijs' value='" . $row['value'] . "'/>
                         ";
 
+                            }
                         }
-                    }
 
 
+                        $sql = "SELECT * FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
 
+                        $result = $conn->query($sql);
 
-                    $sql = "SELECT * FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
-
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "
                                 <input type='hidden' name='idKlant' value='" . $_SESSION['idKlant'] . "'/>
                                 <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
                                 <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
                         ";
+                            }
                         }
-                    }
 
-                    echo "
+                        echo "
 
                         <input type='submit' class='btn btn-info' name='clearCart' value='Betalen'>";
-                    $conn->close();
-                    ?>
+                        $conn->close();
+                        ?>
 
                     </form>
 
@@ -188,4 +192,4 @@ if (isset($_POST['clearCart'])) {
     </html>
     <?php
 }
-    ?>
+?>

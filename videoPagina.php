@@ -3,7 +3,6 @@ $userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
 require_once("./security.php");
 ?>
 
-
 <?php
 if (isset($_POST['reserveer'])) {
     echo "<h3 style='text-align: center;' >Item toegevoegd aan reserveringen.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
@@ -54,20 +53,31 @@ if (isset($_POST['reserveer'])) {
 
                     // Create connection
                     $conn = new mysqli($servername, $username, $password, $dbname);
+                    $conn2 = new mysqli($servername, $username, $password, $dbname);
+                    $conn3 = new mysqli($servername, $username, $password, $dbname);
                     // Check connection
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
+                    }
+                    if ($conn2->connect_error) {
+                        die("Connection failed: " . $conn2->connect_error);
+                    }
+                    if ($conn3->connect_error) {
+                        die("Connection failed: " . $conn3->connect_error);
                     }
 
                     $idVideo = $_GET['idVideo'];
                     $sql = "SELECT * FROM `video` 
                                  WHERE `idVideo` = '" . $idVideo . "'";
+                    $sql2 = "SELECT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur WHERE a.idVideo = " . $_GET['idVideo'] . " ";
+                    $sql3 = "SELECT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre WHERE a.idVideo = " . $_GET['idVideo'] . " ";
 
                     $result = $conn->query($sql);
+                    $result2 = $conn->query($sql2);
+                    $result3 = $conn->query($sql3);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-
                             echo "
                             <div class=\"container\">
                                 <div class=\"row\">
@@ -76,16 +86,25 @@ if (isset($_POST['reserveer'])) {
                                     </div>
                                     <div class=\"col-md-6\">
                                         <h3>" . $row["titel"] . "</h3>
-                                        <p> Genres: " . $row["genres"] . "<br>
-                                            Acteurs: " . $row["acteurs"] . " <br><br>
-                                            " . $row["beschrijving"] . "<br><br>";
+                                        <p> <b>Genres:</b><br> ";
+                            while ($row2 = mysqli_fetch_array($result2)) {
+                                echo $row2['naam'] . "<br> ";
+                            }
+                            echo "<br>
+                                            <b>Acteurs:</b><br> ";
+                            while ($row3 = mysqli_fetch_array($result3)) {
+                                echo $row3['Genre'] . "<br> ";
+                            }
+                            echo "
+                                                            </p><br><b>Beschrijving: </b>
+                                                            " . $row["beschrijving"] . "<br><br>";
                             if ($row["aantalBeschikbaar"] > 0) {
-                                echo "Aantal beschikbaar: " . $row["aantalBeschikbaar"] . "<br><br>";
+                                echo "<b>Aantal beschikbaar: </b>" . $row["aantalBeschikbaar"] . "<br><br>";
                             } else {
                                 echo "<b>Deze video is helaas uitverkocht plaats een reservering om de video te kunnen huren als die weer beschikbaar is</b>";
                             }
-echo "<br><br>
-                            Prijs:
+                            echo "
+                            <b>Prijs: </b>
                             &euro; " . $row["prijs"] .
                                 " </p >
                                            
@@ -134,6 +153,3 @@ echo "<br><br>
     }
 }
 ?>
-
-
-<!--Videoclass::IsVideoBeschikbaar($row['$id'])-->

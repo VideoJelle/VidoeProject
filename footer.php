@@ -14,8 +14,7 @@
             <div class="col-sm-6">
 <!--                <h1>Footer</h1>-->
                 <p><ul>
-                    <li><a href="index.php?content=klantHomepage">Home</a></li>
-                    <li><a href="index.php?content=videos">Video's</a></li>
+                    
                     <li><a href="index.php?content=contact">Contact<br></a></li>
                 </ul></p></div>
             <div class="col-sm-6"><p class="text-info text-right"><br><br></p>

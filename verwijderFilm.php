@@ -39,6 +39,7 @@ if (isset($_POST['create'])) {
                     <ul class="breadcrumb">
                         <li><a href="index.php?content=adminHomepage">Video's beheren</a></li>
                         <li><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen/blokkeren</a></li>
+                        <li><a href="index.php?content=blokkeren">Gebruiker Blokkeren</a></li>
                         <li><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
                         <li><a href="index.php?content=verwijderFilm">Film verwijderen</a></li>
                     </ul>

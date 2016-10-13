@@ -1,18 +1,7 @@
 <?php
-$userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
+$userrole = array("klant");
 require_once("./security.php");
 ?>
-
-<?php
-if (isset($_POST['removeItemCart'])) {
-    echo "<h3 style='text-align: center;' >Item is uit de winkelmand verwijderd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:4;url=index.php?content=klantHomepage");
-    require_once("./classes/HireClass.php");
-    HireClass::remove_item_winkelmand($_POST);
-
-} else {
-    ?>
-
     <html>
     <head>
         <meta charset="utf-8">
@@ -37,7 +26,7 @@ if (isset($_POST['removeItemCart'])) {
         <div class="container">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12"><h2>Winkelmand</h2></div>
+                    <div class="col-md-12"><h2>Mijn Bestellingen</h2></div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -68,7 +57,7 @@ if (isset($_POST['removeItemCart'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                    $sql = "SELECT * FROM bestelling WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
 
                     $result = $conn->query($sql);
 
@@ -79,25 +68,26 @@ if (isset($_POST['removeItemCart'])) {
                             <thead>
                             <tr>
                                 <th>
-                                        Titel:
-                                </th>
-                                <th>
-                                        Prijs:
+                                        Titel:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                                        Afleverdatum:</th>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                                        <th>Ophaaldatum:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspPrijs:
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["titel"] . "
+                                        " . $row["idVideo"]  . "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                        " . $row["afleverdatum"] . "
                                 </td>
                                 <td>
+                                        " . $row["ophaaldatum"] . "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
                                         " . $row["prijs"] . "
                                 </td>
                                 <td>
                                         <form role=\"form\" action='' method='post'>
-                                            <input type='submit' class=\"btn btn-info\" name='removeItemCart' value='Verwijder Item'>
-                                            <input type='hidden' class=\"btn btn-info\" name='idWinkelmand' value='" . $row['idWinkelmand'] . "'/>
+                                            <input type='submit' class=\"btn btn-info\" name='add7days' value='Verleng Bestelling'>
+                                            <input type='hidden' class=\"btn btn-info\" name='idWinkelmand' value='" . $row['idBestelling'] . "'/>
                                         </form>
                                 </td>
                             </tr>
@@ -105,7 +95,7 @@ if (isset($_POST['removeItemCart'])) {
                         </table>
                             ";
                         }
-                        echo "
+                        /*echo "
                             <form role='form' action='index.php?content=betalen' method='post'>
                                 <input type='hidden' name='id' value='" . $row['id'] . "'/>
                                 <input type='hidden' name='klantid' value='" . $_SESSION['idKlant'] . "'/>
@@ -114,8 +104,8 @@ if (isset($_POST['removeItemCart'])) {
                                 <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
                                 <input type='submit' class='btn btn - info' name='betalen' value='Betalen'>
                             </form><br><br><br><br><br><br><br><br>";
-
-                    } else {
+                            */
+                    }  else {
                         echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br>";
                     }
                     $conn->close();
@@ -128,6 +118,3 @@ if (isset($_POST['removeItemCart'])) {
     </div>
     </body>
     </html>
-    <?php
-}
-?>

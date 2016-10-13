@@ -4,12 +4,10 @@ require_once("classes/SessionClass.php");
 
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
     // Als email/password combi bestaat en geactiveerd....
-    echo "123";
     if (LoginClass::check_if_email_password_exists($_POST['email'],
         MD5($_POST['password']),
         '1')
     ) {
-        echo "321";
         $session->login(LoginClass::find_login_by_email_password($_POST['email'],
             MD5($_POST['password'])));
 

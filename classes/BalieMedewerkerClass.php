@@ -16,13 +16,13 @@ class BalieMedewerkerClass
     {
     }
 
-    public static function update_password($idVideo)
+    public static function update_password($post)
     {
         global $database;
         //echo "123";
         $query = "UPDATE `video` 
 					  SET	 `aantalBeschikbaar` = `aantalBeschikbaar` + 1
-					  WHERE	 `idVideo`		=	'" . $idVideo . "'";
+					  WHERE	 `idVideo`		=	'" . $_POST['idVideo'] . "'";
         $database->fire_query($query);
 
     }

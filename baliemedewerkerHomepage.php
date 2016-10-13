@@ -8,7 +8,7 @@ if (isset($_POST['update'])) {
     echo "<h3 style='text-align: center;' >Film is beschikbaar <gezet></gezet> aan database.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=baliemedewerkerHomepage");
     require_once("./classes/BalieMedewerkerClass.php");
-    BalieMedewerkerClass::update_password($_POST['id']);
+    BalieMedewerkerClass::update_password($_POST);
 } else {
 
     ?>
@@ -44,7 +44,7 @@ if (isset($_POST['update'])) {
         <form role="form" action='' method='post'>
             <div class="form-group">
                 <label for="id">VideoId</label>
-                <input type="text" class="form-control" name="id" placeholder="Voer videoid in.">
+                <input type="text" class="form-control" name="idVideo" placeholder="Voer videoid in.">
             </div>
             <button type="submit" name="update" class="btn btn-default">Update</button>
         </form>

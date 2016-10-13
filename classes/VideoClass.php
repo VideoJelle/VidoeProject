@@ -89,24 +89,24 @@
 			// Vuur de query af op de database
 			$result = $database->fire_query($query);
 
-			// Maak een array aan waarin je OptredenClass-objecten instopt
+			// Maak een array aan waarin je VideoClass-objecten instopt
 			$object_array = array();
 
 			// Doorloop alle gevonden records uit de database
 			while ($row = mysqli_fetch_array($result)) {
-				// Een object aan van de OptredenClass (De class waarin we ons bevinden)
-				$object = new OptredenClass();
+				// Een object aan van de VideoClass (De class waarin we ons bevinden)
+				$object = new VideoClass();
 
-				// Stop de gevonden recordwaarden uit de database in de fields van een OptredenClass-object
+				// Stop de gevonden recordwaarden uit de database in de fields van een VideoClass-object
 				$object->id = $row['idVideo'];
 				$object->titel = $row['titel'];
 				$object->beschrijving = $row['beschrijving'];
 				$object->genres = $row['genres'];
-				$object->acteurs = $row['acteurs'];
 				$object->fotopad = $row['fotopad'];
 
 				$object_array[] = $object;
 			}
+
 			return $object_array;
 		}
 
@@ -117,7 +117,19 @@
 					  WHERE		`idVideo`	=	" . $idVideo;
 			$object_array = self::find_by_sql($query);
 			$videoclassObject = array_shift($object_array);
+
+			self::find_info_by_id2();
+
 			return $videoclassObject;
+		}
+
+		public static function find_info_by_id2()
+		{
+			$query2 = "SELECT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur WHERE a.idVideo = " . $_GET['idVideo'] . " ";
+			$object_array = self::find_by_sql($query2);
+			$videoclassObject2 = array_shift($object_array);
+
+			return $videoclassObject2;
 		}
 
 		public static function insert_film_database($post)
@@ -141,11 +153,5 @@
 
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}
-
-//		public static function isVideoBeschikbaar($id){
-//			global $database;
-//
-//			$query = "SELECT `aantalBeschikbaar` FROM `videos` WHERE `aantalBeschikbaar` > 0 AND `id` = ". $id .";
-//		}
 	}
 ?>
