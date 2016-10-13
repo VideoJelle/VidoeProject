@@ -136,20 +136,43 @@
 		{
 			global $database;
 
-			$query = "INSERT INTO `videos` (`idVideo`,
+			$query = "INSERT INTO `video` (`idVideo`,
 										   `titel`,
 										   `beschrijving`,
-										   `genres`,
-                                           `acteurs`,
-                                           `fotopad`)
+										   `fotopad`,
+                                           `aantalBeschikbaar`)
 					  VALUES			  (NULL,
 										   '" . $post['titel'] . "',
 										   '" . $post['beschrijving'] . "',
-										   '" . $post['genres'] . "',
-                                           '" . $post['acteurs'] . "',
-                                           '" . $post['fotopad'] . "')";
+										   '" . $post['fotopad'] . "',
+                                           '" . $post['aantalBeschikbaar'] . "')";
+
+			$sql = "SELECT `idVideoGenre` AS lastVideoGenreID FROM `videogenre` ORDER BY `idVideoGenre` DESC LIMIT 1";
+
+			$query2 = "INSERT INTO `videoacteur`(`idVideoActeur`, 
+												 `idVideo`, 
+												 `idActeur`) 
+				   VALUES 						(" . $sql['lastVideoGenreID'] . ",
+				   								 " . $_GET['idVideo'] . ",
+				   								 " . $_POST['acteurSelect'] . ")";
+
+			$sql2 = "SELECT `idVideoActeur` AS lastVideoActeurID FROM `videoacteur` ORDER BY `idVideoActeur` DESC LIMIT 1";
+
+			$query3 = "INSERT INTO `videogenre`(`idVideoGenre`, 
+												`idVideo`, 
+												`idGenre`) 
+				   VALUES 						(" . $sql2['lastVideoActeurID'] . ",
+				   								 " . $_GET['idVideo'] . ",
+				   								 " . $_POST['genreSelect'] . ")";
+
 			//echo $query;
-			$database->fire_query($query);
+			//echo "<br>";
+			echo $query2;
+			echo "<br>";
+			echo $query3;
+			//$database->fire_query($query);
+			//$database->fire_query($query2);
+			//$database->fire_query($query3);
 
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}
