@@ -133,10 +133,10 @@
 		}
 
 		public static function insert_film_database($post)
-		{
-			global $database;
+	{
+		global $database;
 
-			$query = "INSERT INTO `video` (`idVideo`,
+		$query = "INSERT INTO `video` (`idVideo`,
 										   `titel`,
 										   `beschrijving`,
 										   `fotopad`,
@@ -147,32 +147,44 @@
 										   '" . $post['fotopad'] . "',
                                            '" . $post['aantalBeschikbaar'] . "')";
 
-			$sql = "SELECT `idVideoGenre` AS lastVideoGenreID FROM `videogenre` ORDER BY `idVideoGenre` DESC LIMIT 1";
+		//echo $query;
 
-			$query2 = "INSERT INTO `videoacteur`(`idVideoActeur`, 
-												 `idVideo`, 
-												 `idActeur`) 
-				   VALUES 						(" . $sql['lastVideoGenreID'] . ",
-				   								 " . $_GET['idVideo'] . ",
-				   								 " . $_POST['acteurSelect'] . ")";
+		//$database->fire_query($query);
 
-			$sql2 = "SELECT `idVideoActeur` AS lastVideoActeurID FROM `videoacteur` ORDER BY `idVideoActeur` DESC LIMIT 1";
+		$last_id = mysqli_insert_id($database->getDb_connection());
+	}
 
-			$query3 = "INSERT INTO `videogenre`(`idVideoGenre`, 
+		public static function insert_genre_film($post)
+		{
+            global $database;
+
+			$query = "INSERT INTO `videogenre`(`idVideoGenre`, 
 												`idVideo`, 
 												`idGenre`) 
-				   VALUES 						(" . $sql2['lastVideoActeurID'] . ",
-				   								 " . $_GET['idVideo'] . ",
+				   VALUES 						(NULL,
+				   								 " . $_POST['idvanvideos'] . ",
 				   								 " . $_POST['genreSelect'] . ")";
 
-			//echo $query;
-			//echo "<br>";
-			echo $query2;
-			echo "<br>";
-			echo $query3;
+			echo $query;
+            echo "<br>q " . $_POST['genreSelect'];
 			//$database->fire_query($query);
-			//$database->fire_query($query2);
-			//$database->fire_query($query3);
+
+			$last_id = mysqli_insert_id($database->getDb_connection());
+		}
+
+		public static function insert_acteur_film($post)
+		{
+			global $database;
+
+			$query = "INSERT INTO `videoacteur`(`idVideoActeur`, 
+												 `idVideo`, 
+												 `idActeur`) 
+				   VALUES 						(NULL,
+				   								 " . $_POST['idvanvideos'] . ",
+				   								 " . $_POST['acteurSelect'] . ")";
+
+			echo $query . "<br>";
+			//$database->fire_query($query);
 
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}

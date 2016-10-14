@@ -59,12 +59,6 @@ if (isset($_POST['reserveer'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    if ($conn2->connect_error) {
-                        die("Connection failed: " . $conn2->connect_error);
-                    }
-                    if ($conn3->connect_error) {
-                        die("Connection failed: " . $conn3->connect_error);
-                    }
 
                     $idVideo = $_GET['idVideo'];
                     $sql = "SELECT * FROM `video` 

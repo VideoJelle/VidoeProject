@@ -27,6 +27,8 @@ if (isset($_POST['create'])) {
     //header("refresh:4;url=index.php?content=adminHomepage");
     require_once("./classes/VideoClass.php");
     VideoClass::insert_film_database($_POST);
+//    VideoClass::insert_acteur_film($_POST);
+//    VideoClass::insert_genre_film($_POST);
 }
 else {
 
@@ -72,8 +74,7 @@ else {
     <row class="row">
 
     </row>
-
-                                <h3>Nieuwe film toevoegen</h3>
+        <h3>Nieuwe film toevoegen</h3>
             <form role='form' action='' method='post'>
                 <div class='form-group'>
                     <label for='titel'>Titel:</label>
@@ -207,6 +208,8 @@ else {
 
                             ?>
                         </select>
+                    <?php
+                    ?>
                 </div>
                 <div class='form-group'>
                     <label for='fotopad'>Fotopad:</label>
@@ -216,7 +219,21 @@ else {
                     <label for='aantalBeschikbaar'>Aantal Beschikbare kopieën:</label>
                     <input type='text' class='form-control' name='aantalBeschikbaar' placeholder='Voer aantal beschikbaar in.'>
                 </div>
-                <button type='submit' name='create' class='btn btn-default'>Submit</button>
+                <?php
+
+                $sql = "SELECT idVideo FROM video ORDER BY idVideo DESC";
+
+                $result = $conn->query($sql);
+
+                $row = $result->fetch_assoc();
+
+                $idvanvideo = ($row['idVideo']) + 1;
+
+                echo "
+                    <input type='hidden' name='idvanvideos' value='" . $idvanvideo . "'/>
+                    
+                <button type='submit' name='create' class='btn btn-default'>Submit</button>";
+                ?>
             </form><br>
     <?php
 }
