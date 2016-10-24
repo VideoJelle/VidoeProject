@@ -46,7 +46,11 @@ if (isset($_POST['update'])) {
                 <label for="id">VideoId</label>
                 <input type="text" class="form-control" name="idVideo" placeholder="Voer videoid in.">
             </div>
+<<<<<<< HEAD
             <button type="submit" name="update" class="btn btn-primary">Update</button>
+=======
+            <button type="submit" name="update" class="btn btn-default">Update</button>
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
         </form>
         <br>
     </row>

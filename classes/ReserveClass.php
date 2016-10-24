@@ -30,19 +30,29 @@
         {
             global $database;
 
+<<<<<<< HEAD
             $query = "INSERT INTO `reservering` (`idReservering`, `idKlant`, `idVideo`, `titel`) 
                       VALUES (NULL, ". $_SESSION['idKlant'] ." ,'". $post['idVideo']."','". $post['titel']."')";
+=======
+            $query = "INSERT INTO `reservering` (`idReservering`, `klantid`, `titel`) 
+                      VALUES (NULL, ". $_SESSION['idKlant'] ." ,'". $post['titel']."')";
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
 
 //            echo $_SESSION['id'];
 //            echo $post['titel'];
 //            echo $post['prijs'];
 
+<<<<<<< HEAD
             // echo $query;
+=======
+            //echo $query;
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
             $database->fire_query($query);
 
             $last_id = mysqli_insert_id($database->getDb_connection());
 
         }
+<<<<<<< HEAD
         
         public static function check_if_reservering_exists($post)
         {
@@ -57,13 +67,21 @@
         return (mysqli_num_rows($result) == 1) ? true : false;
         }
 
+=======
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
         public static function remove_item_reservering($post)
         {
             global $database;
 
+<<<<<<< HEAD
             $query =    "DELETE FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . "
                                                     AND `idReservering` = " . $post["idReservering"]. " ";
             //echo $query;
+=======
+            $query =    "DELETE FROM `reservering` WHERE `klantid` = " . $_SESSION['idKlant'] . "
+                                                    AND `idReservering` = " . $post["idReservering"]. " ";
+//            echo $query;
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
             $database->fire_query($query);
         }
 

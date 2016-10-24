@@ -59,7 +59,11 @@ if (isset($_POST['submitRegister'])) {
                                                                                                                         name="email"
                                                                                                                         placeholder="E-mail"
                                                                                                                         type="email"></div>
+<<<<<<< HEAD
                         <button type="submit" name="submitRegister" class="btn btn-primary">Verstuur<br></button>
+=======
+                        <button type="submit" name="submitRegister" class="btn btn-default">Verstuur<br></button>
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
                     </form>
                 </div>
                 <div class="col-md-6">
@@ -69,7 +73,11 @@ if (isset($_POST['submitRegister'])) {
                         <div class="form-group"><label class="control-label" for="InputPassword1">Wachtwoord</label><input class="form-control" id="InputPassword1"
                                                                                                                            name="password" placeholder="Wachtwoord"
                                                                                                                            type="password"></div>
+<<<<<<< HEAD
                         <button type="submit" name="submitLogin" class="btn btn-primary">Verstuur</button>
+=======
+                        <button type="submit" name="submitLogin" class="btn btn-default">Verstuur</button>
+>>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
                     </form>
                 </div>
             </div>
