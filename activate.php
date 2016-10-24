@@ -57,7 +57,7 @@ if (isset($_GET['idKlant']) && isset($_GET['email']) && isset($_GET['password'])
                     <div class="form-group"><label class="control-label" for="password_2">Typ nogmaals uw wachtwoord (controle)</label>
                         <input class="form-control" id="password_2" placeholder="Wachtwoord" type="password" name="password_2" required></div>
                     <input type='hidden' name='idKlant' value='<?php echo $_GET['idKlant']; ?>'/>
-                    <button type="submit" name="submit" class="btn btn-default">Verstuur</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Verstuur</button>
 
                 </form>
                 </div>

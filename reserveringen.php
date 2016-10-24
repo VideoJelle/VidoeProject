@@ -7,7 +7,7 @@ require_once("./security.php");
 if (isset($_POST['removeItemReserve'])) {
     echo "<h3 style='text-align: center;' >Item is uit de reserveringen verwijderd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=reserveringen");
-    require_once("./classes/ReserveClass.php");
+    require_once("classes/ReserveClass.php");
     ReserveClass::remove_item_reservering($_POST);
 
     } else{
@@ -54,6 +54,7 @@ if (isset($_POST['removeItemReserve'])) {
             require_once("classes/LoginClass.php");
             require_once("classes/HireClass.php");
             require_once("classes/SessionClass.php");
+            require_once("classes/ReserveClass.php");
 
             $servername = "localhost";
             $username = "root";
@@ -88,6 +89,7 @@ if (isset($_POST['removeItemReserve'])) {
                                 <td>
                                         <form role=\"form\" action='' method='post'>
                                             <input type='submit' class=\"btn btn-info\" name='removeItemReserve' value='Verwijder Item'>
+                                            <input type='hidden' class=\"btn btn-info\" name='idReservering' value='" . $row['idReservering'] . "'/>
                                             <input type='hidden' class=\"btn btn-info\" name='idVideo' value='" . $row['idVideo'] . "'/>
                                         </form>
                                 </td>

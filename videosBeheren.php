@@ -166,7 +166,7 @@ if (isset($_POST['submit'])) {
 <!--                <label for="fotopad">Fotopad:</label>-->
 <!--                <input type="text" class="form-control" name="fotopad" placeholder="Voer fotopad in.">-->
 <!--            </div>-->
-<!--            <button type="submit" name="create" class="btn btn-default">Submit</button>-->
+<!--            <button type="submit" name="create" class="btn btn-primary">Submit</button>-->
 <!--        </form>-->
 <!--        <br>-->
 <!--    </row>-->

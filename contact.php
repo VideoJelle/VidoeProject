@@ -61,7 +61,7 @@ else {
                             <input class="form-control" id="Telefoon" placeholder="Telefoon" type="tel" name="tel" required></div>
                         <div class="form-group"><label class="control-label" for="comment">Vraag/Opmerking</label><span class="requiredStar">*</span>
                             <input class="form-control" id="comment" placeholder="Vraag/Opmerking" type="text" name="comment" required></div>
-                        <button type="submit" class="btn btn-default" name="submit">Verzend</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Verzend</button>
                     </form>
                 </div>
             </div>

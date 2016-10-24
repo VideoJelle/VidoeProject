@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
                             <input class="form-control" id="nieuw_wachtwoord" placeholder="Nieuw wachtwoord" type="password" name="nieuw_wachtwoord"></div>
                         <div class="form-group"><label class="control-label" for="controle_wachtwoord">Voer nogmaals het nieuwe wachtwoord<br></label>
                             <input class="form-control" id="controle_wachtwoord" placeholder="Controle wachtwoord" type="password" name="controle_wachtwoord"></div>
-                        <button type="submit" class="btn btn-default" name="submit">Verzend</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Verzend</button>
                     </form>
                 </div>
             </div>

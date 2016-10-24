@@ -47,7 +47,7 @@
                                     echo " <div style='height: 650px;' class=\"col-md-3\"><img style='height: 400px' src=\"images/" . $row["fotopad"] . "\" class=\"img-responsive\">
                <h3>" . $row["titel"] . "</h3>
                <p class=\"videos\">" . $row["beschrijving"] . "</p>
-               <a href='index.php?content=videoPagina&idVideo=" . $row["idVideo"] . "'><button type=\"button\" class=\"btn btn-info\">Meer Informatie</button></a>
+               <a href='index.php?content=videoPagina&idVideo=" . $row["idVideo"] . "'><button type=\"button\" class=\"btn btn-primary\">Meer Informatie</button></a>
                <br><br><br></div>
              ";
                                 }
