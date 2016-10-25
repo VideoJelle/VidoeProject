@@ -106,6 +106,7 @@ if (isset($_POST['clearCart'])) {
                                  </th>
                                  <th>
                                          <input type='date' class='form-control' name='afleverdatum' min='" . date('Y-m-d') . "' max='" . date('Y-m-d', strtotime($date . ' + 21 days')) . "' required>
+                                         <input type='time' value=''
                                  </th>
                              </tr>
                              Uw gehuurde video wordt één week na uw bestelling opgehaald.

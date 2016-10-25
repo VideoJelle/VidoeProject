@@ -93,21 +93,16 @@ class HireClass
     {
         $afleverdatum = $post['afleverdatum'];
         $date = $afleverdatum;
-<<<<<<< HEAD
+
         $ophaaldatum = date('Y-m-d H:i', strtotime($date . ' + 7 days'));
 
         global $database;
         $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `idKlant`, `videoTitel`,`afleverdatum`, `ophaaldatum`, `prijs`,`adresKlant`,`woonplaatsKlant`,`emailKlant`) 
         VALUES (NULL, " . $post['idVideo'] . ", " . $_SESSION['idKlant'] . ", '" . $post['titel'] . "','" . $post['afleverdatum'] . "', '" . $ophaaldatum . "', '" . $post['prijs'] . "','" . $_SESSION['adres'] . "','" . $_SESSION['woonplaats'] . "','" . $_SESSION['email'] . "')";
         //echo $query;
-=======
-        $ophaaldatum = date('Y-m-d', strtotime($date . ' + 7 days'));
 
-        global $database;
-        $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `idKlant`, `afleverdatum`, `ophaaldatum`, `prijs`) 
-        VALUES (NULL, " . $post['idVideo'] . ", " . $_SESSION['idKlant'] . ", '" . $post['afleverdatum'] . "', '" . $ophaaldatum . "', " . $post['prijs'] . " )";
-        // echo $query;
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+        $ophaaldatum = date('Y-m-d', strtotime($date . ' + 7 days'));
+ 
         $database->fire_query($query);
         $last_id = mysqli_insert_id($database->getDb_connection());
         self::lower_amount_videos($post);
@@ -147,11 +142,9 @@ class HireClass
         $to = $_SESSION['email'];
         $subject = "Bevestigingsmail Bestelling Videotheek Harmelen";
         $message = "Geachte heer/mevrouw<br>";
-<<<<<<< HEAD
+
         $message .= "Hartelijk dank voor het bestellen bij Videotheek Harmelen" . "<br>";
-=======
-        $message .= "Hartelijk dank voor het bestellen bij Videotheek Culemborg" . "<br>";
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+
         $message .= "Uw bestellingsnummer is: " . $idBestelling . "<br>";
         $message .= "U kunt in uw account de bestelling verlengen als u de video langer wilt huren." . "<br>";
         $message .= "Als u de video niet verlengt maar de ophaaldatum is verlopen, kost dit u iedere dag 10% van uw prijs extra. " . "<br>";

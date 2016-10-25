@@ -5,7 +5,7 @@ require_once("./security.php");
 
 <?php
 if (isset($_POST['reserveer'])) {
-<<<<<<< HEAD
+
     require_once("./classes/ReserveClass.php");
     if (!ReserveClass::check_if_reservering_exists($_POST))
     {
@@ -18,12 +18,7 @@ if (isset($_POST['reserveer'])) {
         
         echo "U heeft deze video al gereserveerd";
     }
-=======
-    echo "<h3 style='text-align: center;' >Item toegevoegd aan reserveringen.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:4;url=index.php?content=reserveringen");
-    require_once("./classes/ReserveClass.php");
-    ReserveClass::insert_reserveringitem_database($_POST);
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
 } else {
     if (isset($_POST['submit'])) {
 
@@ -74,15 +69,15 @@ if (isset($_POST['reserveer'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-<<<<<<< HEAD
+
                     if ($conn2->connect_error) {
                         die("Connection failed: " . $conn2->connect_error);
                     }
                     if ($conn3->connect_error) {
                         die("Connection failed: " . $conn3->connect_error);
                     }
-=======
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+
+ 
 
                     $idVideo = $_GET['idVideo'];
                     $sql = "SELECT * FROM `video` 
@@ -119,11 +114,9 @@ if (isset($_POST['reserveer'])) {
                             if ($row["aantalBeschikbaar"] > 0) {
                                 echo "<b>Aantal beschikbaar: </b>" . $row["aantalBeschikbaar"] . "<br><br>";
                             } else {
-<<<<<<< HEAD
+
                                 echo "<b>Deze video is helaas uitverkocht. Plaats een reservering om de video te kunnen huren als die weer beschikbaar is</b>";
-=======
-                                echo "<b>Deze video is helaas uitverkocht plaats een reservering om de video te kunnen huren als die weer beschikbaar is</b>";
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+
                             }
                             echo "
                             <b>Prijs: </b>

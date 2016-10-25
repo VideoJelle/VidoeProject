@@ -2,7 +2,7 @@
 $userrole = array("bezorger", "admin", "eigenaar");
 require_once("./security.php");
 ?>
-<<<<<<< HEAD
+
     <html>
     <head>
         <meta charset="utf-8">
@@ -170,7 +170,7 @@ require_once("./security.php");
     </div>
     </body>
     </html>
-=======
+
 
 <html>
 <head>
@@ -214,4 +214,4 @@ require_once("./security.php");
 
 </body>
 </html>
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 

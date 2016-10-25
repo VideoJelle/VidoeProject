@@ -15,11 +15,9 @@
 <!--                <h1>Footer</h1>-->
                 <p><ul>
                     
-<<<<<<< HEAD
+
                     <li><h4><a href="index.php?content=contact">Contact<br></a></h4></li>
-=======
-                    <li><a href="index.php?content=contact">Contact<br></a></li>
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+                    
                 </ul></p></div>
             <div class="col-sm-6"><p class="text-info text-right"><br><br></p>
                 <div class="row">

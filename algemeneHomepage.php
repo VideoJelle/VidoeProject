@@ -59,13 +59,13 @@
                 <img src="./pictures/videoband.png" class="img-responsive">
             </div>
             <div class="col-md-6">
-<<<<<<< HEAD
+
                 <h1 class="text-primary">Welkom</h1>
                 <p>Welkom bij de website van videotheek Harmelen. Op deze website kunt u uw favorite videos bestellen.</p>
-=======
+
                 <h1 class="text-primary">Titel</h1>
                 <p>Welkom bij de website van videotheek Harmelen. Op deze website kunt u uw favoriten videos bestellen.</p>
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
             </div>
         </div>
     </div>

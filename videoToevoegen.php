@@ -7,18 +7,18 @@ require_once("./security.php");
 require_once("classes/LoginClass.php");
 require_once("classes/HireClass.php");
 require_once("classes/SessionClass.php");
-<<<<<<< HEAD
-=======
 
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+
+
+ 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "videotheek";
-<<<<<<< HEAD
-=======
 
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+
+
+ 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -37,10 +37,7 @@ if (isset($_POST['create'])) {
 //    VideoClass::insert_genre_film($_POST);
 }
 else {
-<<<<<<< HEAD
-=======
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
     ?>
     <html>
     <head>
@@ -55,10 +52,10 @@ else {
                 font-size: 24px;
                 padding: 20px;
             }
-<<<<<<< HEAD
-=======
 
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+
+
+ 
             th {
                 min-width: 300px;
             }
@@ -101,69 +98,39 @@ else {
                         <select name='genreSelect' required>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
                             }
-=======
-
-                            $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                         &nbsp;&nbsp;
                         <select name='genreSelect'>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
                             }
-=======
-
-                            $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                         &nbsp;&nbsp;
                         <select name='genreSelect'>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
                             }
-=======
-
-                            $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                         &nbsp;&nbsp;
@@ -173,36 +140,26 @@ else {
                         <select name='acteurSelect' required>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
                             }
-=======
-
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                     &nbsp;&nbsp;
                         <select name='acteurSelect'>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
                             }
-=======
+
 
                             $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
 
@@ -212,76 +169,46 @@ else {
                                 echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
                             }
 
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                     &nbsp;&nbsp;
                         <select name='acteurSelect'>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
                             }
-=======
-
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                     &nbsp;&nbsp;
                         <select name='acteurSelect'>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
                             }
-=======
-
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                             ?>
                         </select>
                     &nbsp;&nbsp;
                         <select name='acteurSelect'>
                             <option value=""></option>
                             <?php
-<<<<<<< HEAD
+
                             $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
                             }
-=======
 
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
-                            }
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
                             ?>
                         </select>
                     <?php
@@ -296,22 +223,12 @@ else {
                     <input type='text' class='form-control' name='aantalBeschikbaar' placeholder='Voer aantal beschikbaar in.'>
                 </div>
                 <?php
-<<<<<<< HEAD
+
                 $sql = "SELECT idVideo FROM video ORDER BY idVideo DESC";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $idvanvideo = ($row['idVideo']) + 1;
-=======
-
-                $sql = "SELECT idVideo FROM video ORDER BY idVideo DESC";
-
-                $result = $conn->query($sql);
-
-                $row = $result->fetch_assoc();
-
-                $idvanvideo = ($row['idVideo']) + 1;
-
->>>>>>> d1d3ac70db9ef374de3e167b9e19b833ba7c7f1d
+ 
                 echo "
                     <input type='hidden' name='idvanvideos' value='" . $idvanvideo . "'/>
                     
