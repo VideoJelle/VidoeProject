@@ -97,8 +97,8 @@ class HireClass
         $ophaaldatum = date('Y-m-d H:i', strtotime($date . ' + 7 days'));
 
         global $database;
-        $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `idKlant`, `videoTitel`,`afleverdatum`, `ophaaldatum`, `prijs`,`adresKlant`,`woonplaatsKlant`,`emailKlant`) 
-        VALUES (NULL, " . $post['idVideo'] . ", " . $_SESSION['idKlant'] . ", '" . $post['titel'] . "','" . $post['afleverdatum'] . "', '" . $ophaaldatum . "', '" . $post['prijs'] . "','" . $_SESSION['adres'] . "','" . $_SESSION['woonplaats'] . "','" . $_SESSION['email'] . "')";
+        $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `idKlant`, `videoTitel`,`afleverdatum`,`aflevertijd`, `ophaaldatum`,`ophaaltijd`, `prijs`) 
+        VALUES (NULL, " . $post['idVideo'] . ", " . $_SESSION['idKlant'] . ", '" . $post['titel'] . "','" . $post['afleverdatum'] . "','". $post['aflevertijd']. "', '". $ophaaldatum ."','".$post['ophaaltijd']."', '" . $post['prijs'] . "')";
         //echo $query;
 
         $ophaaldatum = date('Y-m-d', strtotime($date . ' + 7 days'));
@@ -190,6 +190,39 @@ class HireClass
         $query = "UPDATE `video` SET `beschikbaar`= 0 WHERE `aantalVerhuurd` = 30";
 
         $database->fire_query($query);
+    }
+    
+    public static function check_if_deleveryDate_deleveryTime_exists($post)
+    {
+        global $database;
+
+        $query = "SELECT `afleverdatum`,`aflevertijd`
+					  FROM	 `bestelling`
+					  WHERE	 `afleverdatum` = '" . $post['afleverdatum'] . "'
+					  AND    `aflevertijd` = '".$post['aflevertijd']."'";
+
+        $result = $database->fire_query($query);
+        //echo $query;
+        return (mysqli_num_rows($result) > 0) ? true : false;
+    }
+
+    public static function check_if_collectDate_collectTime_exists($post)
+    {
+        global $database;
+
+        $afleverdatum = $post['afleverdatum'];
+        $date = $afleverdatum;
+
+        $ophaaldatum = date('Y-m-d H:i', strtotime($date . ' + 7 days'));
+
+        $query = "SELECT `ophaaldatum`,`ophaaltijd`
+					  FROM	 `bestelling`
+					  WHERE	 `ophaaldatum` = '" . $ophaaldatum . "'
+					  AND    `ophaaltijd` = '".$post['ophaaltijd']."'";
+
+        $result = $database->fire_query($query);
+        //echo $query;
+        return (mysqli_num_rows($result) > 0) ? true : false;
     }
 }
 

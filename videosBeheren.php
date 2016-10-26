@@ -35,9 +35,10 @@ if (isset($_POST['submit'])) {
             }
 
         </style>
+
     </head>
-    <body>
-    <div class="section">
+<body>
+<div class="section">
     <div class="container">
     <div class="row">
         <div class="col-md-12"><h2>Video's beheren</h2></div>
@@ -55,6 +56,7 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <div class="row">
+
         <div class="col-md-12">
             <?php
             require_once("classes/LoginClass.php");
@@ -68,16 +70,21 @@ if (isset($_POST['submit'])) {
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn2 = new mysqli($servername, $username, $password, $dbname);
             // Check connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "SELECT `titel`, `beschrijving`, `fotopad`, `prijs`, `aantalBeschikbaar` FROM `video`";
+            if ($conn2->connect_error) {
+                die("Connection failed: " . $conn2->connect_error);
+            }
+            $sql = "SELECT * FROM video";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<form role=\"form\" action=\"\" method=\"post\">
+                    echo "
+                        <form role=\"form\" action=\"\" method=\"post\">
                         <div class=\"form-group\"><label class=\"control-label\" for=\"titel\">Titel<br></label>
                             <input class=\"form-control\" id=\"titel\" placeholder=\"Titel\" type=\"text\" name=\"titel\" value='" . $row['titel'] . "' required></div>
                         <div class=\"form-group\"><label class=\"control-label\" for=\"beschrijving\">Beschrijving<br></label>
@@ -88,28 +95,17 @@ if (isset($_POST['submit'])) {
                             <input class=\"form-control\" id=\"prijs\" placeholder=\"Prijs\" type=\"text\" name=\"prijs\" value='" . $row['prijs'] . "' required></div>
                         <div class=\"form-group\"><label class=\"control-label\" for=\"aantalBeschikbaar\">Aantal Beschikbaar</label>
                             <input class=\"form-control\" id=\"aantalBeschikbaar\" placeholder=\"Aantal Beschikbaar\" type=\"text\" name=\"aantalBeschikbaar\" value='" . $row['aantalBeschikbaar'] . "' required></div>
-                        <select name='genre'>";
-//                                $sql4 = 'SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC';
-//                                $result4 = $conn->query($sql4);
-//
-//                            if ($result4->num_rows > 0) {
-//                                while ($row4 = mysqli_fetch_array($result4)) {
-//                                    echo "<option value='" . $row4['Genre'] . "'>" . $row4['Genre'] . "</option>";
-//                                }
+                        <!--<select name='acteurSelect'>-->";
+//                            $sql2 = "SELECT DISTINCT b.naam, a.idActeur FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
+//                            $result2 = $conn2->query($sql2);
+//                            while ($row2 = mysqli_fetch_array($result2)) {
+//                                echo "<option value='" . $row2['idActeur'] . "'>" . $row2['naam'] . "</option>";
 //                            }
-//                    $sql = "SELECT DISTINCT b.Genre, a.idGenre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
-//                    $result = $conn->query($sql);
-//                    while ($row = mysqli_fetch_array($result)) {
-//                        echo "<option value='" . $row['idGenre'] . "'>" . $row['Genre'] . "</option>";
-//                    }
-
-                                echo "
-                            </select> 
-                            
-                            <input type='hidden' name='idvanvideos' value='" . $idvanvideo . "'/>
+                    echo "
+                           <!-- </select> -->
+                        <input type='hidden' name='idvanvid' value='" . $row['idVideo'] . "'/>
                         <button type=\"submit\" class=\"btn btn-default\" name=\"submit\">Verzend</button>
-                    </form><br>
-                    <hr>";
+                    </form><br><hr>";
 
                 }
                 echo "
@@ -127,4 +123,4 @@ if (isset($_POST['submit'])) {
     </div>
     <?php
 }
-    ?>
+?>

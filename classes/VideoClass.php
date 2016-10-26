@@ -160,7 +160,7 @@ require_once('MySqlDatabaseClass.php');
 
 		public static function insert_genre_film($post)
 		{
-            global $database;
+			global $database;
 
 			$sql = "SELECT idVideo FROM video ORDER BY idVideo DESC LIMIT 1";
 			$result = $database->fire_query($sql);
@@ -176,7 +176,7 @@ require_once('MySqlDatabaseClass.php');
 				   								 " . $_POST['genreSelect'] . ")";
 
 			//echo $query;
-            //echo "<br>";
+			//echo "<br>";
 			$database->fire_query($query);
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}
@@ -226,24 +226,16 @@ require_once('MySqlDatabaseClass.php');
 		{
 			global $database;
 
-			$sql = "SELECT idVideo FROM video ORDER BY idVideo DESC LIMIT 1";
-			$result = $database->fire_query($sql);
-			while ($row = $result->fetch_assoc()) {
-				$lastVideoIDWijzig = $row['idVideo'];
-				echo $lastVideoIDWijzig;
-			}
-
 			$sql = "UPDATE	`video`  SET 	`titel`		=	'" . $_POST['titel'] . "',
 											`beschrijving`	= 	'" . $_POST['beschrijving'] . "',
 											`fotopad`	= 	'" . $_POST['fotopad'] . "',
 											`prijs`	= 	'" . $_POST['prijs'] . "',
 											`aantalBeschikbaar`	= 	'" . $_POST['aantalBeschikbaar'] . "'
-									WHERE	`idVideo`			=	'" . $lastVideoIDWijzig . "';";
+									WHERE	`idVideo`			=	'" . $_POST['idvanvid'] . "'";
 
+//			echo $sql;
 
-			echo $sql;
-
-			//$database->fire_query($sql);
+			$database->fire_query($sql);
 			$last_id = mysqli_insert_id($database->getDb_connection());
 
 		}

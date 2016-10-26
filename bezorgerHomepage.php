@@ -44,7 +44,7 @@ require_once("./security.php");
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT `idVideo`,`videoTitel`,`adresKlant`,`woonplaatsKlant` FROM `bestelling` WHERE `ophaaldatum` = CURRENT_DATE ";
+                    $sql = "SELECT a.idVideo, a.videoTitel, b.woonplaats, b.adres FROM bestelling AS a INNER JOIN login AS b ON a.idKlant = b.idKlant where a.ophaaldatum = CURRENT_DATE";
 
                     $result = $conn->query($sql);
 
@@ -77,10 +77,10 @@ require_once("./security.php");
                                         " . $row["videoTitel"] . "
                                 </td>
                                 <td>
-                                        " . $row["adresKlant"] . "
+                                        " . $row["adres"] . "
                                 </td>
                                 <td>
-                                        " . $row["woonplaatsKlant"] . "
+                                        " . $row["woonplaats"] . "
                                 </td>
                             </tr>
                             </tbody>
@@ -114,7 +114,7 @@ require_once("./security.php");
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
-                        $sql = "SELECT `idVideo`,`videoTitel`,`adresKlant`,`woonplaatsKlant` FROM `bestelling` WHERE `afleverdatum` = CURRENT_DATE ";
+                        $sql = "SELECT a.idVideo, a.videoTitel, b.woonplaats, b.adres FROM bestelling AS a INNER JOIN login AS b ON a.idKlant = b.idKlant where a.afleverdatum = CURRENT_DATE ";
 
                         $result = $conn->query($sql);
 
@@ -147,10 +147,10 @@ require_once("./security.php");
                                         " . $row["videoTitel"] . "
                                 </td>
                                 <td>
-                                        " . $row["adresKlant"] . "
+                                        " . $row["adres"] . "
                                 </td>
                                 <td>
-                                        " . $row["woonplaatsKlant"] . "
+                                        " . $row["woonplaats"] . "
                                 </td>
                             </tr>
                             </tbody>
@@ -214,4 +214,3 @@ require_once("./security.php");
 
 </body>
 </html>
- 

@@ -8,8 +8,6 @@ class SessionClass
     private $email;
     private $userrole;
     private $geblokkeerd;
-    private $adres;
-    private $woonplaats;
 
     //Properties
     public function getUserrole()
@@ -30,8 +28,6 @@ class SessionClass
         $this->email = $_SESSION['email'] = $loginObject->getEmail();
         $this->userrole = $_SESSION['userrole'] = $loginObject->getUserrole();
         $this->geblokkeerd = $_SESSION['geblokkeerd'] = $loginObject->getGeblokkeerd();
-        $this->adres = $_SESSION['adres'] = $loginObject->getAdres();
-        $this->woonplaats = $_SESSION['woonplaats'] = $loginObject->getWoonplaats();
 
  
 
@@ -48,8 +44,6 @@ class SessionClass
         session_unset('email');
         session_unset('userrole');
         session_unset('geblokkeerd');
-        session_unset('adres');
-        session_unset('woonplaats');
 
  
         session_destroy();
@@ -57,8 +51,6 @@ class SessionClass
         unset($this->email);
         unset($this->userrole);
         unset($this->geblokkeerd);
-        unset($this->adres);
-        unset($this->woonplaats);
 
  
     }
