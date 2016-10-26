@@ -6,12 +6,12 @@ require_once("./security.php");
 <?php
 if (isset($_POST['clearCart'])) {
 
-    header("refresh:4;url=index.php?content=klantHomepage");
+    //header("refresh:4;url=index.php?content=klantHomepage");
     require_once("./classes/HireClass.php");
     if (!HireClass::check_if_deleveryDate_deleveryTime_exists($_POST)) {
         if (!HireClass::check_if_collectDate_collectTime_exists($_POST)) {
             echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-            HireClass::clear_winkelmand($_POST);
+            //HireClass::clear_winkelmand($_POST);
             HireClass::insert_bestelling_database($_POST);
         } else {
             echo "<h3 style='text-align: center;' >De ophaaltijd is niet beschikbaar, kies een andere tijd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
@@ -114,7 +114,7 @@ if (isset($_POST['clearCart'])) {
                                  </th>
                                  <th>
                                          <input type='date' class='form-control' name='afleverdatum' min='" . date('Y-m-d') . "' max='" . date('Y-m-d', strtotime($date . ' + 21 days')) . "' required>
-                                         <input type='time' class='form-control' name='aflevertijd' min='09:00' max='17:00' step='900'>
+                                         <input type='time' class='form-control' name='aflevertijd' min='09:00' max='17:00' step='900' required>
                                          
                                  </th>
                              </tr>
@@ -123,21 +123,14 @@ if (isset($_POST['clearCart'])) {
                                          Kies hoelaat u uw bestelling wilt laten ophalen:
                                  </th>
                                  <th>
-                                        <input type='time' class='form-control' name='ophaaltijd' min='09:00' max='17:00' step='900'>
+                                        <input type='time' class='form-control' name='ophaaltijd' min='09:00' max='17:00' step='900' required>
                                  </th>
                              </tr>
                              </thead>
                          </table>
                          De video wordt een week later opgehaald, u kunt deze datum verzetten door in uw account een verlenging aan te vragen.<br>
                                                     <br>";
-
-                            //                    HireClass::calculate_Price();
-
-                            //$sql2 = "SELECT ROUND(SUM(prijs), 2) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                            //$sql2 = "SELECT cast(prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                            //$sql2 = "SELECT cast(0 + prijs AS DECIMAL(10,2)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                            //                    $sql2 = "SELECT sum(convert(float,prijs)) AS value FROM `winkelmand` WHERE `klantid` = " . $_SESSION['id'] . " ";
-                            //                    $result2 = $conn->query($sql2);
+                            
                             $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
                             $result = $conn->query($sql);
                             //echo $result2;

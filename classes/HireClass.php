@@ -97,18 +97,18 @@ class HireClass
         $ophaaldatum = date('Y-m-d H:i', strtotime($date . ' + 7 days'));
 
         global $database;
-        $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `idKlant`, `videoTitel`,`afleverdatum`,`aflevertijd`, `ophaaldatum`,`ophaaltijd`, `prijs`) 
-        VALUES (NULL, " . $post['idVideo'] . ", " . $_SESSION['idKlant'] . ", '" . $post['titel'] . "','" . $post['afleverdatum'] . "','". $post['aflevertijd']. "', '". $ophaaldatum ."','".$post['ophaaltijd']."', '" . $post['prijs'] . "')";
-        //echo $query;
+        $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `videoTitel`, `idKlant`, `afleverdatum`,`aflevertijd`, `ophaaldatum`,`ophaaltijd`, `prijs`) 
+        VALUES (NULL, " . $post['idVideo'] . ", '" . $post['titel'] . "', " . $_SESSION['idKlant'] . ", '" . $post['afleverdatum'] . "','". $post['aflevertijd']. "', '". $ophaaldatum ."','".$post['ophaaltijd']."', '" . $post['prijs'] . "')";
+        echo $query;
 
         $ophaaldatum = date('Y-m-d', strtotime($date . ' + 7 days'));
  
-        $database->fire_query($query);
+        //$database->fire_query($query);
         $last_id = mysqli_insert_id($database->getDb_connection());
-        self::lower_amount_videos($post);
-        self::send_email($post, $last_id, $ophaaldatum);
-        self::increase_amount_hired($post);
-        self::update_beschikbaar();
+        //self::lower_amount_videos($post);
+        //self::send_email($post, $last_id, $ophaaldatum);
+        //self::increase_amount_hired($post);
+        //self::update_beschikbaar();
     }
 
     public static function lower_amount_videos($post)
