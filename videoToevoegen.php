@@ -255,18 +255,9 @@ else {
                     <label for='aantalBeschikbaar'>Aantal Beschikbare kopieën:</label>
                     <input type='text' class='form-control' name='aantalBeschikbaar' placeholder='Voer aantal beschikbaar in.'>
                 </div>
-                <?php
 
-                $sql = "SELECT idVideo FROM video ORDER BY idVideo DESC";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                $idvanvideo = ($row['idVideo']) + 1;
- 
-                echo "
-                    <input type='hidden' name='idvanvideos' value='" . $idvanvideo . "'/>
-                    
-                <button type='submit' name='create' class='btn btn-default'>Submit</button>";
-                ?>
+                <button type='submit' name='create' class='btn btn-default'>Submit</button>
+                
             </form><br>
     <?php
 }

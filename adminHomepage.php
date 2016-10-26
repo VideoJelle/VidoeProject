@@ -33,11 +33,11 @@ require_once("./security.php");
                 <ul class="list-group">
                     <li class="list-group-item"><a href="index.php?content=adminHomepage">Admin Homepage</a></li>
                     <li class="list-group-item"><a href="index.php?content=videoToevoegen">Video's Toevoegen</a></li>
-                    <li class="list-group-item"><a href="index.php?content=adminHomepage">Video's beheren</a></li>
+                    <li class="list-group-item"><a href="index.php?content=videosBeheren">Video's beheren</a></li>
+                    <li class="list-group-item"><a href="index.php?content=verwijderFilm">Video's verwijderen</a></li>
                     <li class="list-group-item"><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen</a></li>
                     <li class="list-group-item"><a href="index.php?content=blokkeren">Gebruiker blokkeren</a></li>
                     <li class="list-group-item"><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
-                    <li class="list-group-item"><a href="index.php?content=verwijderFilm">Video's verwijderen</a></li>
                 </ul>
                 <br><br><br><br>
             </div>

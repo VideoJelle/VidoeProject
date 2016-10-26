@@ -134,26 +134,27 @@ require_once('MySqlDatabaseClass.php');
 	{
 		global $database;
 
-		$lastVideoID = null;
-
-		$sql = "SELECT idVideo FROM video AS " . $lastVideoID . " ORDER BY idVideo ASC";
-		$database->fire_query($sql);
+		$sql = "SELECT idVideo FROM video ORDER BY idVideo DESC LIMIT 1";
+		$result = $database->fire_query($sql);
+		while ($row = $result->fetch_assoc()) {
+			$lastVideoID = ($row['idVideo'] + 1);
+		}
 
 		$query = "INSERT INTO `video` (`idVideo`,
 										   `titel`,
 										   `beschrijving`,
 										   `fotopad`,
                                            `aantalBeschikbaar`)
-					  VALUES			  (NULL,
+					  VALUES			  (" . $lastVideoID . ",
 										   '" . $post['titel'] . "',
 										   '" . $post['beschrijving'] . "',
 										   '" . $post['fotopad'] . "',
                                            '" . $post['aantalBeschikbaar'] . "')";
 
-		echo $query;
-		echo "<br><br><br>:::::" . $lastVideoID;
-		echo "<br>";
-		//$database->fire_query($query);
+		//echo $query;
+
+		//echo "<br>";
+		$database->fire_query($query);
 		$last_id = mysqli_insert_id($database->getDb_connection());
 	}
 
@@ -161,16 +162,22 @@ require_once('MySqlDatabaseClass.php');
 		{
             global $database;
 
+			$sql = "SELECT idVideo FROM video ORDER BY idVideo DESC LIMIT 1";
+			$result = $database->fire_query($sql);
+			while ($row = $result->fetch_assoc()) {
+				$lastVideoID = $row['idVideo'];
+			}
+
 			$query = "INSERT INTO `videogenre`(`idVideoGenre`, 
 												`idVideo`, 
 												`idGenre`) 
 				   VALUES 						(NULL,
-				   								 " . $_POST['idvanvideos'] . ",
+				   								 " . $lastVideoID . ",
 				   								 " . $_POST['genreSelect'] . ")";
 
-			echo $query;
-            echo "<br>";
-			//$database->fire_query($query);
+			//echo $query;
+            //echo "<br>";
+			$database->fire_query($query);
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}
 
@@ -178,17 +185,73 @@ require_once('MySqlDatabaseClass.php');
 		{
 			global $database;
 
+			$sql = "SELECT idVideo FROM video ORDER BY idVideo DESC LIMIT 1";
+			$result = $database->fire_query($sql);
+			while ($row = $result->fetch_assoc()) {
+				$lastVideoID = $row['idVideo'];
+			}
+
 			$query = "INSERT INTO `videoacteur`(`idVideoActeur`, 
 												 `idVideo`, 
 												 `idActeur`) 
 				   VALUES 						(NULL,
-				   								 " . $_POST['idvanvideos'] . ",
+				   								 " . $lastVideoID . ",
 				   								 " . $_POST['acteurSelect'] . ")";
 
-			echo $query . "<br>";
-			//$database->fire_query($query);
+			//echo $query . "<br>";
+			$database->fire_query($query);
 
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}
+
+		public static function delete_film($post)
+		{
+			global $database;
+
+			$sql = "DELETE FROM `video` WHERE `idVideo` = " . $_POST['idVideo']. " ";
+			$sql2 = "DELETE FROM `videoacteur` WHERE `idVideo` = " . $_POST['idVideo']. " ";
+			$sql3 = "DELETE FROM `videogenre` WHERE `idVideo` = " . $_POST['idVideo']. " ";
+
+//			echo $sql . "<br>";
+//			echo $sql2 . "<br>";
+//			echo $sql3 . "<br>";
+			$database->fire_query($sql2);
+			$database->fire_query($sql3);
+			$database->fire_query($sql);
+			$last_id = mysqli_insert_id($database->getDb_connection());
+
+		}
+
+		public static function wijzig_gegevens_film($post)
+		{
+			global $database;
+
+			$sql = "SELECT idVideo FROM video ORDER BY idVideo DESC LIMIT 1";
+			$result = $database->fire_query($sql);
+			while ($row = $result->fetch_assoc()) {
+				$lastVideoIDWijzig = $row['idVideo'];
+				echo $lastVideoIDWijzig;
+			}
+
+			$sql = "UPDATE	`video`  SET 	`titel`		=	'" . $_POST['titel'] . "',
+											`beschrijving`	= 	'" . $_POST['beschrijving'] . "',
+											`fotopad`	= 	'" . $_POST['fotopad'] . "',
+											`prijs`	= 	'" . $_POST['prijs'] . "',
+											`aantalBeschikbaar`	= 	'" . $_POST['aantalBeschikbaar'] . "'
+									WHERE	`idVideo`			=	'" . $lastVideoIDWijzig . "';";
+
+
+			echo $sql;
+
+			//$database->fire_query($sql);
+			$last_id = mysqli_insert_id($database->getDb_connection());
+
+		}
+
+
+
+		//$database->fire_query($sql);
+		//$result = mysqli_query($connection, $sql);
+
 	}
 ?>

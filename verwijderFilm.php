@@ -2,13 +2,21 @@
 $userrole = array("admin", "eigenaar");
 require_once("./security.php");
 ?>
-
 <?php
-if (isset($_POST['create'])) {
-    require_once("./classes/VideoClass.php");
-    VideoClass::insert_film_database($_POST);
-}
-?>
+
+require_once("classes/VideoClass.php");
+if (isset($_POST['removeVideo'])) {
+    include('connect_db.php');
+
+    VideoClass::delete_film($_POST);
+
+    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+
+    header("refresh:4;url=index.php?content=adminHomepage");
+
+} else {
+    ?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -45,22 +53,7 @@ if (isset($_POST['create'])) {
                     </ul>
                 </div>
             </div>
-<?php
-require_once("classes/LoginClass.php");
-if (isset($_POST['removeVideo'])) {
-    include('connect_db.php');
 
-    $sql = "DELETE FROM	`videos` WHERE `idVideo` = " . $_POST['idVideo']. " ";
-
-    //echo $sql;
-    $database->fire_query($sql);
-    //$result = mysqli_query($connection, $sql);
-
-    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:4;url=index.php?content=adminHomepage");
-
-} else {
-    ?>
     <row class="row">
         <div class="col-md-6">
             <?php
@@ -81,7 +74,7 @@ if (isset($_POST['removeVideo'])) {
             }
 
 
-            $sql = "SELECT * FROM `videos`";
+            $sql = "SELECT * FROM `video`";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

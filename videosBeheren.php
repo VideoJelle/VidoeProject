@@ -7,20 +7,11 @@ require_once("./security.php");
 
 require_once("classes/LoginClass.php");
 if (isset($_POST['submit'])) {
-    include('connect_db.php');
 
-    $sql = "UPDATE	`login` 
-			                 SET 		`naam`		=	'" . $_POST['naam'] . "',
-						                `adres`	= 	'" . $_POST['adres'] . "',
-						                `woonplaats`	= 	'" . $_POST['woonplaats'] . "'
-			                 WHERE	`idKlant`			=	'" . $_SESSION['idKlant'] . "';";
-
-    //echo $sql;
-    $database->fire_query($sql);
-    //$result = mysqli_query($connection, $sql);
+    VideoClass::wijzig_gegevens_film($_POST);
 
     echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:4;url=index.php?content=mijnAccountGegevens");
+    header("refresh:4;url=index.php?content=adminHomepage");
 
 
 } else {
@@ -42,6 +33,7 @@ if (isset($_POST['submit'])) {
             th {
                 min-width: 300px;
             }
+
         </style>
     </head>
     <body>
@@ -85,7 +77,7 @@ if (isset($_POST['submit'])) {
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<form role=\"form\" action=\"index.php?content=adminHomepage\" method=\"post\">
+                    echo "<form role=\"form\" action=\"\" method=\"post\">
                         <div class=\"form-group\"><label class=\"control-label\" for=\"titel\">Titel<br></label>
                             <input class=\"form-control\" id=\"titel\" placeholder=\"Titel\" type=\"text\" name=\"titel\" value='" . $row['titel'] . "' required></div>
                         <div class=\"form-group\"><label class=\"control-label\" for=\"beschrijving\">Beschrijving<br></label>
@@ -105,8 +97,16 @@ if (isset($_POST['submit'])) {
 //                                    echo "<option value='" . $row4['Genre'] . "'>" . $row4['Genre'] . "</option>";
 //                                }
 //                            }
+//                    $sql = "SELECT DISTINCT b.Genre, a.idGenre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
+//                    $result = $conn->query($sql);
+//                    while ($row = mysqli_fetch_array($result)) {
+//                        echo "<option value='" . $row['idGenre'] . "'>" . $row['Genre'] . "</option>";
+//                    }
+
                                 echo "
                             </select> 
+                            
+                            <input type='hidden' name='idvanvideos' value='" . $idvanvideo . "'/>
                         <button type=\"submit\" class=\"btn btn-default\" name=\"submit\">Verzend</button>
                     </form><br>
                     <hr>";
@@ -127,58 +127,4 @@ if (isset($_POST['submit'])) {
     </div>
     <?php
 }
-//
-//require_once("classes/LoginClass.php");
-//if (isset($_POST['editUser'])) {
-//    include('connect_db.php');
-//
-//    $sql = "DELETE FROM	`login` WHERE `id` = " . $_POST['id']. " ";
-//
-//    //echo $sql;
-//    $database->fire_query($sql);
-//    //$result = mysqli_query($connection, $sql);
-//
-//    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-//    header("refresh:4;url=index.php?content=adminHomepage");
-//
-//} else {
-//    ?>
-<!--    <row class="row">-->
-<!--        <h3>Film bewerken</h3>-->
-<!--        <form role="form" action='index.php?content=adminHomepage' method='post'>-->
-<!--            <div class="form-group">-->
-<!--                <label for="titel">Titel:</label>-->
-<!--                <input type="text" class="form-control" name="titel" placeholder="Voer titel in.">-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="beschrijving">Beschrijving:</label>-->
-<!--                <input type="text" class="form-control" name="beschrijving" placeholder="Voer beschrijving in.">-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="genres">Genres:</label>-->
-<!--                <input type="text" class="form-control" name="genres" placeholder="Voer genres in.">-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="acteurs">Acteurs:</label>-->
-<!--                <input type="text" class="form-control" name="acteurs" placeholder="Voer acteurs in.">-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="fotopad">Fotopad:</label>-->
-<!--                <input type="text" class="form-control" name="fotopad" placeholder="Voer fotopad in.">-->
-<!--            </div>-->
-
-<!--            <button type="submit" name="create" class="btn btn-primary">Submit</button>-->
-
-<!--        </form>-->
-<!--        <br>-->
-<!--    </row>-->
-<!---->
-<!---->
-<!--    </div>-->
-<!--    </div>-->
-<!---->
-<!--    </body>-->
-<!--    </html>-->
-<!--    --><?php
-//}
     ?>
