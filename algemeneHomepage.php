@@ -63,9 +63,6 @@
                 <h1 class="text-primary">Welkom</h1>
                 <p>Welkom bij de website van videotheek Harmelen. Op deze website kunt u uw favorite videos bestellen.</p>
 
-                <h1 class="text-primary">Titel</h1>
-                <p>Welkom bij de website van videotheek Harmelen. Op deze website kunt u uw favoriten videos bestellen.</p>
- 
             </div>
         </div>
     </div>

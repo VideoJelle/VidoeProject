@@ -113,20 +113,16 @@ else {
     <div class="row">
         <div class="col-md-12">
             <ul class="breadcrumb">
-                <li><a href="index.php?content=adminHomepage">Admin Homepage</a></li>
-                <li><a href="index.php?content=videoToevoegen">Video's Toevoegen</a></li>
-                <li><a href="index.php?content=adminHomepage">Video's beheren</a></li>
+                <li><a href="index.php?content=adminHomepage">Homepage</a></li>
+                <li><a href="index.php?content=videosBeheren">Video's beheren</a></li>
+                <li><a href="index.php?content=verwijderFilm">Video's verwijderen</a></li>
+                <li><a href="index.php?content=beschikbaarMaken">Video's beschikbaar maken</a></li>
                 <li><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen</a></li>
                 <li><a href="index.php?content=blokkeren">Gebruiker blokkeren</a></li>
                 <li><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
-                <li><a href="index.php?content=verwijderFilm">Video's verwijderen</a></li>
             </ul>
         </div>
     </div>
-    <row class="row">
-
-    </row>
-        <h3>Nieuwe film toevoegen</h3>
             <form role='form' action='' method='post'>
                 <div class='form-group'>
                     <label for='titel'>Titel:</label>

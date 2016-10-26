@@ -43,6 +43,7 @@ if (isset($_POST['removeItemReserve'])) {
             <div class="col-md-12">
                 <ul class="breadcrumb">
                     <li><a href="index.php?content=klantHomepage">Winkelmand</a></li>
+                    <li><a href="index.php?content=mijnBestellingen">Mijn bestellingen</a></li>
                     <li><a href="index.php?content=reserveringen">Reserveringen</a></li>
                     <li><a href="index.php?content=klachtIndienen">Klacht indienen</a></li>
                 </ul>

@@ -55,16 +55,18 @@ if (isset($_POST['create'])) {
             <div class="section">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12"><h2>Gebruiker Blokkeren</h2></div>
+                        <div class="col-md-12"><h2>Film Beschikbaar Maken</h2></div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="breadcrumb">
-                                <li><a href="index.php?content=adminHomepage">Video's beheren</a></li>
+                                <li><a href="index.php?content=adminHomepage">Homepage</a></li>
+                                <li><a href="index.php?content=videoToevoegen">Video's Toevoegen</a></li>
+                                <li><a href="index.php?content=videosBeheren">Video's beheren</a></li>
+                                <li><a href="index.php?content=verwijderFilm">Video's verwijderen</a></li>
                                 <li><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen</a></li>
-                                <li><a href="index.php?content=blokkeren">Gebruiker Blokkeren</a></li>
+                                <li><a href="index.php?content=blokkeren">Gebruiker blokkeren</a></li>
                                 <li><a href="index.php?content=gebruikerVerwijderen">Gebruiker verwijderen</a></li>
-                                <li><a href="index.php?content=verwijderFilm">Film verwijderen</a></li>
                             </ul>
                         </div>
                     </div>

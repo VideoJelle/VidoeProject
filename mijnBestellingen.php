@@ -17,7 +17,7 @@ require_once("./security.php");
             }
 
             th {
-                min-width: 500px;
+                min-width: 250px;
             }
         </style>
     </head>
@@ -68,20 +68,32 @@ require_once("./security.php");
                             <thead>
                             <tr>
                                 <th>
-                                        Titel:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                                        Afleverdatum:</th>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                                        <th>Ophaaldatum:&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspPrijs:
+                                    Titel:
                                 </th>
+                                <th>
+                                    Afleverdatum:
+                                </th>     
+                                <th>
+                                    Ophaaldatum:
+                                </th>
+                                <th>
+                                    Prijs:
+                                </th>
+                                
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["idVideo"]  . "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                        " . $row["idVideo"]  . "
+                                </td>
+                                <td>
                                         " . $row["afleverdatum"] . "
                                 </td>
                                 <td>
-                                        " . $row["ophaaldatum"] . "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                                        " . $row["ophaaldatum"] . "
+                                </td>
+                                <td>
                                         " . $row["prijs"] . "
                                 </td>
                                 <td>

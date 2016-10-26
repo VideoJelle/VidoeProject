@@ -41,11 +41,8 @@ require_once("./security.php");
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="index.php?content=klantHomepage">Winkelmand</a></li>
+                        <li><a href="index.php?content=mijnBestellingen">Mijn bestellingen</a></li>
                         <li><a href="index.php?content=reserveringen">Reserveringen</a></li>
-
-                        <li><a href="index.php?content=bestellingen">Mijn bestellingen</a></li>
-
- 
                         <li><a href="index.php?content=klachtIndienen">Klacht indienen</a></li>
                     </ul>
                 </div>
@@ -58,8 +55,8 @@ require_once("./security.php");
                         <div class="col-md-12 text-left">
                             <form role="form" action="" method="post">
 
-                                <div class="form-group"><label class="control-label"                                                                     for="comment">Klacht/Opmerking</label>
-                                    <textarea class="form-control" id="klacht" placeholder="Klacht/Opmerking"                                               type="text" name="klacht" rows="8"required></textarea></div>
+                                <div class="form-group"><label class="control-label" for="comment">Klacht/Opmerking</label>
+                                    <textarea class="form-control" id="klacht" placeholder="Klacht/Opmerking" type="text" name="klacht" rows="8"required></textarea></div>
                                 <button type="submit" class="btn btn-primary" name="submit-klacht">Verzend</button>
  
                             </form>
