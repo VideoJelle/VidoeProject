@@ -134,6 +134,11 @@ require_once('MySqlDatabaseClass.php');
 	{
 		global $database;
 
+		$lastVideoID = null;
+
+		$sql = "SELECT idVideo FROM video AS " . $lastVideoID . " ORDER BY idVideo ASC";
+		$database->fire_query($sql);
+
 		$query = "INSERT INTO `video` (`idVideo`,
 										   `titel`,
 										   `beschrijving`,
@@ -145,7 +150,9 @@ require_once('MySqlDatabaseClass.php');
 										   '" . $post['fotopad'] . "',
                                            '" . $post['aantalBeschikbaar'] . "')";
 
-		//echo $query;
+		echo $query;
+		echo "<br><br><br>:::::" . $lastVideoID;
+		echo "<br>";
 		//$database->fire_query($query);
 		$last_id = mysqli_insert_id($database->getDb_connection());
 	}
@@ -162,7 +169,7 @@ require_once('MySqlDatabaseClass.php');
 				   								 " . $_POST['genreSelect'] . ")";
 
 			echo $query;
-            echo "<br>q " . $_POST['genreSelect'];
+            echo "<br>";
 			//$database->fire_query($query);
 			$last_id = mysqli_insert_id($database->getDb_connection());
 		}

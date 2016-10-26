@@ -33,8 +33,51 @@ if (isset($_POST['create'])) {
     //header("refresh:4;url=index.php?content=adminHomepage");
     require_once("./classes/VideoClass.php");
     VideoClass::insert_film_database($_POST);
-//    VideoClass::insert_acteur_film($_POST);
-//    VideoClass::insert_genre_film($_POST);
+
+    $OptionGenre = $_POST['genreSelect'];
+    $OptionGenre2 = $_POST['genreSelect2'];
+    $OptionGenre3 = $_POST['genreSelect3'];
+    $OptionActeur = $_POST['acteurSelect'];
+    $OptionActeur2 = $_POST['acteurSelect2'];
+    $OptionActeur3 = $_POST['acteurSelect3'];
+    $OptionActeur4 = $_POST['acteurSelect4'];
+    $OptionActeur5 = $_POST['acteurSelect5'];
+
+    if(!($OptionGenre == "")){
+        $_POST['genreSelect'] = $_POST['genreSelect'];
+        VideoClass::insert_genre_film($_POST);
+    }
+    if(!($OptionGenre2 == "")){
+        $_POST['genreSelect'] = $_POST['genreSelect2'];
+        VideoClass::insert_genre_film($_POST);
+    }
+    if(!($OptionGenre3 == "")){
+        $_POST['genreSelect'] = $_POST['genreSelect3'];
+        VideoClass::insert_genre_film($_POST);
+    }
+
+    if(!($OptionActeur == "")){
+        $_POST['acteurSelect'] = $_POST['acteurSelect'];
+        VideoClass::insert_acteur_film($_POST);
+    }
+    if(!($OptionActeur2 == "")){
+        $_POST['acteurSelect'] = $_POST['acteurSelect2'];
+        VideoClass::insert_acteur_film($_POST);
+    }
+    if(!($OptionActeur3 == "")){
+        $_POST['acteurSelect'] = $_POST['acteurSelect3'];
+        VideoClass::insert_acteur_film($_POST);
+    }
+    if(!($OptionActeur4 == "")){
+        $_POST['acteurSelect'] = $_POST['acteurSelect4'];
+        VideoClass::insert_acteur_film($_POST);
+    }
+    if(!($OptionActeur5 == "")){
+        $_POST['acteurSelect'] = $_POST['acteurSelect5'];
+        VideoClass::insert_acteur_film($_POST);
+    }
+
+
 }
 else {
  
@@ -99,36 +142,36 @@ else {
                             <option value=""></option>
                             <?php
 
-                            $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
+                            $sql = "SELECT DISTINCT b.Genre, a.idGenre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
+                                echo "<option value='" . $row['idGenre'] . "'>" . $row['Genre'] . "</option>";
+                            }
+
+                            ?>
+                        </select>
+                        &nbsp;&nbsp;
+                        <select name='genreSelect2'>
+                            <option value=""></option>
+                            <?php
+
+                            $sql = "SELECT DISTINCT b.Genre, a.idGenre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
+                            $result = $conn->query($sql);
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<option value='" . $row['idGenre'] . "'>" . $row['Genre'] . "</option>";
                             }
  
                             ?>
                         </select>
                         &nbsp;&nbsp;
-                        <select name='genreSelect'>
+                        <select name='genreSelect3'>
                             <option value=""></option>
                             <?php
 
-                            $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
+                            $sql = "SELECT DISTINCT b.Genre, a.idGenre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
-                            }
- 
-                            ?>
-                        </select>
-                        &nbsp;&nbsp;
-                        <select name='genreSelect'>
-                            <option value=""></option>
-                            <?php
-
-                            $sql = "SELECT DISTINCT b.Genre FROM videogenre AS a INNER JOIN genre AS b ON a.idGenre = b.idGenre ORDER BY Genre ASC";
-                            $result = $conn->query($sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['Genre'] . "'>" . $row['Genre'] . "</option>";
+                                echo "<option value='" . $row['idGenre'] . "'>" . $row['Genre'] . "</option>";
                             }
  
                             ?>
@@ -141,72 +184,62 @@ else {
                             <option value=""></option>
                             <?php
 
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
+                            $sql = "SELECT DISTINCT b.naam, a.idActeur FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                echo "<option value='" . $row['idActeur'] . "'>" . $row['naam'] . "</option>";
                             }
  
                             ?>
                         </select>
                     &nbsp;&nbsp;
-                        <select name='acteurSelect'>
+                        <select name='acteurSelect2'>
                             <option value=""></option>
                             <?php
 
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
+                            $sql = "SELECT DISTINCT b.naam, a.idActeur FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
-                            }
-
-
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
-
-                            $result = $conn->query($sql);
-
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
-                            }
-
- 
-                            ?>
-                        </select>
-                    &nbsp;&nbsp;
-                        <select name='acteurSelect'>
-                            <option value=""></option>
-                            <?php
-
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
-                            $result = $conn->query($sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                echo "<option value='" . $row['idActeur'] . "'>" . $row['naam'] . "</option>";
                             }
  
                             ?>
                         </select>
                     &nbsp;&nbsp;
-                        <select name='acteurSelect'>
+                        <select name='acteurSelect3'>
                             <option value=""></option>
                             <?php
 
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
+                            $sql = "SELECT DISTINCT b.naam, a.idActeur FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                echo "<option value='" . $row['idActeur'] . "'>" . $row['naam'] . "</option>";
                             }
  
                             ?>
                         </select>
                     &nbsp;&nbsp;
-                        <select name='acteurSelect'>
+                        <select name='acteurSelect4'>
                             <option value=""></option>
                             <?php
 
-                            $sql = "SELECT DISTINCT b.naam FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
+                            $sql = "SELECT DISTINCT b.naam, a.idActeur FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
                             $result = $conn->query($sql);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo "<option value='" . $row['naam'] . "'>" . $row['naam'] . "</option>";
+                                echo "<option value='" . $row['idActeur'] . "'>" . $row['naam'] . "</option>";
+                            }
+ 
+                            ?>
+                        </select>
+                    &nbsp;&nbsp;
+                        <select name='acteurSelect5'>
+                            <option value=""></option>
+                            <?php
+
+                            $sql = "SELECT DISTINCT b.naam, a.idActeur FROM videoacteur AS a INNER JOIN acteur AS b ON a.idActeur = b.idActeur ORDER BY naam ASC";
+                            $result = $conn->query($sql);
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<option value='" . $row['idActeur'] . "'>" . $row['naam'] . "</option>";
                             }
 
                             ?>
