@@ -44,7 +44,7 @@ require_once("./security.php");
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT a.idBestelling, a.idVideo, a.videoTitel, b.woonplaats, b.adres FROM bestelling AS a INNER JOIN login AS b ON a.idKlant = b.idKlant where a.ophaaldatum = CURRENT_DATE";
+                    $sql = "SELECT a.idBestelling, a.videoTitel, b.woonplaats, b.adres FROM bestelling AS a INNER JOIN login AS b ON a.idKlant = b.idKlant where a.ophaaldatum = CURRENT_DATE";
 
                     $result = $conn->query($sql);
 
@@ -56,7 +56,7 @@ require_once("./security.php");
                             <thead>
                             <tr>
                                 <th>
-                                        Id:
+                                        ID Bestelling:
                                 </th>
                                 <th>
                                         Titel:
@@ -72,7 +72,7 @@ require_once("./security.php");
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["idVideo"] . "
+                                        " . $row["idBestelling"] . "
                                 </td>
                                 <td>
                                         " . $row["videoTitel"] . "
@@ -115,7 +115,7 @@ require_once("./security.php");
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
-                        $sql = "SELECT a.idVideo, a.videoTitel, b.woonplaats, b.adres FROM bestelling AS a INNER JOIN login AS b ON a.idKlant = b.idKlant where a.afleverdatum = CURRENT_DATE ";
+                        $sql = "SELECT a.idBestelling, a.videoTitel, b.woonplaats, b.adres FROM bestelling AS a INNER JOIN login AS b ON a.idKlant = b.idKlant where a.afleverdatum = CURRENT_DATE ";
 
                         $result = $conn->query($sql);
 
@@ -126,7 +126,7 @@ require_once("./security.php");
                             <thead>
                             <tr>
                                 <th>
-                                        Id:
+                                        ID Bestelling:
                                 </th>
                                 <th>
                                         Titel:
@@ -142,7 +142,7 @@ require_once("./security.php");
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["idVideo"] . "
+                                        " . $row["idBestelling"] . "
                                 </td>
                                 <td>
                                         " . $row["videoTitel"] . "

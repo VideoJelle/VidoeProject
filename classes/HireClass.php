@@ -91,24 +91,55 @@ class HireClass
 
     public static function insert_bestelling_database($post)
     {
+        global $database;
         $afleverdatum = $post['afleverdatum'];
         $date = $afleverdatum;
 
         $ophaaldatum = date('Y-m-d H:i', strtotime($date . ' + 7 days'));
 
-        global $database;
-        $query = "INSERT INTO `bestelling`(`idBestelling`, `idVideo`, `videoTitel`, `idKlant`, `afleverdatum`,`aflevertijd`, `ophaaldatum`,`ophaaltijd`, `prijs`) 
-        VALUES (NULL, " . $post['idVideo'] . ", '" . $post['titel'] . "', " . $_SESSION['idKlant'] . ", '" . $post['afleverdatum'] . "','". $post['aflevertijd']. "', '". $ophaaldatum ."','".$post['ophaaltijd']."', '" . $post['prijs'] . "')";
-        echo $query;
+        $titelList = null;
 
+
+        $sql = "SELECT idWInkelmand, GROUP_CONCAT(titel, ', ') 
+                AS titel_list 
+                FROM winkelmand 
+                WHERE `idKlant` = " . $_SESSION['idKlant'] . "
+                GROUP BY idKlant";
+
+        $result = $database->fire_query($sql);
+        while ($row = $result->fetch_assoc()) {
+            $titelList = $row['titel_list'];
+        }
+
+        $query = "INSERT INTO `bestelling` (`idBestelling`, 
+                                            `idVideo`, 
+                                            `videoTitel`, 
+                                            `idKlant`, 
+                                            `afleverdatum`, 
+                                            `aflevertijd`, 
+                                            `ophaaldatum`, 
+                                            `ophaaltijd`, 
+                                            `prijs`) 
+                  VALUES                    (NULL, 
+                                              " . $post['idVideo'] . ", 
+                                             '" . $titelList . "', 
+                                              " . $_SESSION['idKlant'] . ", 
+                                             '" . $post['afleverdatum'] . "', 
+                                             '" . $post['aflevertijd'] . "', 
+                                             '" . $ophaaldatum . "', 
+                                             '" . $post['ophaaltijd'] . "', 
+                                             '" . $post['prijs'] . "')";
+
+        //echo $query . "<br>";
+        
         $ophaaldatum = date('Y-m-d', strtotime($date . ' + 7 days'));
  
-        //$database->fire_query($query);
+        $database->fire_query($query);
         $last_id = mysqli_insert_id($database->getDb_connection());
-        //self::lower_amount_videos($post);
-        //self::send_email($post, $last_id, $ophaaldatum);
-        //self::increase_amount_hired($post);
-        //self::update_beschikbaar();
+        self::lower_amount_videos($post);
+        self::send_email($post, $last_id, $ophaaldatum);
+        self::increase_amount_hired($post);
+        self::update_beschikbaar();
     }
 
     public static function lower_amount_videos($post)
