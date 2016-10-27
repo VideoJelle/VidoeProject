@@ -60,13 +60,10 @@ if (isset($_GET['idKlant']) && isset($_GET['email']) && isset($_GET['password'])
 
                     <button type="submit" name="submit" class="btn btn-primary">Verstuur</button>
 
-                    <button type="submit" name="submit" class="btn btn-default">Verstuur</button>
-
-
                 </form>
                 </div>
                 </div>
-                <br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br>
                 <?php
             }
         }

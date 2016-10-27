@@ -9,14 +9,14 @@ if (isset($_POST['reserveer'])) {
     require_once("./classes/ReserveClass.php");
     if (!ReserveClass::check_if_reservering_exists($_POST))
     {
-        echo "<h3 style='text-align: center;' >Item toegevoegd aan reserveringen.</h3><br><br><br><br><br><br><br><br>           <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+        echo "<h3 style='text-align: center;' >Item toegevoegd aan reserveringen.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
         header("refresh:4;url=index.php?content=reserveringen");
         
         ReserveClass::insert_reserveringitem_database($_POST);
     }
     else {
-        
-        echo "U heeft deze video al gereserveerd";
+        echo "<h3 style='text-align: center;' >U heeft deze video al gereserveerd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+        header("refresh:4;url=index.php?content=reserveringen");
     }
  
 } else {
@@ -115,7 +115,7 @@ if (isset($_POST['reserveer'])) {
                                 echo "<b>Aantal beschikbaar: </b>" . $row["aantalBeschikbaar"] . "<br><br>";
                             } else {
 
-                                echo "<b>Deze video is helaas uitverkocht. Plaats een reservering om de video te kunnen huren als die weer beschikbaar is</b>";
+                                echo "<b>Deze video is helaas uitverkocht. Plaats een reservering om de video te kunnen huren als die weer beschikbaar is.<br><br></b>";
 
                             }
                             echo "

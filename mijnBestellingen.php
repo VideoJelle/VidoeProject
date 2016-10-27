@@ -1,7 +1,15 @@
 <?php
 $userrole = array("klant");
 require_once("./security.php");
-?>
+
+if (isset($_POST['addAday'])) {
+
+    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 dag.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=mijnBestellingen");
+    require_once("./classes/HireClass.php");
+    HireClass::bestelling_verlengen($_POST);
+} else {
+    ?>
     <html>
     <head>
         <meta charset="utf-8">
@@ -85,7 +93,7 @@ require_once("./security.php");
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["idVideo"]  . "
+                                        " . $row["idVideo"] . "
                                 </td>
                                 <td>
                                         " . $row["afleverdatum"] . "
@@ -98,8 +106,8 @@ require_once("./security.php");
                                 </td>
                                 <td>
                                         <form role=\"form\" action='' method='post'>
-                                            <input type='submit' class=\"btn btn-info\" name='add7days' value='Verleng Bestelling'>
-                                            <input type='hidden' class=\"btn btn-info\" name='idWinkelmand' value='" . $row['idBestelling'] . "'/>
+                                            <input type='hidden' class=\"btn btn-info\" name='idVanBestelling' value='" . $row['idBestelling'] . "'/>
+                                            <input type='submit' class=\"btn btn-info\" name='addAday' value='Verleng Bestelling'>
                                         </form>
                                 </td>
                             </tr>
@@ -107,17 +115,7 @@ require_once("./security.php");
                         </table>
                             ";
                         }
-                        /*echo "
-                            <form role='form' action='index.php?content=betalen' method='post'>
-                                <input type='hidden' name='id' value='" . $row['id'] . "'/>
-                                <input type='hidden' name='klantid' value='" . $_SESSION['idKlant'] . "'/>
-                                <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
-                                <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
-                                <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
-                                <input type='submit' class='btn btn - info' name='betalen' value='Betalen'>
-                            </form><br><br><br><br><br><br><br><br>";
-                            */
-                    }  else {
+                    } else {
                         echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br>";
                     }
                     $conn->close();
@@ -130,3 +128,8 @@ require_once("./security.php");
     </div>
     </body>
     </html>
+
+    <?php
+
+}
+?>

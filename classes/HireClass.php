@@ -180,8 +180,8 @@ class HireClass
         $message .= "U kunt in uw account de bestelling verlengen als u de video langer wilt huren." . "<br>";
         $message .= "Als u de video niet verlengt maar de ophaaldatum is verlopen, kost dit u iedere dag 10% van uw prijs extra. " . "<br>";
 
-        $message .= "De video wordt bij u gebracht op: " . $post['afleverdatum'] . "<br>";
-        $message .= "De video wordt bij u gehaald op: " . $ophaaldatum . "<br><br>";
+        $message .= "De video wordt bij u gebracht op: " . $post['afleverdatum'] . " om " . $post['aflevertijd'] . ".<br>";
+        $message .= "De video wordt bij u gehaald op: " . $ophaaldatum . " om " . $post['ophaaltijd'] . ".<br><br>";
 
         $message .= "Wij wensen u veel kijkplezier.<br>";
         $message .= "Met vriendelijke groet," . "<br>";
@@ -249,12 +249,42 @@ class HireClass
         $query = "SELECT `ophaaldatum`,`ophaaltijd`
 					  FROM	 `bestelling`
 					  WHERE	 `ophaaldatum` = '" . $ophaaldatum . "'
-					  AND    `ophaaltijd` = '".$post['ophaaltijd']."'";
+					  AND    `ophaaltijd` = '" . $post['ophaaltijd'] . "'";
 
         $result = $database->fire_query($query);
         //echo $query;
         return (mysqli_num_rows($result) > 0) ? true : false;
     }
+
+    public static function bestelling_verlengen($post)
+    {
+        global $database;
+
+        $ophaaldatum = null;
+        $prijs = null;
+
+        $sql = "SELECT * FROM bestelling WHERE `idBestelling` = " . $_POST['idVanBestelling'] . " ";
+
+        $result = $database->fire_query($sql);
+        if ($row = $result->fetch_assoc()) {
+            $ophaaldatum = $row['ophaaldatum'];
+            $prijs = $row['prijs'];
+        }
+
+        $verlengdeDatum = date('Y-m-d', strtotime($ophaaldatum . ' + 1 day'));
+        $verhoogdePrijs = ($prijs . ' + ' . round(($prijs * 0.70), 2));
+
+        $query = "UPDATE `bestelling` 
+                  SET `ophaaldatum` = '" . $verlengdeDatum . "',
+                      `prijs` = " . $verhoogdePrijs . " 
+                  WHERE `idBestelling` = " . $_POST['idVanBestelling'] . " ";
+
+        $result = $database->fire_query($query);
+        //echo $query;
+
+    }
+
+
 }
 
 ?>

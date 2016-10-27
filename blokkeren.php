@@ -24,7 +24,7 @@ if (isset($_POST['create'])) {
         }
 
         th {
-            min-width: 300px;
+            min-width: 250px;
         }
     </style>
 </head>
@@ -46,7 +46,7 @@ if (isset($_POST['updateBlock'])) {
     $database->fire_query($sql);
     $result = mysqli_query($connection, $sql);
 
-    echo "Uw wijzigingen zijn verwerkt.";
+    echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=blokkeren");
 
 } else {
@@ -108,7 +108,10 @@ if (isset($_POST['updateBlock'])) {
                                         E-mail:
                                 </th>
                                 <th>
-                                        Rol: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Geblokkeerd:
+                                        Rol:
+                                </th>
+                                <th>
+                                        Geblokkeerd:
                                 </th>
                             </tr>
                             </thead>
@@ -121,7 +124,10 @@ if (isset($_POST['updateBlock'])) {
                                         " . $row['email'] . "
                                 </td>
                                 <td>
-                                        " . $row['userrole'] . "&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp    " . $row['geblokkeerd'] . "
+                                        " . $row['userrole'] . "
+                                </td>
+                                <td>
+                                        " . $row['geblokkeerd'] . "
                                 </td>
                                 <td>
                                         <form role=\"form\" action='' method='post'>

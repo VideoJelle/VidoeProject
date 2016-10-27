@@ -3,12 +3,6 @@ $userrole = array("admin", "eigenaar");
 require_once("./security.php");
 ?>
 
-<?php
-if (isset($_POST['create'])) {
-    require_once("./classes/VideoClass.php");
-    VideoClass::insert_film_database($_POST);
-}
-?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -46,7 +40,7 @@ if (isset($_POST['create'])) {
             $database->fire_query($sql);
             $result = mysqli_query($connection, $sql);
 
-            echo "Uw wijzigingen zijn verwerkt.";
+            echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
             header("refresh:4;url=index.php?content=beschikbaarmaken");
 
         } else {

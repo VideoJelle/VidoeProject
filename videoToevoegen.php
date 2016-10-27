@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 <?php
 if (isset($_POST['create'])) {
     echo "<h3 style='text-align: center;' >Film is toegevoegd aan database.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    //header("refresh:4;url=index.php?content=adminHomepage");
+    header("refresh:4;url=index.php?content=adminHomepage");
     require_once("./classes/VideoClass.php");
     VideoClass::insert_film_database($_POST);
 
