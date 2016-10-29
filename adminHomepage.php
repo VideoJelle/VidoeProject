@@ -27,7 +27,12 @@ require_once("./security.php");
     <div class="container">
         <div class="row">
             <div class="col-md-12"><h2>Admin Homepage</h2></div>
-        </div>
+        </div><br>
+<!--Wijzigingsopdracht begin-->
+        <div class="row">
+            <div class="col-md-12"><h3>Het aantal nieuwe klanten sinds de kortingsactie is begonnen: <?php LoginClass::aantal_nieuwe_klanten() ?> </h3></div>
+        </div><br>
+<!--Wijzigingsopdracht einde-->
         <div class="row">
             <div class="col-md-12">
                 <ul class="list-group">

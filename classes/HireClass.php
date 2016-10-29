@@ -100,7 +100,7 @@ class HireClass
         $titelList = null;
 
 
-        $sql = "SELECT idWInkelmand, GROUP_CONCAT(titel, ', ') 
+        $sql = "SELECT idWInkelmand, GROUP_CONCAT(titel, '  ') 
                 AS titel_list 
                 FROM winkelmand 
                 WHERE `idKlant` = " . $_SESSION['idKlant'] . "
@@ -130,7 +130,8 @@ class HireClass
                                              '" . $post['ophaaltijd'] . "', 
                                              '" . $post['prijs'] . "')";
 
-        //echo $query . "<br>";
+        echo $query . "<br>";
+        echo $titelList;
         
         $ophaaldatum = date('Y-m-d', strtotime($date . ' + 7 days'));
  
@@ -284,6 +285,118 @@ class HireClass
 
     }
 
+/*	Wijzigingsopdracht begin*/
+    public static function bekijk_korting_resterend()
+    {
+        global $database;
+
+        $sql2 = "SELECT `activatiedatum` AS datum FROM `login` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+        $result2 = $database->fire_query($sql2);
+        $row2 = $result2->fetch_assoc();
+        $datetime = new DateTime($row2['datum']);
+        $date = $datetime->format('Y/m/d');
+        if (!($result2->num_rows > 0))
+            $date = '0000-00-00';
+        $huidigeDatum = date('Y') . "/" . date('m') . "/" . date('d');
+        $datediff = (strtotime($huidigeDatum) - strtotime($date));
+        $datediff = floor($datediff / (60 * 60 * 24));
+
+
+        $sql = "SELECT `resterendeKorting` AS resterendeKorting FROM `login` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+
+        $result = $database->fire_query($sql);
+
+        $row = $result->fetch_assoc();
+
+        if($row['resterendeKorting'] > 0 && $datediff <= 60) {
+            echo "Uw heeft nog " . $row['resterendeKorting'] . " euro korting over op uw account.";
+            return true;
+        }
+        else{
+            echo "";
+            return false;
+        }
+
+        //echo $sql;
+
+        //echo "<br>";
+        $database->fire_query($sql);
+    }
+
+    public static function verschil_tussen_datums()
+    {
+        global $database;
+
+        $sql = "SELECT `activatiedatum` AS datum FROM `login` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+
+        $result = $database->fire_query($sql);
+
+        $row = $result->fetch_assoc();
+
+        $datetime = new DateTime($row['datum']);
+        $date = $datetime->format('Y/m/d');
+
+        if (!($result->num_rows > 0))
+            $date = '0000-00-00';
+
+
+//        echo "<br>Date " . $date;
+//        echo "<br>Daterow " . $row['datum'];
+        $huidigeDatum = date('Y') . "/" . date('m') . "/" . date('d');
+
+//        echo "<br>huidige date " . $huidigeDatum;
+//        echo "<br>Date " . $date;
+        $datediff = (strtotime($huidigeDatum) - strtotime($date));
+
+        $datediff = floor($datediff / (60 * 60 * 24));
+        if ($datediff <= 30){
+            return true;
+        }
+        else if ($datediff > 30 && $datediff <= 60){
+            self::maand_twee_starten();
+            return false;
+        }
+        else if ($datediff > 60){
+            echo "";
+        } else {}
+
+//          echo $sql;
+    }
+
+    public static function maand_twee_starten()
+    {
+        global $database;
+
+        $sql = "SELECT `resterendeKorting` AS resterendeKorting FROM `login` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+
+        $result = $database->fire_query($sql);
+
+        $row = $result->fetch_assoc();
+
+        if($row['resterendeKorting'] > 25) {
+            $query = "UPDATE `login` SET `resterendeKorting`= 25 WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+            $database->fire_query($query);
+        }
+        else{
+
+        }
+
+        //echo $query;
+    }
+
+    public static function trek_korting_vanaf($post)
+    {
+        global $database;
+        //echo "kortinggekregen".$_POST['kortingGekregen'];
+
+            $query = "UPDATE `login` SET `resterendeKorting`= `resterendeKorting` - " . $_POST['kortingGekregen'] . " WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+
+        $result = $database->fire_query($query);
+
+        //echo $query;
+    }
+
+/* Wijzigingsopdracht einde*/
 
 }
 

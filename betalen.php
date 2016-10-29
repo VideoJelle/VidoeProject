@@ -11,8 +11,12 @@ if (isset($_POST['clearCart'])) {
     if (!HireClass::check_if_deleveryDate_deleveryTime_exists($_POST)) {
         if (!HireClass::check_if_collectDate_collectTime_exists($_POST)) {
             echo "<h3 style='text-align: center;' >Uw gegevens zijn verwerkt. Bedankt voor uw bestelling</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-            HireClass::clear_winkelmand($_POST);
             HireClass::insert_bestelling_database($_POST);
+            HireClass::clear_winkelmand($_POST);
+
+//            Wijzigingsopdracht begin
+            HireClass::trek_korting_vanaf($_POST);
+//            Wijzigingsopdracht eind
         } else {
             echo "<h3 style='text-align: center;' >De ophaaltijd is niet beschikbaar, kies een andere tijd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
         }
@@ -131,7 +135,7 @@ if (isset($_POST['clearCart'])) {
                          De video wordt een week later opgehaald, u kunt deze datum verzetten door in uw account een verlenging aan te vragen.<br>
                                                     <br>";
 
-                            $sql = "SELECT sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                            $sql = "SELECT prijs, sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
                             $result = $conn->query($sql);
                             //echo $result2;
                             if ($result->num_rows > 0) {
@@ -139,6 +143,41 @@ if (isset($_POST['clearCart'])) {
                                     if ($row["value"] < 50) {
                                         echo "    <table class=\"table table - responsive\">
                                             <thead>
+<!-- Wijzigingsopdracht begin-->            
+                                        ";
+                                        $totaalbedrag = $row['value'];
+                                        $kortingGekregen = null;
+                                        if(HireClass::bekijk_korting_resterend() == true) {
+                                            if (HireClass::verschil_tussen_datums() == false) {
+                                                $row['korting'] = (round(($row['value'] * 0.75), 2));
+                                                $kortingGekregen = $row['value'] - $row['korting'];
+                                                $totaalbedrag = $row['value'] - $kortingGekregen;
+                                                echo "
+                                            <tr>
+                                                Dankzij een speciale actie is er 25% korting van uw prijs gehaald.
+                                            </tr>
+                                        ";
+                                            } else if (HireClass::verschil_tussen_datums() == true) {
+                                                $row['korting'] = (round(($row['value'] * 0.50), 2));
+                                                $kortingGekregen = $row['value'] - $row['korting'];
+                                                $totaalbedrag = $row['value'] - $kortingGekregen;
+//                                           echo "<br>value".$row['value'];
+//                                           echo "<br>prijs".$row['prijs'];
+//                                           echo "<br>korting".$row['korting'];
+//                                           echo "<br>kortinggekregen".$kortingGekregen;
+//                                           echo "<br>totaal".$totaalbedrag;
+                                                echo "
+                                            <tr>
+                                                Dankzij een speciale actie is er 50% korting van uw prijs gehaald.
+                                            </tr>
+                                        ";
+                                            }
+                                        }
+
+                                        echo "
+<br><br>
+<!-- Wijzigingsopdracht einde -->
+
                                             <tr>
                                                 <th>
                                                         Verzendkosten:
@@ -149,7 +188,8 @@ if (isset($_POST['clearCart'])) {
                                             </tr>
                                             </thead>
                                         </table>";
-                                        $row["value"] = ($row["value"] + 2);
+
+                                        $totaalbedrag = ($totaalbedrag + 2);
                                     }
                                     echo "<table class=\"table table - responsive\">
                             <thead>
@@ -158,13 +198,13 @@ if (isset($_POST['clearCart'])) {
                                         Totaal:
                                 </th>
                                 <th>
-                                         &euro; " . $row["value"] . "
+                                         &euro; " . $totaalbedrag . "
                                 </th>
                             </tr>
                             </thead>
                         </table>
                         
-                        <input type='hidden' name='prijs' value='" . $row['value'] . "'/>
+                        <input type='hidden' name='prijs' value='" . $totaalbedrag . "'/>
                         ";
 
                                 }
@@ -178,6 +218,7 @@ if (isset($_POST['clearCart'])) {
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "
+                                <input type='hidden' name='kortingGekregen' value='" . $kortingGekregen . "'/>
                                 <input type='hidden' name='idKlant' value='" . $_SESSION['idKlant'] . "'/>
                                 <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
                         ";

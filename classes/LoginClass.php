@@ -295,5 +295,23 @@ class LoginClass
 		//var_dump($usersclassObject); exit();
 		return $usersclassObject;
 	}
+
+
+
+/*	Wijzigingsopdracht begin*/
+	public static function aantal_nieuwe_klanten()
+	{
+		global $database;
+
+		$sql = "SELECT count(`activatiedatum`) AS a FROM `login` WHERE userrole = 'klant' AND `activatiedatum` > '2016-10-26 00:00:00'";
+
+		//echo "<br>";
+		$result = $database->fire_query($sql);
+
+		$row = $result->fetch_assoc();
+		echo $row['a'];
+	}
+
+/* Wijzigingsopdracht einde*/
 }
 ?>

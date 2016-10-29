@@ -1,6 +1,7 @@
 <?php
 $userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
 require_once("./security.php");
+require_once("classes/HireClass.php");
 ?>
 
 <?php
@@ -50,6 +51,11 @@ if (isset($_POST['removeItemCart'])) {
                     </div>
                 </div>
             </div>
+            <!--Wijzigingsopdracht begin-->
+            <div class="row">
+                <div class="col-md-12"><h3><?php HireClass::bekijk_korting_resterend() ?></h3></div>
+            </div><br>
+            <!--Wijzigingsopdracht einde-->
             <div class="row">
                 <div class="col-md-6">
                     <?php
