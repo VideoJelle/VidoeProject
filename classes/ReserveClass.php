@@ -31,13 +31,12 @@ class ReserveClass
         global $database;
 
 
-        $query = "INSERT INTO `reservering` (`idReservering`, `idKlant`, `idVideo`, `titel`) 
-                      VALUES (NULL, ". $_SESSION['idKlant'] ." ,'". $post['idVideo']."','". $post['titel']."')";
+        $query = "INSERT INTO `reservering` (`idReservering`, `idKlant`, `idVideo`, `titel`, `prijs`) 
+                      VALUES (NULL, ". $_SESSION['idKlant'] ." ,'". $post['idVideo']."','". $post['titel']."', ". $post['prijs'].")";
 
 //            echo $_SESSION['id'];
 //            echo $post['titel'];
 //            echo $post['prijs'];
-
 
         // echo $query;
 
@@ -75,8 +74,7 @@ class ReserveClass
 
         mail($to, $subject, $message, $headers);
     }
-
-
+    
     public static function check_if_reservering_exists($post)
     {
         global $database;
@@ -105,5 +103,47 @@ class ReserveClass
         $database->fire_query($query);
     }
 
+    // <Wijzigingsopdracht>
+    public static function remove_reserved_film($post)
+    {
+        global $database;
+        $sql = "SELECT * FROM reservering WHERE `idKlant` = '".$_SESSION['idKlant']."'";
+        $result = $database->fire_query($sql);
+        $row = $result->fetch_assoc();
+        if ($row['datumVideoBeschikbaar'] == '0000-00-00'){
+            echo "<h3 style='text-align: center;' >Er is geen gereserveerde video beschikbaar op dit moment.</h3>";
+        }
+        else {
+
+            // var_dump($row);
+            $query =    "DELETE FROM `reservering` WHERE `idKlant` = '" . $_SESSION['idKlant'] . "' AND `datumVideoBeschikbaar` != '0000-00-00'";
+//            echo $query;
+            $database->fire_query($query);
+        }
+    }
+
+    public static function add_reserved_film_to_order($row)
+    {
+        global $database;
+        $query = "INSERT INTO `winkelmand`(`idWinkelmand`, `idVideo`, `titel`, `idKlant`, `prijs`) 
+                  VALUES                  (null, " . $row['idVideo'] . ", '" . $row['titel'] . "', " . $_SESSION['idKlant'] . ", '" . $row['prijs'] . "')";
+        echo "<br>" . $query;
+        $database->fire_query($query);
+        self::lower_amount_videos($row);
+    }
+
+    public static function lower_amount_videos($row)
+    {
+        global $database;
+        $idVideo = $row['idVideo'];
+        $query = "UPDATE `video`
+					  SET `aantalBeschikbaar` = `aantalBeschikbaar` - 1
+					  WHERE `idVideo` = '" . $idVideo . "'";
+        //echo $query;
+        $database->fire_query($query);
+    }
+    // </Wijzigingsopdracht>
+
 }
+
 ?>

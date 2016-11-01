@@ -5,6 +5,41 @@ require_once("classes/HireClass.php");
 ?>
 
 <?php
+require_once("classes/LoginClass.php");
+require_once("classes/HireClass.php");
+require_once("classes/SessionClass.php");
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "videotheek";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST['refreshwinkelmandje'])) {
+    echo "<h3 style='text-align: center;' >Uw winkelmandje wordt vernieuwd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=klantHomepage");
+    require_once("./classes/ReserveClass.php");
+
+
+    $query    = "SELECT * FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+    $resultQuery  = $conn->query($query);
+    var_dump($resultQuery);
+    if ($resultQuery->num_rows > 0) {
+        while ($row = $resultQuery->fetch_assoc()) {
+            if ($row["datumVideoBeschikbaar"] != "0000-00-00") {
+                ReserveClass::add_reserved_film_to_order($row);
+                //echo "hoi";
+            }
+        }
+    }
+    ReserveClass::remove_reserved_film($_POST);
+} else {
 if (isset($_POST['removeItemCart'])) {
     echo "<h3 style='text-align: center;' >Item is uit de winkelmand verwijderd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=klantHomepage");
@@ -53,30 +88,21 @@ if (isset($_POST['removeItemCart'])) {
             </div>
             <!--Wijzigingsopdracht begin-->
             <div class="row">
+                <!-- <Wijzigingsopdracht> -->
+                <div class="col-md-12"><h3>Druk altijd op refresh winkelmandje voor u verder gaat met bestllen.</h3></div>
+                <!-- </Wijzigingsopdracht> -->
                 <div class="col-md-12"><h3><?php HireClass::bekijk_korting_resterend() ?></h3></div>
-            </div><br>
+            </div>
+            <br>
             <!--Wijzigingsopdracht einde-->
             <div class="row">
                 <div class="col-md-6">
                     <?php
-                    require_once("classes/LoginClass.php");
-                    require_once("classes/HireClass.php");
-                    require_once("classes/SessionClass.php");
 
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "videotheek";
-
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
                     $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
-
+                    $sql2 = "SELECT * FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
                     $result = $conn->query($sql);
+                    $result2 = $conn->query($sql2);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -118,13 +144,23 @@ if (isset($_POST['removeItemCart'])) {
                                 <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
                                 <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
                                 <input type='hidden' name='prijs' value='" . $row['prijs'] . "'/>
-                                <input type='submit' class='btn btn - info' name='betalen' value='Betalen'>
-                            </form><br><br><br><br><br><br><br><br>";
+                                <input type='submit' class='btn btn-info' name='betalen' value='Betalen'>
+                            </form><br>";
 
-                    } else {
-                        echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br>";
+                    }
+
+                    if ($result2->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                        echo "
+                            <form role=\"form\" action='' method='post'>
+                                <input type='hidden' name='klantid' value='" . $_SESSION['idKlant'] . "'/>
+                                <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
+                                <input type='hidden' name='titel' value='" . $row['titel'] . "'/>
+                                <input type='submit' class='btn btn-info' name='refreshwinkelmandje' value='Refresh winkelmandje'>
+                            </form>";
                     }
                     $conn->close();
+
                     ?>
                     <br><br><br><br><br><br>
                 </div>
@@ -135,5 +171,6 @@ if (isset($_POST['removeItemCart'])) {
     </body>
     </html>
     <?php
+}
 }
 ?>

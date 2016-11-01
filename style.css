@@ -21,6 +21,10 @@ html {
 body {
     margin: 0;
 }
+
+html, body{
+    height: 100%;
+}
 article,
 aside,
 details,
@@ -6780,4 +6784,17 @@ body {
     font-size: 24px;
     color: #4F547F;
     padding: 20px;
+}
+
+section {
+    overflow: auto;
+    min-height: 75%;
+    padding-bottom:163px;
+    margin-bottom: auto;
+}
+
+footer{
+    position: relative;
+    margin-top: auto;
+    clear: both;
 }

@@ -273,7 +273,7 @@ class HireClass
         }
 
         $verlengdeDatum = date('Y-m-d', strtotime($ophaaldatum . ' + 1 day'));
-        $verhoogdePrijs = ($prijs . ' + ' . round(($prijs * 0.70), 2));
+        $verhoogdePrijs = ($prijs . ' + ' . round(($prijs * 0.10), 2));
 
         $query = "UPDATE `bestelling` 
                   SET `ophaaldatum` = '" . $verlengdeDatum . "',

@@ -3,6 +3,24 @@
 //session_start();
 require_once("./classes/LoginClass.php");
 require_once("./classes/SessionClass.php");
+$sql2 = "SELECT * FROM reservering";
+$result2 = $database->fire_query($sql2);
+
+if ($result2->num_rows > 0) {
+    while ($row2 = $result2->fetch_assoc()) {
+        $today2 = date('Y-m-d');
+        if ($row2['reactieDatumKlant'] == $today2)
+        {
+            $sql2 = "DELETE FROM reservering where `idVideo` = '".$row2['idVideo']."' AND `idKlant` = '".$_SESSION['idKlant']."'";
+            //echo $sql2;
+             $database->fire_query($sql2);
+        }
+        else {
+            // echo $row['titel'];
+            // echo "321";
+        }
+    }
+}
 if (!isset($_SESSION['idKlant'])) {
     echo "<h3 style='text-align: center;' >U bent niet ingelogd en daarom niet bevoegd om deze pagina te bekijken. U wordt teruggestuurd naar de loginpagina.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:5;url=index.php?content=inloggen_Registreren");

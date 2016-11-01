@@ -140,16 +140,20 @@ require_once('MySqlDatabaseClass.php');
 			$lastVideoID = ($row['idVideo'] + 1);
 		}
 
+		$date = date('Y-m-d');
+
 		$query = "INSERT INTO `video` (`idVideo`,
 										   `titel`,
 										   `beschrijving`,
 										   `fotopad`,
-                                           `aantalBeschikbaar`)
+                                           `aantalBeschikbaar`,
+                                           `datumToegevoegd`)
 					  VALUES			  (" . $lastVideoID . ",
 										   '" . $post['titel'] . "',
 										   '" . $post['beschrijving'] . "',
 										   '" . $post['fotopad'] . "',
-                                           '" . $post['aantalBeschikbaar'] . "')";
+										   '" . $post['aantalBeschikbaar'] . "',
+                                           '" . $date . "')";
 
 		//echo $query;
 

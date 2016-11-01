@@ -19,13 +19,9 @@
 		</aside>
 		<section>
 			<?php include("redirect.php"); ?>
-		</section>		
+		</section>
 		<footer>
 			<?php include("footer.php"); ?>
 		</footer>
 	</body>
 </html>
-
-<!--git add .-->
-<!--git commit -m "..."-->
-<!--git push-->

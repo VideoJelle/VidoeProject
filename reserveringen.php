@@ -5,7 +5,7 @@ require_once("./security.php");
 
 <?php
 if (isset($_POST['removeItemReserve'])) {
-    echo "<h3 style='text-align: center;' >Item is uit de reserveringen verwijderd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    echo "<h3 style='text-align: center;' >Item is uit de reserveringen verwijderd.</h3><br><br>";
     header("refresh:4;url=index.php?content=reserveringen");
 
     require_once("classes/ReserveClass.php");
@@ -60,7 +60,7 @@ if (isset($_POST['removeItemReserve'])) {
 
             require_once("classes/ReserveClass.php");
 
- 
+
 
             $servername = "localhost";
             $username = "root";
@@ -113,7 +113,8 @@ if (isset($_POST['removeItemReserve'])) {
             }
             $conn->close();
             ?>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br>
+            <br><br><br>
         </div>
     </div>
 <?php
