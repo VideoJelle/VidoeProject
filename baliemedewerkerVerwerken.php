@@ -5,11 +5,12 @@ require_once("./security.php");
 
 <?php
 if (isset($_POST['update'])) {
-    echo "<h3 style='text-align: center;' >Film is beschikbaar <gezet></gezet> aan database.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:10;url=index.php?content=baliemedewerkerHomepage");
+    echo "<h3 style='text-align: center;' >Film is beschikbaar gezet in database.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=baliemedewerkerHomepage");
     require_once("./classes/BalieMedewerkerClass.php");
     BalieMedewerkerClass::update_aantal_beschikbaar($_POST);
 } else {
+
     ?>
     <html>
     <head>
@@ -26,30 +27,132 @@ if (isset($_POST['update'])) {
                 font-size: 24px;
                 padding: 20px;
             }
+
             th {
-                min-width: 300px;
+                min-width: 260px;
             }
         </style>
     </head>
     <body>
     <div class="section">
         <div class="container">
+            <?php
+
+
+            require_once("classes/LoginClass.php");
+            if (isset($_POST['updateBlock'])) {
+                include('connect_db.php');
+
+                $sql = "UPDATE	`video` 
+                     SET 		`beschikbaar`		=	1
+                     WHERE	    `idvideo`			=	 " . $_POST['idVideo']. " ";
+
+                // echo $sql;
+                $database->fire_query($sql);
+                $result = mysqli_query($connection, $sql);
+
+                echo "<h3 style='text-align: center;' >Uw wijzigingen zijn verwerkt.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+                header("refresh:4;url=index.php?content=baliemedewerkerHomepage");
+
+            } else {
+            ?>
             <div class="row">
-                <div class="col-md-12"><h2>Baliemedewerker Pagina</h2></div>
-                <a href="index.php?content=baliemedewerkerHomepage"><div class="col-md-12"><h4>sldkgmdslk</h4></div></a>
-            </div>
-            <row class="row">
-                <h3>Video</h3>
-                <form role="form" action='' method='post'>
-                    <div class="form-group">
-                        <label for="id">VideoId</label>
-                        <input type="text" class="form-control" name="idVideo" placeholder="Voer videoid in.">
+                <div class="section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12"><h2>Baliemedewerker Pagina</h2></div>
+                            <a href="index.php?content=baliemedewerkerHomepage"><div class="col-md-12"><h4>Binnengekomen video's verwerken</h4></div></a>
+                        </div>
+                    </div>
+                    </row>
+                    <div class="col-md-6">
+                        <?php
+                        require_once("classes/LoginClass.php");
+                        require_once("classes/HireClass.php");
+                        require_once("classes/SessionClass.php");
+
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "videotheek";
+
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
+
+                        $sql = "SELECT * FROM `video` WHERE beschikbaar = 0";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+
+                                echo "
+                        <table class=\"table table - responsive\">
+                            <thead>
+                            <tr>
+                                <th>
+                                        Video ID:
+                                </th>
+                                <th>
+                                        Titel:
+                                </th>
+                                <th>
+                                        AantalBeschikbaar:
+                                </th>
+                                <th>
+                                        Beschikbaar:
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                        " . $row['idVideo'] . "
+                                </td>
+                                <td>
+                                        " . $row['titel'] . "
+                                </td>
+                                <td>
+                                        " . $row['aantalBeschikbaar'] . "
+                                </td>
+                                <td>
+                                        " . $row['beschikbaar'] . "
+                                </td>
+                                <td>
+                                        <form role=\"form\" action='' method='post'>
+                                            <input type='hidden' class=\"btn btn-info\" name='idVideo' value='" . $row['idVideo'] . "'/>
+                                            <input type='submit' class=\"btn btn-info\" name='updateBlock' value='Maak beschikbaar'>
+                                            
+                                        </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                            ";
+                            }
+                        } else {
+                            echo "Geen resultaten<br><br><br><br><br><br><br>";
+                        }
+                        $conn->close();
+                        ?>
+
+                        <br><br>
                     </div>
 
-                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </div>
+                <?php
 
-                </form>
-                <br>
-            </row>
+                }
+                ?>
+            </div></div></div>
+    <br><br><br><br><br><br><br><br><br><br>
+    </body>
+    </html>
+
     <?php
 }
+?>

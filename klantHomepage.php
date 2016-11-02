@@ -88,9 +88,6 @@ if (isset($_POST['removeItemCart'])) {
             </div>
             <!--Wijzigingsopdracht begin-->
             <div class="row">
-                <!-- <Wijzigingsopdracht> -->
-                <div class="col-md-12"><h3>Druk altijd op refresh winkelmandje voor u verder gaat met bestllen.</h3></div>
-                <!-- </Wijzigingsopdracht> -->
                 <div class="col-md-12"><h3><?php HireClass::bekijk_korting_resterend() ?></h3></div>
             </div>
             <br>
@@ -152,6 +149,7 @@ if (isset($_POST['removeItemCart'])) {
                     if ($result2->num_rows > 0) {
                         $row = $result->fetch_assoc();
                         echo "
+                            <div class=\"col-md-12\"><h4>Druk op refresh winkelmandje voordat u verder gaat met bestellen.</h4></div>
                             <form role=\"form\" action='' method='post'>
                                 <input type='hidden' name='klantid' value='" . $_SESSION['idKlant'] . "'/>
                                 <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
