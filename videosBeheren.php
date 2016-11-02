@@ -1,6 +1,7 @@
 <?php
 $userrole = array("admin", "eigenaar");
 require_once("./security.php");
+
 ?>
 
 <?php
@@ -115,7 +116,7 @@ if (isset($_POST['submit'])) {
                             ";
 
 
-            }  else {
+            } else {
                 echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br>";
             }
             $conn->close();

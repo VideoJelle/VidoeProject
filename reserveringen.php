@@ -1,6 +1,7 @@
 <?php
 $userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
 require_once("./security.php");
+
 ?>
 
 <?php
@@ -12,8 +13,8 @@ if (isset($_POST['removeItemReserve'])) {
 
     ReserveClass::remove_item_reservering($_POST);
 
-    } else{
-?>
+} else {
+    ?>
     <html>
     <head>
         <meta charset="utf-8">
@@ -59,7 +60,6 @@ if (isset($_POST['removeItemReserve'])) {
             require_once("classes/SessionClass.php");
 
             require_once("classes/ReserveClass.php");
-
 
 
             $servername = "localhost";
@@ -108,7 +108,7 @@ if (isset($_POST['removeItemReserve'])) {
                             ";
                 }
 
-            }  else {
+            } else {
                 echo "Geen resultaten<br><br><br><br><br>";
             }
             $conn->close();
@@ -117,6 +117,6 @@ if (isset($_POST['removeItemReserve'])) {
             <br><br><br>
         </div>
     </div>
-<?php
+    <?php
 }
 ?>

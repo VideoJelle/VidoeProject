@@ -45,7 +45,7 @@ if (isset($_POST['update'])) {
 
                 $sql = "UPDATE	`video` 
                      SET 		`beschikbaar`		=	1
-                     WHERE	    `idvideo`			=	 " . $_POST['idVideo']. " ";
+                     WHERE	    `idvideo`			=	 " . $_POST['idVideo'] . " ";
 
                 // echo $sql;
                 $database->fire_query($sql);
@@ -61,7 +61,9 @@ if (isset($_POST['update'])) {
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12"><h2>Baliemedewerker Pagina</h2></div>
-                            <a href="index.php?content=baliemedewerkerHomepage"><div class="col-md-12"><h4>Binnengekomen video's verwerken</h4></div></a>
+                            <a href="index.php?content=baliemedewerkerHomepage">
+                                <div class="col-md-12"><h4>Binnengekomen video's verwerken</h4></div>
+                            </a>
                         </div>
                     </div>
                     </row>
@@ -148,7 +150,9 @@ if (isset($_POST['update'])) {
 
                 }
                 ?>
-            </div></div></div>
+            </div>
+        </div>
+    </div>
     <br><br><br><br><br><br><br><br><br><br>
     </body>
     </html>

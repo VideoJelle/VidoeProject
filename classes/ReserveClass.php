@@ -127,7 +127,7 @@ class ReserveClass
         global $database;
         $query = "INSERT INTO `winkelmand`(`idWinkelmand`, `idVideo`, `titel`, `idKlant`, `prijs`) 
                   VALUES                  (null, " . $row['idVideo'] . ", '" . $row['titel'] . "', " . $_SESSION['idKlant'] . ", '" . $row['prijs'] . "')";
-        echo "<br>" . $query;
+        //echo "<br>" . $query;
         $database->fire_query($query);
         self::lower_amount_videos($row);
     }

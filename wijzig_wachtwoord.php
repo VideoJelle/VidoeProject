@@ -2,6 +2,7 @@
 $userrole = array("klant",);
 require_once("./security.php");
 
+
 if (isset($_POST['submit'])) {
     require_once("classes/LoginClass.php");
 

@@ -1,6 +1,7 @@
 <?php
 $userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
 require_once("./security.php");
+
 ?>
 
 <?php

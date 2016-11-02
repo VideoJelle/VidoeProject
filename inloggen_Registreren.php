@@ -40,10 +40,10 @@ if (isset($_POST['submitRegister'])) {
                 <div class="col-md-6">
                     <form role="form" action='index.php?content=inloggen_Registreren' method='post'>
                         <div class="form-group"><label class="control-label" for="InputNnaam">Volledige naam<br></label><input class="form-control"
-                                                                                                                            id="InputNaam"
-                                                                                                                            name="naam"
-                                                                                                                            placeholder="Naam"
-                                                                                                                            type="text"></div>
+                                                                                                                               id="InputNaam"
+                                                                                                                               name="naam"
+                                                                                                                               placeholder="Naam"
+                                                                                                                               type="text"></div>
                         <div class="form-group"><label class="control-label" for="InputAdres">Adres<br></label><input class="form-control"
                                                                                                                       id="InputAdres"
                                                                                                                       name="adres"

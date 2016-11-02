@@ -285,6 +285,61 @@ class HireClass
 
     }
 
+     public static function bestelling_verlengen_day($post)
+{
+    global $database;
+
+    $ophaaldatum = null;
+    $prijs = null;
+
+    $sql = "SELECT * FROM bestelling WHERE `idBestelling` = " . $_POST['idVanBestelling'] . " ";
+
+    $result = $database->fire_query($sql);
+    if ($row = $result->fetch_assoc()) {
+        $ophaaldatum = $row['ophaaldatum'];
+        $prijs = $row['prijs'];
+    }
+
+    $verlengdeDatum = date('Y-m-d', strtotime($ophaaldatum . ' + 1 day'));
+    $verhoogdePrijs = ($prijs . ' + ' . round(($prijs * 0.10), 2));
+
+    $query = "UPDATE `bestelling` 
+                  SET `ophaaldatum` = '" . $verlengdeDatum . "',
+                      `prijs` = " . $verhoogdePrijs . " 
+                  WHERE `idBestelling` = " . $_POST['idVanBestelling'] . " ";
+
+    $result = $database->fire_query($query);
+    //echo $query;
+}
+
+    public static function bestelling_verlengen_week($post)
+    {
+        global $database;
+
+        $ophaaldatum = null;
+        $prijs = null;
+
+        $sql = "SELECT * FROM bestelling WHERE `idBestelling` = " . $_POST['idVanBestelling'] . " ";
+
+        $result = $database->fire_query($sql);
+        if ($row = $result->fetch_assoc()) {
+            $ophaaldatum = $row['ophaaldatum'];
+            $prijs = $row['prijs'];
+        }
+
+        $verlengdeDatum = date('Y-m-d', strtotime($ophaaldatum . ' + 7 day'));
+        $verhoogdePrijs = ($prijs . ' + ' . round(($prijs * 0.70), 2));
+
+        $query = "UPDATE `bestelling` 
+                  SET `ophaaldatum` = '" . $verlengdeDatum . "',
+                      `prijs` = " . $verhoogdePrijs . " 
+                  WHERE `idBestelling` = " . $_POST['idVanBestelling'] . " ";
+
+        $result = $database->fire_query($query);
+        //echo $query;
+
+    }
+
 /*	Wijzigingsopdracht begin*/
     public static function bekijk_korting_resterend()
     {
@@ -397,6 +452,7 @@ class HireClass
     }
 
 /* Wijzigingsopdracht einde*/
+
 
 }
 

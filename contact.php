@@ -6,18 +6,17 @@ if (isset($_POST['submit'])) {
     $comment = $_POST['comment'];
     $from = 'From: Website_Videotheek_Harmelen';
     $to = 'jellevandenbroek@gmail.com';
-    $subject = 'Nieuw bericht van ' .$_POST['name'];
+    $subject = 'Nieuw bericht van ' . $_POST['name'];
 
     $body = "Naam: $name\nE-Mail: $email\nTelefoon: $tel\n\nBericht:\n$comment";
 
-    if (mail ($to, $subject, $body, $from)) {
+    if (mail($to, $subject, $body, $from)) {
         echo '<h3 style=\'text-align: center;\' >Uw bericht is verzonden!</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
         echo '<meta http-equiv="refresh" content="5" />';
     } else {
         echo '<p>Er is iets fout gegaan. Probeer het opnieuw.</p>';
     }
-}
-else {
+} else {
     ?>
 
     <html>
@@ -33,6 +32,7 @@ else {
                 font-size: 24px;
                 padding: 20px;
             }
+
             .requiredStar {
                 color: red;
                 font-size: 13px;
@@ -63,7 +63,7 @@ else {
                             <input class="form-control" id="comment" placeholder="Vraag/Opmerking" type="text" name="comment" required></div>
 
                         <button type="submit" class="btn btn-primary" name="submit">Verzend</button>
-                        
+
                     </form>
                 </div>
             </div>
@@ -73,4 +73,4 @@ else {
     </html>
     <?php
 }
-    ?>
+?>

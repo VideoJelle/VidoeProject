@@ -1,19 +1,20 @@
 <?php
 $userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
 require_once("./security.php");
+
 ?>
 
 <?php
 
-    require_once("./classes/KlachtClass.php");
-    if (isset($_POST['submit-klacht'])) {
-    
-        KlachtClass::insert_klacht_into_database($_POST['klacht']);
-        echo "<h3 style='text-align: center;' >Uw klacht of opmerking is verzonden.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-        header("refresh:4;url=index.php?content=klantHomepage");
+require_once("./classes/KlachtClass.php");
+if (isset($_POST['submit-klacht'])) {
+
+    KlachtClass::insert_klacht_into_database($_POST['klacht']);
+    echo "<h3 style='text-align: center;' >Uw klacht of opmerking is verzonden.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=klantHomepage");
 } else {
-?>
-<html>
+    ?>
+    <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,9 +58,9 @@ require_once("./security.php");
                             <form role="form" action="" method="post">
 
                                 <div class="form-group"><label class="control-label" for="comment">Klacht/Opmerking</label>
-                                    <textarea class="form-control" id="klacht" placeholder="Klacht/Opmerking" type="text" name="klacht" rows="8"required></textarea></div>
+                                    <textarea class="form-control" id="klacht" placeholder="Klacht/Opmerking" type="text" name="klacht" rows="8" required></textarea></div>
                                 <button type="submit" class="btn btn-primary" name="submit-klacht">Verzend</button>
- 
+
                             </form>
                         </div>
                     </div>
@@ -69,6 +70,6 @@ require_once("./security.php");
     </body>
     </html>
 
-<?php
-    }
+    <?php
+}
 ?>

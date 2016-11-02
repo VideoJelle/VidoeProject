@@ -1,6 +1,7 @@
 <?php
 $userrole = array("klant", "bezorger", "admin", "baliemedewerker", "eigenaar");
 require_once("./security.php");
+
 ?>
 
 <?php
@@ -20,68 +21,67 @@ if (isset($_POST['clearCart'])) {
         } else {
             echo "<h3 style='text-align: center;' >De ophaaltijd is niet beschikbaar, kies een andere tijd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
         }
-    }
-    else {
-            echo "<h3 style='text-align: center;' >Deze dag is niet beschikbaar, kies een andere dag.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-        }
-
     } else {
-        ?>
+        echo "<h3 style='text-align: center;' >Deze dag is niet beschikbaar, kies een andere dag.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    }
 
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <script type="text/javascript"
-                    src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-            <script type="text/javascript"
-                    src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-            <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-                  rel="stylesheet" type="text/css">
-            <link href="style.css" rel="stylesheet" type="text/css">
-            <style>
-                .header {
-                    font-size: 24px;
-                    padding: 20px;
-                }
+} else {
+    ?>
 
-                th {
-                    min-width: 500px;
-                }
-            </style>
-        </head>
-        <body>
-        <div class="section">
-            <div class="container">
-                <h2>Betalen</h2>
-                <br><br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Uw bestelling</h3>
-                        <form role=\"form\" action='' method='post'>
-                            <?php
-                            require_once("classes/LoginClass.php");
-                            require_once("classes/HireClass.php");
-                            require_once("classes/SessionClass.php");
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript"
+                src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript"
+                src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+              rel="stylesheet" type="text/css">
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <style>
+            .header {
+                font-size: 24px;
+                padding: 20px;
+            }
 
-                            $servername = "localhost";
-                            $username = "root";
-                            $password = "";
-                            $dbname = "videotheek";
+            th {
+                min-width: 500px;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="section">
+        <div class="container">
+            <h2>Betalen</h2>
+            <br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Uw bestelling</h3>
+                    <form role=\"form\" action='' method='post'>
+                        <?php
+                        require_once("classes/LoginClass.php");
+                        require_once("classes/HireClass.php");
+                        require_once("classes/SessionClass.php");
 
-                            // Create connection
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-                            // Check connection
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            }
-                            $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "videotheek";
 
-                            $result = $conn->query($sql);
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        $sql = "SELECT * FROM winkelmand WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "
                         <table class=\"table table - responsive\">
                             <thead>
                             <tr>
@@ -104,12 +104,12 @@ if (isset($_POST['clearCart'])) {
                             </tr>
                             </tbody>
                         </table>";
-                                }
-                            } else {
-                                echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
                             }
-                            $date = date('Y-m-d');
-                            echo "<br>
+                        } else {
+                            echo "Geen resultaten<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+                        }
+                        $date = date('Y-m-d');
+                        echo "<br>
                             <table class=\"table table - responsive\">
                              <thead>
                              <tr>
@@ -135,46 +135,46 @@ if (isset($_POST['clearCart'])) {
                          De video wordt een week later opgehaald, u kunt deze datum verzetten door in uw account een verlenging aan te vragen.<br>
                                                     <br>";
 
-                            $sql = "SELECT prijs, sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
-                            $result = $conn->query($sql);
-                            //echo $result2;
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    if ($row["value"] < 50) {
-                                        echo "    <table class=\"table table - responsive\">
+                        $sql = "SELECT prijs, sum(prijs) AS value FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                        $result = $conn->query($sql);
+                        //echo $result2;
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+
+                                echo "    <table class=\"table table - responsive\">
                                             <thead>
 <!-- Wijzigingsopdracht begin-->            
                                         ";
-                                        $totaalbedrag = $row['value'];
-                                        $kortingGekregen = null;
-                                        if(HireClass::bekijk_korting_resterend() == true) {
-                                            if (HireClass::verschil_tussen_datums() == false) {
-                                                $row['korting'] = (round(($row['value'] * 0.75), 2));
-                                                $kortingGekregen = $row['value'] - $row['korting'];
-                                                $totaalbedrag = $row['value'] - $kortingGekregen;
-                                                echo "
+                                $totaalbedrag = $row['value'];
+                                $kortingGekregen = null;
+                                if (HireClass::bekijk_korting_resterend() == true) {
+                                    if (HireClass::verschil_tussen_datums() == false) {
+                                        $row['korting'] = (round(($row['value'] * 0.75), 2));
+                                        $kortingGekregen = $row['value'] - $row['korting'];
+                                        $totaalbedrag = $row['value'] - $kortingGekregen;
+                                        echo "
                                             <tr>
                                                 Dankzij een speciale actie is er 25% korting van uw prijs gehaald.
                                             </tr>
                                         ";
-                                            } else if (HireClass::verschil_tussen_datums() == true) {
-                                                $row['korting'] = (round(($row['value'] * 0.50), 2));
-                                                $kortingGekregen = $row['value'] - $row['korting'];
-                                                $totaalbedrag = $row['value'] - $kortingGekregen;
+                                    } else if (HireClass::verschil_tussen_datums() == true) {
+                                        $row['korting'] = (round(($row['value'] * 0.50), 2));
+                                        $kortingGekregen = $row['value'] - $row['korting'];
+                                        $totaalbedrag = $row['value'] - $kortingGekregen;
 //                                           echo "<br>value".$row['value'];
 //                                           echo "<br>prijs".$row['prijs'];
 //                                           echo "<br>korting".$row['korting'];
 //                                           echo "<br>kortinggekregen".$kortingGekregen;
 //                                           echo "<br>totaal".$totaalbedrag;
-                                                echo "
+                                        echo "
                                             <tr>
                                                 Dankzij een speciale actie is er 50% korting van uw prijs gehaald.
                                             </tr>
                                         ";
-                                            }
-                                        }
-
-                                        echo "
+                                    }
+                                }
+                                if ($totaalbedrag < 50) {
+                                    echo "
 <br><br>
 <!-- Wijzigingsopdracht einde -->
 
@@ -189,9 +189,11 @@ if (isset($_POST['clearCart'])) {
                                             </thead>
                                         </table>";
 
-                                        $totaalbedrag = ($totaalbedrag + 2);
-                                    }
-                                    echo "<table class=\"table table - responsive\">
+                                    $totaalbedrag = ($totaalbedrag + 2);
+                                } else {
+                                    echo "";
+                                }
+                                echo "<table class=\"table table - responsive\">
                             <thead>
                             <tr>
                                 <th>
@@ -207,41 +209,41 @@ if (isset($_POST['clearCart'])) {
                         <input type='hidden' name='prijs' value='" . $totaalbedrag . "'/>
                         ";
 
-                                }
                             }
+                        }
 
 
-                            $sql = "SELECT * FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                        $sql = "SELECT * FROM `winkelmand` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
 
-                            $result = $conn->query($sql);
+                        $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "
                                 <input type='hidden' name='kortingGekregen' value='" . $kortingGekregen . "'/>
                                 <input type='hidden' name='idKlant' value='" . $_SESSION['idKlant'] . "'/>
                                 <input type='hidden' name='idVideo' value='" . $row['idVideo'] . "'/>
                         ";
 
-                                }
                             }
+                        }
 
-                            echo "
+                        echo "
 
                         <input type='submit' class='btn btn-info' name='clearCart' value='Betalen'>";
-                            $conn->close();
-                            ?>
+                        $conn->close();
+                        ?>
 
-                        </form>
+                    </form>
 
-                        <br><br><br><br><br><br>
-                    </div>
+                    <br><br><br><br><br><br>
                 </div>
             </div>
         </div>
+    </div>
 
-        </body>
-        </html>
-        <?php
+    </body>
+    </html>
+    <?php
 }
 ?>

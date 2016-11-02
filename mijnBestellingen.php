@@ -3,12 +3,18 @@ $userrole = array("klant");
 require_once("./security.php");
 
 if (isset($_POST['addAday'])) {
-
-    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 dag.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-    header("refresh:4;url=index.php?content=mijnBestellingen");
     require_once("./classes/HireClass.php");
-    HireClass::bestelling_verlengen($_POST);
-} else {
+    HireClass::bestelling_verlengen_day($_POST);
+    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 dag. Dit kostte 0,75</h3><br><br><br><br><br><br><br><br>         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=mijnBestellingen");
+}
+else if (isset($_POST['addAWeek'])) {
+    require_once("./classes/HireClass.php");
+    HireClass::bestelling_verlengen_week($_POST);
+    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 week. Dit kostte 5,25</h3><br><br><br><br><br><br><br><br>         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=mijnBestellingen");
+
+}  else {
     ?>
     <html>
     <head>
@@ -48,7 +54,9 @@ if (isset($_POST['addAday'])) {
                 </div>
             </div>
             <div class="row">
+                
                 <div class="col-md-6">
+                    <h4>Verlengen kost 10% van de prijs per dag, en 70% van de prijs per week.</h4>
                     <?php
                     require_once("classes/LoginClass.php");
                     require_once("classes/HireClass.php");
@@ -65,7 +73,7 @@ if (isset($_POST['addAday'])) {
                     if ($conn->connect_error) {
                         die("Connection failed: " . $conn->connect_error);
                     }
-                    $sql = "SELECT * FROM bestelling WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
+                    $sql = "SELECT * FROM bestelling WHERE `idKlant` = " . $_SESSION['idKlant'] . " ORDER BY `idBestelling` DESC";
 
                     $result = $conn->query($sql);
 
@@ -93,7 +101,7 @@ if (isset($_POST['addAday'])) {
                             <tbody>
                             <tr>
                                 <td>
-                                        " . $row["idVideo"] . "
+                                        " . $row["videoTitel"] . "
                                 </td>
                                 <td>
                                         " . $row["afleverdatum"] . "
@@ -107,7 +115,11 @@ if (isset($_POST['addAday'])) {
                                 <td>
                                         <form role=\"form\" action='' method='post'>
                                             <input type='hidden' class=\"btn btn-info\" name='idVanBestelling' value='" . $row['idBestelling'] . "'/>
-                                            <input type='submit' class=\"btn btn-info\" name='addAday' value='Verleng Bestelling'>
+                                            <input type='submit' class=\"btn btn-info\" name='addAday' value='Verleng Bestelling met een Dag'>
+                                        </form><BR>
+                                        <form role=\"form\" action='' method='post'>
+                                            <input type='hidden' class=\"btn btn-info\" name='idVanBestelling' value='" . $row['idBestelling'] . "'/>
+                                            <input type='submit' class=\"btn btn-info\" name='addAWeek' value='Verleng Bestelling met een Week'>
                                         </form>
                                 </td>
                             </tr>

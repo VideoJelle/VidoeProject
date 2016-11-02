@@ -1,6 +1,7 @@
 <?php
 $userrole = array("admin", "baliemedewerker");
 require_once("./security.php");
+
 ?>
 
 <?php
@@ -26,6 +27,7 @@ if (isset($_POST['update'])) {
                 font-size: 24px;
                 padding: 20px;
             }
+
             th {
                 min-width: 300px;
             }
@@ -36,7 +38,9 @@ if (isset($_POST['update'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-12"><h2>Baliemedewerker Pagina</h2></div>
-                <a href="index.php?content=baliemedewerkerVerwerken"><div class="col-md-12"><h4>Video Beschikbaar Zetten</h4></div></a>
+                <a href="index.php?content=baliemedewerkerVerwerken">
+                    <div class="col-md-12"><h4>Video Beschikbaar Zetten</h4></div>
+                </a>
             </div>
             <row class="row">
                 <h3>Video</h3>
@@ -51,5 +55,10 @@ if (isset($_POST['update'])) {
                 </form>
                 <br>
             </row>
+        </div>
+    </div>
+    </body>
+    </html>
     <?php
 }
+?>
