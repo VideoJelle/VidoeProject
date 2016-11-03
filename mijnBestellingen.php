@@ -5,13 +5,13 @@ require_once("./security.php");
 if (isset($_POST['addAday'])) {
     require_once("./classes/HireClass.php");
     HireClass::bestelling_verlengen_day($_POST);
-    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 dag. Dit kostte 0,75</h3><br><br><br><br><br><br><br><br>         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 dag. Dit kostte 10% van uw prijs.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=mijnBestellingen");
 }
 else if (isset($_POST['addAWeek'])) {
     require_once("./classes/HireClass.php");
     HireClass::bestelling_verlengen_week($_POST);
-    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 week. Dit kostte 5,25</h3><br><br><br><br><br><br><br><br>         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    echo "<h3 style='text-align: center;' >Uw bestelling is verlengd met 1 week. Dit kostte 70% van uw prijs.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
     header("refresh:4;url=index.php?content=mijnBestellingen");
 
 }  else {
@@ -54,7 +54,7 @@ else if (isset($_POST['addAWeek'])) {
                 </div>
             </div>
             <div class="row">
-                
+
                 <div class="col-md-6">
                     <h4>Verlengen kost 10% van de prijs per dag, en 70% van de prijs per week.</h4>
                     <?php

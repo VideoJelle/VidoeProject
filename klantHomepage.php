@@ -30,7 +30,6 @@ if (isset($_POST['refreshwinkelmandje'])) {
 
     $query = "SELECT * FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . " ";
     $resultQuery = $conn->query($query);
-    var_dump($resultQuery);
     if ($resultQuery->num_rows > 0) {
         while ($row = $resultQuery->fetch_assoc()) {
             if ($row["datumVideoBeschikbaar"] != "0000-00-00") {

@@ -51,7 +51,6 @@ require_once("./security.php");
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo $row['idBestelling'];
                                 echo "
                         <table class=\"table table - responsive\">
                             <thead>
@@ -60,7 +59,7 @@ require_once("./security.php");
                                         ID Bestelling:
                                 </th>
                                 <th>
-                                        Titel:
+                                        Titel(s):
                                 </th>
                                 <th>
                                         Adres:
@@ -130,7 +129,7 @@ require_once("./security.php");
                                         ID Bestelling:
                                 </th>
                                 <th>
-                                        Titel:
+                                        Titel(s):
                                 </th>
                                 <th>
                                         Adres:

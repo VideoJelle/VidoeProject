@@ -2,7 +2,16 @@
 $userrole = array("admin", "eigenaar");
 require_once("./security.php");
 
-?>
+require_once("./classes/HireClass.php");
+if (isset($_POST['mail'])) {
+
+    HireClass::send_memory_email_day_before();
+    HireClass::send_memory_email_3_days_after();
+    HireClass::send_memory_email_3_weeks_after();
+    echo "<h3 style='text-align: center;' >Herinnering mails worden verstuurd.</h3><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+    header("refresh:4;url=index.php?content=adminHomepage");
+} else {
+    ?>
 
     <html>
     <head>
@@ -39,10 +48,12 @@ require_once("./security.php");
             <div class="row">
                 <div class="col-md-12">
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="index.php?content=adminHomepage">Admin Homepage</a></li>
-                        <li class="list-group-item"><a href="index.php?content=videoToevoegen">Video's Toevoegen</a></li>
+                        <li class="list-group-item"><a href="index.php?content=adminHomepage">Admin homepage</a></li>
+                        <li class="list-group-item"><a href="index.php?content=videoToevoegen">Video's toevoegen</a></li>
                         <li class="list-group-item"><a href="index.php?content=videosBeheren">Video's beheren</a></li>
                         <li class="list-group-item"><a href="index.php?content=verwijderFilm">Video's verwijderen</a></li>
+                        <li class="list-group-item"><a href="index.php?content=acteurToevoegen">Acteur toevoegen</a></li>
+                        <li class="list-group-item"><a href="index.php?content=genreToevoegen">Genre toevoegen</a></li>
                         <li class="list-group-item"><a href="index.php?content=beschikbaarMaken">Video's beschikbaar maken</a></li>
                         <li class="list-group-item"><a href="index.php?content=rolWijzigen">Gebruikerrol veranderen</a></li>
                         <li class="list-group-item"><a href="index.php?content=blokkeren">Gebruiker blokkeren</a></li>
@@ -98,6 +109,17 @@ require_once("./security.php");
                 $conn->close();
                 ?>
 
+                <div class="row">
+                    <div class="col-md-12"><br><br>
+                        <h3>Stuur herinnering mails</h3></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form role=\"form\" action='' method='post'>
+                            <input type='submit' class="btn btn-info" name='mail' value='Stuur herrinering emails'>
+                        </form>
+                    </div>
+                </div>
                 <br><br>
             </div>
 
@@ -105,5 +127,6 @@ require_once("./security.php");
     </div>
     </body>
     </html>
-<?php
+    <?php
+}
 ?>

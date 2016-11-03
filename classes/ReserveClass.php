@@ -13,17 +13,41 @@ class ReserveClass
 
     //Properties
     //getters
-    public function getIdReservering() { return $this->idReservering; }
-    public function getKlantId() { return $this->klantid; }
-    public function getTitel() { return $this->titel; }
+    public function getIdReservering()
+    {
+        return $this->idReservering;
+    }
+
+    public function getKlantId()
+    {
+        return $this->klantid;
+    }
+
+    public function getTitel()
+    {
+        return $this->titel;
+    }
 
     //setters
-    public function setIdReservering($value) { $this->idReservering = $value; }
-    public function setKlantId($value) { $this->klantid = $value; }
-    public function setTitel($value) { $this->titel = $value; }
+    public function setIdReservering($value)
+    {
+        $this->idReservering = $value;
+    }
+
+    public function setKlantId($value)
+    {
+        $this->klantid = $value;
+    }
+
+    public function setTitel($value)
+    {
+        $this->titel = $value;
+    }
 
     //Constuctor
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     //Methods
     public static function insert_reserveringitem_database($post)
@@ -32,7 +56,7 @@ class ReserveClass
 
 
         $query = "INSERT INTO `reservering` (`idReservering`, `idKlant`, `idVideo`, `titel`, `prijs`) 
-                      VALUES (NULL, ". $_SESSION['idKlant'] ." ,'". $post['idVideo']."','". $post['titel']."', ". $post['prijs'].")";
+                      VALUES (NULL, " . $_SESSION['idKlant'] . " ,'" . $post['idVideo'] . "','" . $post['titel'] . "', " . $post['prijs'] . ")";
 
 //            echo $_SESSION['id'];
 //            echo $post['titel'];
@@ -74,14 +98,14 @@ class ReserveClass
 
         mail($to, $subject, $message, $headers);
     }
-    
+
     public static function check_if_reservering_exists($post)
     {
         global $database;
 
         $query = "SELECT * FROM `reservering`
 					  WHERE	 `idVideo` = '" . $post['idVideo'] . "'
-                      AND `idKlant` = '".$_SESSION['idKlant']."'";
+                      AND `idKlant` = '" . $_SESSION['idKlant'] . "'";
 
         $result = $database->fire_query($query);
         // echo $query;
@@ -89,14 +113,13 @@ class ReserveClass
     }
 
 
-
     public static function remove_item_reservering($post)
     {
         global $database;
 
 
-        $query =    "DELETE FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . "
-                                                    AND `idReservering` = " . $post["idReservering"]. " ";
+        $query = "DELETE FROM `reservering` WHERE `idKlant` = " . $_SESSION['idKlant'] . "
+                                                    AND `idReservering` = " . $post["idReservering"] . " ";
         //echo $query;
 
 
@@ -107,16 +130,15 @@ class ReserveClass
     public static function remove_reserved_film($post)
     {
         global $database;
-        $sql = "SELECT * FROM reservering WHERE `idKlant` = '".$_SESSION['idKlant']."'";
+        $sql = "SELECT * FROM reservering WHERE `idKlant` = '" . $_SESSION['idKlant'] . "'";
         $result = $database->fire_query($sql);
         $row = $result->fetch_assoc();
-        if ($row['datumVideoBeschikbaar'] == '0000-00-00'){
+        if ($row['datumVideoBeschikbaar'] == '0000-00-00') {
             echo "<h3 style='text-align: center;' >Er is geen gereserveerde video beschikbaar op dit moment.</h3>";
-        }
-        else {
+        } else {
 
             // var_dump($row);
-            $query =    "DELETE FROM `reservering` WHERE `idKlant` = '" . $_SESSION['idKlant'] . "' AND `datumVideoBeschikbaar` != '0000-00-00'";
+            $query = "DELETE FROM `reservering` WHERE `idKlant` = '" . $_SESSION['idKlant'] . "' AND `datumVideoBeschikbaar` != '0000-00-00'";
 //            echo $query;
             $database->fire_query($query);
         }

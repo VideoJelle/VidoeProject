@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 --
 
 INSERT INTO `login` (`idKlant`, `naam`, `email`, `adres`, `woonplaats`, `activated`, `geblokkeerd`, `activatiedatum`, `userrole`, `password`) VALUES
-(1, 'Marielle van Dijk', 'test@test.test', 'Kamille 1', 'Culemborg', 0, 0, '2016-10-12 14:41:44', 'klant', 'f9353f3182cf896f4ab3053749a4e443'),
+(1, 'Marielle van Dijk', 'test@test.test', 'Kamille 1', 'Harmelen', 0, 0, '2016-10-12 14:41:44', 'klant', 'f9353f3182cf896f4ab3053749a4e443'),
 (3, 'Marielle van Dijk', 'test@test.123', 'Kamille 2', 'Culemborg', 0, 0, '2016-10-12 14:44:07', 'klant', '408b170b0ea2dd6d5d19637b111c0a8d'),
 (4, 'Marielle van Dijk', 'test@test.3', 'Kamille 3', 'Culemborg', 0, 0, '2016-10-12 14:46:20', 'klant', '202cb962ac59075b964b07152d234b70'),
 (5, 'Marielle van Dijk', 'test@test.4', 'Kamille 4', 'Culemborg', 1, 0, '2016-10-12 14:53:12', 'baliemedewerker', '202cb962ac59075b964b07152d234b70'),
