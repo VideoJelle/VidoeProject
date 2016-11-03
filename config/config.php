@@ -6,7 +6,7 @@ switch ($witch_server)
 {
     case '::1':
         define('SERVERNAME', 'localhost');
-        define('USERNAME', 'root');   
+        define('USERNAME', 'root');
         define('PASSWORD', '');
         define('DATABASENAME', 'videotheek');
         define('MAIL_PATH', 'http://localhost/VidoeProject/');
